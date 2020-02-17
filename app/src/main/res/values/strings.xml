@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">PerfectFit</string>
+    <string name="login">Login</string>
+    <string name="register">Make an account</string>
+    <string name="alreadyMember">Already a member? Sign in here!</string>
+    <string name="newMember">New to the app? Make an account here!</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="enterUsername">Enter a username</string>
+    <string name="enterPassword">Enter a password</string>
+    <string name="registerAccount">Register</string>
+    <string name="home">Home</string>
+</resources>
