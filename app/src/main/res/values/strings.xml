@@ -10,4 +10,7 @@
     <string name="enterPassword">Enter a password</string>
     <string name="registerAccount">Register</string>
     <string name="home">Home</string>
+    <string name="food">Food</string>
+    <string name="exercise">Exercise</string>
+    <string name="support">Support</string>
 </resources>
