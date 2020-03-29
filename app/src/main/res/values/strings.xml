@@ -4,13 +4,29 @@
     <string name="register">Make an account</string>
     <string name="alreadyMember">Already a member? Sign in here!</string>
     <string name="newMember">New to the app? Make an account here!</string>
-    <string name="username">Username</string>
+    <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="enterUsername">Enter a username</string>
+    <string name="enterEmail">Enter an email</string>
     <string name="enterPassword">Enter a password</string>
+    <string name="enterName">Enter a name</string>
+    <string name="enterWeight">Enter weight in kg</string>
+    <string name="enterHeight">Enter height in meters</string>
+    <string name="enterBodyFatLevel">Enter Body Fat Level</string>
+    <string name="enterAge">Enter age</string>
     <string name="registerAccount">Register</string>
     <string name="home">Home</string>
     <string name="food">Food</string>
+    <string name="next">Next</string>
     <string name="exercise">Exercise</string>
     <string name="support">Support</string>
+    <string name="remainingCalText">How many calories do you have left for today?</string>
+    <string name="testRemainingCalValue">1810</string>
+    <string name="welcomeBack">Welcome back Sam!</string>
+    <string name="scanner">Open scanner</string>
+    <string name="title_activity_register_measurements">RegisterMeasurements</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="genderText">Please select your gender</string>
+
+
 </resources>

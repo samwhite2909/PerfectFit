@@ -5,17 +5,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MenuActivity extends AppCompatActivity {
+    FirebaseAuth mFirebaseAuth;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +37,7 @@ public class MenuActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,
                 new HomeFragment()).commit();
+
     }
 
     @Override
@@ -43,11 +51,14 @@ public class MenuActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.logoutItem:
-                Toast toast = Toast.makeText(getApplicationContext(),
+                FirebaseAuth.getInstance().signOut();
+                Toast toast = Toast.makeText(MenuActivity.this,
                         "Logging out", Toast.LENGTH_SHORT);
                 toast.show();
                 openMainActivity();
-            default:
+            /**case R.id.scannerItem:
+                openScannerActivity(); **/
+                default:
                 return super.onOptionsItemSelected(item);
         }
     }
@@ -55,6 +66,11 @@ public class MenuActivity extends AppCompatActivity {
     public void openMainActivity() {
         Intent mainIntent = new Intent(this, MainActivity.class);
         startActivity(mainIntent);
+    }
+
+    public void openScannerActivity() {
+        Intent scannerIntent = new Intent(this, ScannerActivity.class);
+        startActivity(scannerIntent);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
