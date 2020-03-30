@@ -48,6 +48,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/enterAge"
             android:maxLength="50"
+            android:inputType="number"
             android:outlineAmbientShadowColor="@color/primaryColor"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/primaryTextColor" />

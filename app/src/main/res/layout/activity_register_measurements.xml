@@ -48,6 +48,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/enterHeight"
             android:maxLength="50"
+            android:inputType="numberDecimal"
             android:outlineAmbientShadowColor="@color/primaryColor"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/primaryTextColor" />
@@ -70,6 +71,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/enterBodyFatLevel"
             android:maxLength="50"
+            android:inputType="numberDecimal"
             android:outlineAmbientShadowColor="@color/primaryColor"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/primaryTextColor" />
@@ -92,6 +94,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/enterWeight"
             android:maxLength="50"
+            android:inputType="numberDecimal"
             android:outlineAmbientShadowColor="@color/primaryColor"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/primaryTextColor" />

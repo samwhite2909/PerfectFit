@@ -21,12 +21,21 @@
     <string name="support">Support</string>
     <string name="remainingCalText">How many calories do you have left for today?</string>
     <string name="testRemainingCalValue">1810</string>
-    <string name="welcomeBack">Welcome back Sam!</string>
+    <string name="welcomeBack">Welcome back!</string>
     <string name="scanner">Open scanner</string>
     <string name="title_activity_register_measurements">RegisterMeasurements</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="genderText">Please select your gender</string>
+    <string name="supportQuestion">Would you like the additional support features within the app?</string>
+    <string name="lossQuestion">How much weight per week do you want to lose?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="halfPound">0.5lb</string>
+    <string name="pound">1lb</string>
+    <string name="oneHalfPound">1.5lbs</string>
+    <string name="twoPounds">2lbs</string>
+
 
 
 </resources>

@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegisterDetails"></activity>
+        <activity android:name=".RegisterQuestions"></activity>
+        <activity android:name=".RegisterDetails" />
         <activity android:name=".RegisterMeasurements" />
         <activity android:name=".ScannerActivity" />
         <activity android:name=".MenuActivity" />

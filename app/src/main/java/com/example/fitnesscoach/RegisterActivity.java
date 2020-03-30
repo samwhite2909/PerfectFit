@@ -64,19 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 Toast.makeText(RegisterActivity.this, "Sign up unsuccessful", Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                /**userID = mFirebaseAuth.getCurrentUser().getUid();
-                                DocumentReference documentReference = fStore.collection("users").document(userID);
-                                final Map<String, Object> user = new HashMap<>();
-                                user.put("name", name);
-                                user.put("email", email);
-                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d("Tag", "onSuccess: user profile is created for " + userID);
-                                    }
-                                }); */
-
-                                Intent intent  = new Intent(RegisterActivity.this, RegisterDetails.class);
+                                Intent intent  = new Intent(RegisterActivity.this, RegisterQuestions.class);
                                 intent.putExtra("email", email);
                                 intent.putExtra("name", name);
                                 startActivity(intent);

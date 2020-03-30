@@ -9,22 +9,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
-public class RegisterDetails extends AppCompatActivity {
+public class RegisterQuestions extends AppCompatActivity {
 
-    RadioGroup rg;
-    RadioButton rb;
-    String gender;
-    EditText editTextAge;
+    RadioGroup rgSupport;
+    RadioButton rbSupport;
+    String supportAnswer;
+    RadioGroup rgLossAmount;
+    RadioButton rbLossAmount;
+    String lossAmount;
     Button registerButton;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_details);
+        setContentView(R.layout.activity_register_questions);
 
-        editTextAge = findViewById(R.id.ageInput);
-        rg = findViewById(R.id.genderGroup);
+        rgSupport = findViewById(R.id.supportGroup);
+        rgLossAmount = findViewById(R.id.loseGroup);
         registerButton = findViewById(R.id.registerButton);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -32,27 +35,26 @@ public class RegisterDetails extends AppCompatActivity {
             public void onClick(View v) {
                 String name = getIntent().getStringExtra("name");
                 String email = getIntent().getStringExtra("email");
-                String weightLossAnswer = getIntent().getStringExtra("weightLossAnswer");
-                String supportAnswer = getIntent().getStringExtra("supportAnswer");
 
-                String age = editTextAge.getText().toString();
-
-
-                Intent intent  = new Intent(RegisterDetails.this, RegisterMeasurements.class);
+                Intent intent  = new Intent(RegisterQuestions.this, RegisterDetails.class);
                 intent.putExtra("email", email);
                 intent.putExtra("name", name);
-                intent.putExtra("weightLossAnswer", weightLossAnswer);
                 intent.putExtra("supportAnswer", supportAnswer);
-                intent.putExtra("age", age);
-                intent.putExtra("gender", gender);
+                intent.putExtra("weightLossAnswer", lossAmount);
                 startActivity(intent);
             }
         });
     }
 
-    public void rbClick(View v){
-        int radioButtonID =  rg.getCheckedRadioButtonId();
-        rb = findViewById(radioButtonID);
-        gender = rb.getText().toString();
+    public void rbClickSupport(View v){
+        int radioButtonID =  rgSupport.getCheckedRadioButtonId();
+        rbSupport = findViewById(radioButtonID);
+        supportAnswer = rbSupport.getText().toString();
+    }
+
+    public void rbClickLoss(View v){
+        int radioButtonID =  rgLossAmount.getCheckedRadioButtonId();
+        rbLossAmount = findViewById(radioButtonID);
+        lossAmount = rbLossAmount.getText().toString();
     }
 }
