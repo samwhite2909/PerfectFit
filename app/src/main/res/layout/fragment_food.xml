@@ -16,15 +16,53 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/barcodeButton"
-        android:layout_width="300sp"
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/floatingActionMenu"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/scanner"
+        android:layout_marginBottom="16dp"
+        app:menu_labels_showShadow="true"
+        app:menu_fab_label=""
+        app:menu_openDirection="up"
+        app:menu_colorNormal="@color/primaryColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeText"
-        app:layout_constraintVertical_bias="0.506" />
+        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintStart_toStartOf="parent" >
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_label="@string/addFoodDatabase"
+            app:fab_size="mini"
+            android:id="@+id/addDatabaseButton"
+            app:menu_labels_showShadow="true"
+            app:fab_colorNormal="@color/primaryColor"
+            android:src="@drawable/ic_reorder_black_24dp"
+            />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_label="@string/addFoodSearch"
+            app:fab_size="mini"
+            android:id="@+id/addFoodFloatButton"
+            app:menu_labels_showShadow="true"
+            app:fab_colorNormal="@color/primaryColor"
+            android:src="@drawable/ic_search_black_24dp"
+            />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_label="@string/addFoodScanner"
+            app:fab_size="mini"
+            android:id="@+id/addFoodScanFloatButton"
+            app:menu_labels_showShadow="true"
+            app:fab_colorNormal="@color/primaryColor"
+            android:src="@drawable/ic_fullscreen_black_24dp"
+            />
+
+    </com.github.clans.fab.FloatingActionMenu>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

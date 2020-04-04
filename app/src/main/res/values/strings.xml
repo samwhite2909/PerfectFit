@@ -19,7 +19,7 @@
     <string name="next">Next</string>
     <string name="exercise">Exercise</string>
     <string name="support">Support</string>
-    <string name="remainingCalText">How many calories do you have left for today?</string>
+    <string name="remainingCalText">You have</string>
     <string name="testRemainingCalValue">1810</string>
     <string name="welcomeBack">Welcome back!</string>
     <string name="scanner">Open scanner</string>
@@ -35,7 +35,24 @@
     <string name="pound">1lb</string>
     <string name="oneHalfPound">1.5lbs</string>
     <string name="twoPounds">2lbs</string>
-
+    <string name="accountDetails">Account Details</string>
+    <string name="date">Date</string>
+    <string name="name">Name</string>
+    <string name="gender">Gender</string>
+    <string name="BMI">BMI</string>
+    <string name="age">Age</string>
+    <string name="updateMeasuerments">Update My Measurements</string>
+    <string name="update">Update</string>
+    <string name="caloriesRemaining">Calories remaining for today</string>
+    <string name="enterTime">How many minutes have exercised for?</string>
+    <string name="enterCalPerMin">How many calories does this burn per minute?</string>
+    <string name="enterExerciseName">What is the name of this exercise?</string>
+    <string name="addExerciseDatabase">Add exercise to database</string>
+    <string name="addExerciseSearch">Search to add your exercise</string>
+    <string name="addExercise">Add exercise</string>
+    <string name="addFoodDatabase">Add food to database</string>
+    <string name="addFoodSearch">Search to add your food</string>
+    <string name="addFoodScanner">Scan to add your food</string>
 
 
 </resources>

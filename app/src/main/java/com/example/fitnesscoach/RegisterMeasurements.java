@@ -92,6 +92,8 @@ public class RegisterMeasurements extends AppCompatActivity {
                     calLimitWithReduction = dailyCalLimit - 1000;
                 }
 
+                double remainingCalValue = calLimitWithReduction;
+
                 String dateJoined = DateFormat.getDateInstance().format(calendar.getTime());
 
                 userID = mFirebaseAuth.getCurrentUser().getUid();
@@ -110,6 +112,7 @@ public class RegisterMeasurements extends AppCompatActivity {
                  user.put("dailyCalLimit", dailyCalLimit);
                  user.put("weeklyCalLimit", weeklyCalLimit);
                  user.put("calLimitWithReduction", calLimitWithReduction);
+                 user.put("remainingCalValue", remainingCalValue);
                  user.put("dateJoined", dateJoined);
                  documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override

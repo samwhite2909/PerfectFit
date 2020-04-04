@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -33,9 +34,8 @@ public class MenuActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     FirebaseFirestore fStore;
     TextView greeting;
+    FloatingActionButton floatingActionButton;
     String userID;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +47,8 @@ public class MenuActivity extends AppCompatActivity {
 
         greeting = findViewById(R.id.homeText);
 
-        userID = mFirebaseAuth.getCurrentUser().getUid();
-        DocumentReference documentReference = fStore.collection("users").document(userID);
-        //Toast.makeText(MenuActivity.this, userID, Toast.LENGTH_SHORT).show();
 
-        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() { //This might not be
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) { // This might not be
-                greeting.setText(documentSnapshot.getString("name")); //This is okay
-            }
-        });
+
 
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -84,11 +76,16 @@ public class MenuActivity extends AppCompatActivity {
                         "Logging out", Toast.LENGTH_SHORT);
                 toast.show();
                 openMainActivity();
-            /**case R.id.scannerItem:
-                openScannerActivity(); **/
-                default:
-                return super.onOptionsItemSelected(item);
+                return true;
+            case R.id.scannerItem:
+                openScannerActivity();
+                return true;
+
+            case R.id.accountItem:
+                openAccountActivity();
+                return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     public void openMainActivity() {
@@ -100,6 +97,12 @@ public class MenuActivity extends AppCompatActivity {
         Intent scannerIntent = new Intent(this, ScannerActivity.class);
         startActivity(scannerIntent);
     }
+
+    public void openAccountActivity() {
+        Intent accountIntent = new Intent(this, AccountDetails.class);
+        startActivity(accountIntent);
+    }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {

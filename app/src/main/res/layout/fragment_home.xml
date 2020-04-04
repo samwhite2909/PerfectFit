@@ -8,8 +8,8 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/homeText"
-        android:layout_width="335dp"
-        android:layout_height="121dp"
+        android:layout_width="330dp"
+        android:layout_height="112dp"
         android:layout_marginTop="24dp"
         android:text="@string/welcomeBack"
         android:textAlignment="center"
@@ -24,44 +24,49 @@
         android:layout_height="149dp"
         android:layout_alignParentTop="true"
         android:minHeight="200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeText"
-        app:layout_constraintVertical_bias="0.145">
+        app:layout_constraintTop_toBottomOf="@+id/homeText">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="40dp"
-            tools:layout_editor_absoluteY="246dp"
-            android:outlineAmbientShadowColor="@color/primaryColor"
             android:background="@color/primaryColor"
-            >
+            android:outlineAmbientShadowColor="@color/primaryColor">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/calValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/testRemainingCalValue"
-                android:textColor="@color/secondaryTextColor"
                 android:layout_alignParentBottom="true"
+                android:layout_marginBottom="47dp"
+                android:text="@string/testRemainingCalValue"
                 android:textAlignment="center"
-                android:textSize="60sp" />
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="50sp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/remainingCalText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:textColor="@color/secondaryTextColor"
                 android:text="@string/remainingCalText"
                 android:textAlignment="center"
-                android:textSize="30sp" />
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="25sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/caloriesLeftText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:text="@string/caloriesRemaining"
+                android:textAlignment="center"
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="25sp" />
 
         </RelativeLayout>
-
     </com.google.android.material.card.MaterialCardView>
 
 

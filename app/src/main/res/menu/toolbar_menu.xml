@@ -14,4 +14,10 @@
         app:showAsAction="never"
         />
 
+    <item
+        android:id="@+id/accountItem"
+        android:title="Account Details"
+        app:showAsAction="never"
+        />
+
 </menu>

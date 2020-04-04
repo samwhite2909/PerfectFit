@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryColor"
     >
 
     <com.google.android.material.textview.MaterialTextView
@@ -18,5 +17,45 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/floatingActionMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:menu_labels_showShadow="true"
+        app:menu_fab_label=""
+        app:menu_openDirection="up"
+        app:menu_colorNormal="@color/primaryColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintStart_toStartOf="parent" >
+
+    <com.github.clans.fab.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fab_label="@string/addExerciseDatabase"
+        app:fab_size="mini"
+        android:id="@+id/addDatabaseButton"
+        app:menu_labels_showShadow="true"
+        app:fab_colorNormal="@color/primaryColor"
+        android:src="@drawable/ic_reorder_black_24dp"
+        />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_label="@string/addExerciseSearch"
+            app:fab_size="mini"
+            android:id="@+id/addExerciseFloatButton"
+            app:menu_labels_showShadow="true"
+            app:fab_colorNormal="@color/primaryColor"
+            android:src="@drawable/ic_search_black_24dp"
+            />
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

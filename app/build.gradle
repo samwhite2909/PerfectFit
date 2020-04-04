@@ -36,4 +36,5 @@ dependencies {
     implementation 'com.android.support:design:29.0.0'
     implementation 'me.dm7.barcodescanner:zxing:1.9'
     implementation 'com.google.firebase:firebase-database:19.2.1'
+    implementation 'com.github.clans:fab:1.6.4'
 }

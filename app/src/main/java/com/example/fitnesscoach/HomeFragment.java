@@ -26,6 +26,7 @@ public class HomeFragment extends Fragment {
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     FirebaseFirestore fStore;
     TextView greeting;
+    TextView calValue;
     String userID;
 
     @Nullable
@@ -33,23 +34,27 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
         greeting = view.findViewById(R.id.homeText);
+        calValue = view.findViewById((R.id.calValue));
 
         fStore = FirebaseFirestore.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
 
+            if(mFirebaseAuth.getCurrentUser() != null) {
+                userID = mFirebaseAuth.getCurrentUser().getUid();
 
+                DocumentReference documentReference = fStore.collection("users").document(userID);
 
-        userID = mFirebaseAuth.getCurrentUser().getUid();
-        DocumentReference documentReference = fStore.collection("users").document(userID);
-        //Toast.makeText(MenuActivity.this, userID, Toast.LENGTH_SHORT).show();
-
-        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
-                greeting.setText(documentSnapshot.getString("name"));
+                documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                        String name = documentSnapshot.getString("name");
+                        double remainingCalValueNum = documentSnapshot.getDouble("remainingCalValue");
+                        String remainingCalString  = Double.toString(remainingCalValueNum);
+                        greeting.setText("Welcome " + name);
+                        calValue.setText(remainingCalString);
+                    }
+                });
             }
-        });
-
         return view;
     }
 
