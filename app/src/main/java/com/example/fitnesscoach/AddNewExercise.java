@@ -26,10 +26,42 @@ import java.util.Map;
 
 public class AddNewExercise extends AppCompatActivity {
 
+    EditText editExerciseName;
+    EditText editCalPerMin;
+    Button addExerciseButton;
+    FirebaseFirestore fStore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_exercise);
+
+        editExerciseName = findViewById(R.id.nameInput);
+        editCalPerMin = findViewById(R.id.calPerMinInput);
+        addExerciseButton = findViewById(R.id.addExerciseButton);
+
+        fStore = FirebaseFirestore.getInstance();
+
+        addExerciseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String exerciseName = editExerciseName.getText().toString();
+                double calPerMin = Double.parseDouble(editCalPerMin.getText().toString());
+
+                DocumentReference documentReference = fStore.collection("exercises").document(exerciseName);
+                final Map<String, Object> exercise = new HashMap<>();
+                exercise.put("exerciseName", exerciseName);
+                exercise.put("calPerMin", calPerMin);
+                documentReference.set(exercise).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Tag", "onSuccess: exercise profile is created for " + exerciseName);
+                    }
+                });
+                Intent intent  = new Intent(AddNewExercise.this, MenuActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

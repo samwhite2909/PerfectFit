@@ -53,6 +53,9 @@
     <string name="addFoodDatabase">Add food to database</string>
     <string name="addFoodSearch">Search to add your food</string>
     <string name="addFoodScanner">Scan to add your food</string>
+    <string name="enterCalPer100g">How many calories are in it per 100g?</string>
+    <string name="enterFoodName">What is the name of this food?</string>
+    <string name="addFood">Add Food</string>
 
 
 </resources>
