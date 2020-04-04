@@ -56,6 +56,7 @@
     <string name="enterCalPer100g">How many calories are in it per 100g?</string>
     <string name="enterFoodName">What is the name of this food?</string>
     <string name="addFood">Add Food</string>
+    <string name="search">Search</string>
 
 
 </resources>

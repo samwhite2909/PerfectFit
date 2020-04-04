@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddFoodToUser"></activity>
+        <activity android:name=".SearchExercises"></activity>
+        <activity android:name=".AddFoodToUser" />
         <activity android:name=".AddNewFood" />
         <activity android:name=".AddExerciseToUser" />
         <activity android:name=".AddNewExercise" />
