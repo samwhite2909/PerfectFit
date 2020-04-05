@@ -8,14 +8,9 @@
     android:orientation = "vertical"
     tools:context=".SearchExercises">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_constraintTop_toTopOf="parent"
-        app:queryHint="@string/search"
-        android:padding="10sp"
-        android:layout_margin="5sp"/>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"

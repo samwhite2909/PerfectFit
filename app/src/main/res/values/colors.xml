@@ -8,4 +8,5 @@
     <color name="secondaryDarkColor">#c7c7c7</color>
     <color name="primaryTextColor">#263238</color>
     <color name="secondaryTextColor">#fafafa</color>
+    <color name="cardBackgroundColor">#f5f5f5</color>
 </resources>

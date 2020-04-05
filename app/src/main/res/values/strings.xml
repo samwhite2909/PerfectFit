@@ -57,6 +57,20 @@
     <string name="enterFoodName">What is the name of this food?</string>
     <string name="addFood">Add Food</string>
     <string name="search">Search</string>
+    <string name="stopwatch">Stopwatch</string>
+    <string name="stopwatchDesc">A handy stopwatch to help you in your workouts</string>
+    <string name="foodSuggestions">Food suggestions</string>
+    <string name="foodSuggestionsDesc">Need help deciding what to eat? Let us help you</string>
+    <string name="workoutPlanner">Workout Plan</string>
+    <string name="workoutPlannerDesc">Plan your workouts with us so you can get straight to it later on</string>
+    <string name="foodPlanner">Meal Plan</string>
+    <string name="foodPlannerDesc">Plan your meals with us to keep you on track</string>
+    <string name="quoteTip">Motivation and tips</string>
+    <string name="quoteTipDesc">View motivational quotes and handy tips from our other users</string>
+    <string name="tipShare">Share your tips</string>
+    <string name="tipShareDesc">Share your tips and advice with other users</string>
+    <string name="stopwatchTitle">Let us time you, you focus on your workout!</string>
+    <string name="backHome">Back to Home</string>
 
 
 </resources>

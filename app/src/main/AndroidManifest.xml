@@ -14,7 +14,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SearchExercises"></activity>
+        <activity android:name=".ViewTipsActivity"></activity>
+        <activity android:name=".AddTipActivity" />
+        <activity android:name=".MealPlanActivity" />
+        <activity android:name=".WorkoutPlanActivity" />
+        <activity android:name=".SuggestionsActivity" />
+        <activity android:name=".StopwatchActivity" />
+        <activity android:name=".SearchExercises" />
         <activity android:name=".AddFoodToUser" />
         <activity android:name=".AddNewFood" />
         <activity android:name=".AddExerciseToUser" />

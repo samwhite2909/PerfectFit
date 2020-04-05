@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_gravity="center"
+    tools:context=".StopwatchActivity">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="@string/stopwatchTitle"
+        android:textStyle="bold"
+        android:textSize="40sp"
+        android:textAlignment="center">
+
+    </com.google.android.material.textview.MaterialTextView>
+
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:background="@drawable/bg_round">
+    
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chronometer"
+        android:format="00:00:00"
+        android:textSize = "50sp"
+        android:textStyle = "bold"
+        android:textColor="@color/secondaryTextColor" />
+    
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/startButton"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_play_arrow_black_24dp"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/stopButton"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_stop_black_24dp"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/homeButton"
+        android:layout_width="300sp"
+        android:layout_height="75sp"
+        android:background="@color/primaryColor"
+        android:text="@string/backHome"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/secondaryTextColor"
+        android:textSize="30sp"
+        android:layout_marginTop="20sp">
+
+    </com.google.android.material.button.MaterialButton>
+</androidx.appcompat.widget.LinearLayoutCompat>
