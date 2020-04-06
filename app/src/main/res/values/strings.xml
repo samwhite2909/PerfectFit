@@ -71,6 +71,15 @@
     <string name="tipShareDesc">Share your tips and advice with other users</string>
     <string name="stopwatchTitle">Let us time you, you focus on your workout!</string>
     <string name="backHome">Back to Home</string>
+    <string name="addTipsHint">What would you like to share?</string>
+    <string name="share">Share</string>
+    <string name="addNewMeal">Create a new meal</string>
+    <string name="addMealTitle">Enter the name of the meal</string>
+    <string name="enterMealDesc">A brief description of ingredients</string>
+    <string name="priority">Set a priority for the meal to plan how soon you want to have it:</string>
+    <string name="create">Create</string>
+    <string name="yourMeals">Your meals</string>
+
 
 
 </resources>

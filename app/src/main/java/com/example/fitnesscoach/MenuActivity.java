@@ -71,11 +71,12 @@ public class MenuActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.logoutItem:
+                openMainActivity();
                 FirebaseAuth.getInstance().signOut();
                 Toast toast = Toast.makeText(MenuActivity.this,
                         "Logging out", Toast.LENGTH_SHORT);
                 toast.show();
-                openMainActivity();
+
                 return true;
             case R.id.scannerItem:
                 openScannerActivity();

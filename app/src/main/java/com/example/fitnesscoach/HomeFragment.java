@@ -18,6 +18,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import java.util.Random;
 import java.util.concurrent.Executor;
 
 public class HomeFragment extends Fragment {
@@ -28,6 +29,7 @@ public class HomeFragment extends Fragment {
     TextView greeting;
     TextView calValue;
     String userID;
+
 
     @Nullable
     @Override
@@ -42,19 +44,32 @@ public class HomeFragment extends Fragment {
             if(mFirebaseAuth.getCurrentUser() != null) {
                 userID = mFirebaseAuth.getCurrentUser().getUid();
 
+
                 DocumentReference documentReference = fStore.collection("users").document(userID);
 
                 documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                     @Override
                     public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
-                        String name = documentSnapshot.getString("name");
-                        double remainingCalValueNum = documentSnapshot.getDouble("remainingCalValue");
-                        String remainingCalString  = Double.toString(remainingCalValueNum);
-                        greeting.setText("Welcome " + name);
-                        calValue.setText(remainingCalString);
+                        if(documentSnapshot.getString("name") != null){
+                            String name = documentSnapshot.getString("name");
+                            greeting.setText("Welcome " + name);
+                        }
+                        else{
+                            greeting.setText("Welcome");
+                        }
+
+                        if(documentSnapshot.getDouble("remainingCalValue") != null){
+                            double remainingCalValueNum = documentSnapshot.getDouble("remainingCalValue");
+                            String remainingCalString  = Double.toString(remainingCalValueNum);
+                            calValue.setText(remainingCalString);
+                        }
+                        else{
+                            calValue.setText("0");
+                        }
                     }
                 });
             }
+
         return view;
     }
 

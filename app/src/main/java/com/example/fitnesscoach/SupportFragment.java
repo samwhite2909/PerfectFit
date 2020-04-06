@@ -11,6 +11,15 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import java.util.Objects;
+
 public class SupportFragment extends Fragment implements View.OnClickListener {
     CardView stopwatchCard;
     CardView suggestionsCard;
@@ -18,6 +27,10 @@ public class SupportFragment extends Fragment implements View.OnClickListener {
     CardView workoutCard;
     CardView tipsCard;
     CardView addTipsCard;
+    String userID;
+    FirebaseAuth mFirebaseAuth;
+    FirebaseFirestore fStore;
+    String userName;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,6 +50,23 @@ public class SupportFragment extends Fragment implements View.OnClickListener {
         tipsCard.setOnClickListener(this);
         addTipsCard.setOnClickListener(this);
 
+        fStore = FirebaseFirestore.getInstance();
+        mFirebaseAuth = FirebaseAuth.getInstance();
+
+        if(mFirebaseAuth.getCurrentUser() != null) {
+
+            userID =mFirebaseAuth.getCurrentUser().getUid();
+
+            DocumentReference documentReference = fStore.collection("users").document(userID);
+
+            documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                    userName = documentSnapshot.getString("name");
+
+                }
+            });
+        }
 
 
         return view;
@@ -46,7 +76,7 @@ public class SupportFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-        Intent i;
+        final Intent i;
 
         switch (v.getId()){
             case R.id.stopwatchCard: i = new Intent(getActivity(), StopwatchActivity.class);
@@ -64,8 +94,10 @@ public class SupportFragment extends Fragment implements View.OnClickListener {
             case R.id.tipsCard: i = new Intent(getActivity(), ViewTipsActivity.class);
                 startActivity(i);
                 break;
-            case R.id.addTipsCard: i = new Intent(getActivity(), AddTipActivity.class);
-                startActivity(i);
+            case R.id.addTipsCard:
+                    i = new Intent(getActivity(), AddTipActivity.class);
+                    i.putExtra("name", userName);
+                    startActivity(i);
                 break;
             default:
                 break;
