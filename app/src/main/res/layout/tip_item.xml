@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    app:cardBackgroundColor="@color/primaryColor">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tipTitle"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignParentStart="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:maxLines="1"
+            android:text="Title"
+            android:textColor="@color/secondaryTextColor"
+            android:ellipsize="end"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tipContent"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="Content"
+            android:textColor="@color/secondaryTextColor"
+            android:layout_below="@+id/tipTitle"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/posterName"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="Posted by"
+            android:textColor="@color/secondaryTextColor"
+            android:layout_below="@+id/tipContent"/>
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

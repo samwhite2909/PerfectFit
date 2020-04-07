@@ -97,6 +97,7 @@ public class SupportFragment extends Fragment implements View.OnClickListener {
             case R.id.addTipsCard:
                     i = new Intent(getActivity(), AddTipActivity.class);
                     i.putExtra("name", userName);
+                    i.putExtra("userID", userID);
                     startActivity(i);
                 break;
             default:

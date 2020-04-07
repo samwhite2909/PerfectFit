@@ -78,9 +78,7 @@ public class MenuActivity extends AppCompatActivity {
                 toast.show();
 
                 return true;
-            case R.id.scannerItem:
-                openScannerActivity();
-                return true;
+
 
             case R.id.accountItem:
                 openAccountActivity();

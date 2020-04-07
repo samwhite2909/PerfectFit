@@ -8,11 +8,6 @@
         app:showAsAction="never"
             />
 
-    <item
-        android:id="@+id/scannerItem"
-        android:title="Scanner"
-        app:showAsAction="never"
-        />
 
     <item
         android:id="@+id/accountItem"

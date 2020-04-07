@@ -23,7 +23,7 @@ public class AddTipActivity extends AppCompatActivity {
 
     Button shareButton;
     EditText tipEdit;
-    static int tipCounter;
+    EditText tipTitleEdit;
     FirebaseFirestore fStore;
     int random;
 
@@ -34,6 +34,7 @@ public class AddTipActivity extends AppCompatActivity {
 
         shareButton = findViewById(R.id.shareButton);
         tipEdit = findViewById(R.id.tipInput);
+        tipTitleEdit = findViewById(R.id.tipTitleInput);
 
         fStore = FirebaseFirestore.getInstance();
 
@@ -41,16 +42,19 @@ public class AddTipActivity extends AppCompatActivity {
 
 
         final String name = getIntent().getStringExtra("name");
+        final String userID = getIntent().getStringExtra("userID");
 
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String actualTip = tipEdit.getText().toString();
-
+                String tipTitle = tipTitleEdit.getText().toString();
                 DocumentReference documentReference = fStore.collection("tips").document();
                 final Map<String, Object> tip = new HashMap<>();
-                tip.put("name", name);
-                tip.put("tip", actualTip);
+                tip.put("userID", userID);
+                tip.put("poster", name);
+                tip.put("tipTitle", tipTitle);
+                tip.put("tipTip", actualTip);
                 tip.put("random", random);
                 documentReference.set(tip).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

@@ -66,7 +66,7 @@
     <string name="foodPlanner">Meal Plan</string>
     <string name="foodPlannerDesc">Plan your meals with us to keep you on track</string>
     <string name="quoteTip">Motivation and tips</string>
-    <string name="quoteTipDesc">View motivational quotes and handy tips from our other users</string>
+    <string name="quoteTipDesc">See what members of our community are talking about</string>
     <string name="tipShare">Share your tips</string>
     <string name="tipShareDesc">Share your tips and advice with other users</string>
     <string name="stopwatchTitle">Let us time you, you focus on your workout!</string>
@@ -83,8 +83,12 @@
     <string name="caloriesRemainingDesc">Track the foods you\'re eating, remember to exercise for more calories for the day! </string>
     <string name="weightLossPrediction">You\'re on track to lose 0 pounds this week </string>
     <string name="predictedWeightLossDesc">Based on the calorie tracking information you\'ve given us, this is how much we think you\'ll do this week! </string>
-
-
+    <string name="yourWorkout">Your workout </string>
+    <string name="addNewExercise">Enter the name of the exercise </string>
+    <string name="addNewExerciseTarget">Give your target for this exercise </string>
+    <string name="addNewExerciseHeading">Add your exercise</string>
+    <string name="priorityExerciseText">Give this exercise a number for ordering, to structure your workout:</string>
+    <string name="tipsTitle">What are our community saying?</string>
 
 
 </resources>

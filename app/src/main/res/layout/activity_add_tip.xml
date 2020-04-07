@@ -22,8 +22,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="178dp"
+            android:layout_height="158dp"
             android:layout_marginTop="28dp"
             android:src="@drawable/fitnesslogo"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,39 +32,63 @@
             app:layout_constraintTop_toBottomOf="@+id/appNameText" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tipLayout"
+            android:id="@+id/tipTitleLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="288dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/logo">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tipInput"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="top"
-                android:hint="@string/addTipsHint"
-                android:maxLength="500"
-                android:outlineAmbientShadowColor="@color/primaryColor"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/primaryTextColor" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tipTitleInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="top"
+                    android:hint="@string/addTipsHint"
+                    android:maxLength="500"
+                    android:outlineAmbientShadowColor="@color/primaryColor"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/primaryTextColor" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tipLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="288dp"
+            android:layout_height="138dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tipTitleLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tipInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="top"
+                    android:hint="@string/addTipsHint"
+                    android:maxLength="500"
+                    android:outlineAmbientShadowColor="@color/primaryColor"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/primaryTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/shareButton"
             android:layout_width="300sp"
             android:layout_height="75sp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="24dp"
             android:background="@color/primaryColor"
             android:text="@string/share"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/secondaryTextColor"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tipLayout" />
 
