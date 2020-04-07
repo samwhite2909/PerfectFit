@@ -3,6 +3,7 @@ package com.example.fitnesscoach;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,6 +43,7 @@ public class SearchExercises extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_exercises);
 
+
         fStore = FirebaseFirestore.getInstance();
         mFirestoreList = findViewById(R.id.rv);
 
@@ -76,6 +78,7 @@ public class SearchExercises extends AppCompatActivity {
         mFirestoreList.setLayoutManager(new LinearLayoutManager(this));
         mFirestoreList.setAdapter(adapter);
 
+
     }
 
     @Override
@@ -83,11 +86,52 @@ public class SearchExercises extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.exercise_search_menu, menu);
 
         MenuItem item = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) item.getActionView();
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchData(query);
+                return false;
+            }
+
+
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
 
         return super.onCreateOptionsMenu(menu);
     }
 
+    private void searchData(String s) {
+
+        fStore.collection("exercises").whereEqualTo("search", s.toLowerCase())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for(DocumentSnapshot doc: task.getResult()){
+                            Exercise exercise = new Exercise(doc.getString("exerciseName"), doc.getDouble("calPerMin"));
+                            Toast.makeText(SearchExercises.this, exercise.getExerciseName(), Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(SearchExercises.this, e.getMessage(),Toast.LENGTH_SHORT);
+                    }
+                });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
 
     private class ExercisesViewHolder extends RecyclerView.ViewHolder {
 

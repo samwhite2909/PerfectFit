@@ -47,11 +47,13 @@ public class AddNewExercise extends AppCompatActivity {
             public void onClick(View v) {
                 final String exerciseName = editExerciseName.getText().toString();
                 double calPerMin = Double.parseDouble(editCalPerMin.getText().toString());
+                String search = exerciseName.toLowerCase();
 
                 DocumentReference documentReference = fStore.collection("exercises").document(exerciseName);
                 final Map<String, Object> exercise = new HashMap<>();
                 exercise.put("exerciseName", exerciseName);
                 exercise.put("calPerMin", calPerMin);
+                exercise.put("search",search);
                 documentReference.set(exercise).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
