@@ -35,8 +35,8 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
-        greeting = view.findViewById(R.id.homeText);
-        calValue = view.findViewById((R.id.calValue));
+        greeting = view.findViewById(R.id.greetingText);
+        calValue = view.findViewById((R.id.caloriesRemainingText));
 
         fStore = FirebaseFirestore.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -52,7 +52,7 @@ public class HomeFragment extends Fragment {
                     public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
                         if(documentSnapshot.getString("name") != null){
                             String name = documentSnapshot.getString("name");
-                            greeting.setText("Welcome " + name);
+                            greeting.setText("Welcome back " + name + "!");
                         }
                         else{
                             greeting.setText("Welcome");
@@ -61,7 +61,8 @@ public class HomeFragment extends Fragment {
                         if(documentSnapshot.getDouble("remainingCalValue") != null){
                             double remainingCalValueNum = documentSnapshot.getDouble("remainingCalValue");
                             String remainingCalString  = Double.toString(remainingCalValueNum);
-                            calValue.setText(remainingCalString);
+                            String remainingCalStringText = "You have " + remainingCalString + " calories remaining for today";
+                            calValue.setText(remainingCalStringText);
                         }
                         else{
                             calValue.setText("0");

@@ -43,7 +43,7 @@
     <string name="age">Age</string>
     <string name="updateMeasuerments">Update My Measurements</string>
     <string name="update">Update</string>
-    <string name="caloriesRemaining">Calories remaining for today</string>
+    <string name="caloriesRemaining">You have 0 calories remaining for today</string>
     <string name="enterTime">How many minutes have exercised for?</string>
     <string name="enterCalPerMin">How many calories does this burn per minute?</string>
     <string name="enterExerciseName">What is the name of this exercise?</string>
@@ -79,6 +79,11 @@
     <string name="priority">Set a priority for the meal to plan how soon you want to have it:</string>
     <string name="create">Create</string>
     <string name="yourMeals">Your meals</string>
+    <string name="welcomeDesc">We hope you\'re having a great day!</string>
+    <string name="caloriesRemainingDesc">Track the foods you\'re eating, remember to exercise for more calories for the day! </string>
+    <string name="weightLossPrediction">You\'re on track to lose 0 pounds this week </string>
+    <string name="predictedWeightLossDesc">Based on the calorie tracking information you\'ve given us, this is how much we think you\'ll do this week! </string>
+
 
 
 

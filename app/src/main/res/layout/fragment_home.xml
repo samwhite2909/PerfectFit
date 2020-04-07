@@ -1,73 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding = "10dp"
+    android:gravity="center">
 
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:clipToPadding="false">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/homeText"
-        android:layout_width="330dp"
-        android:layout_height="112dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/welcomeBack"
-        android:textAlignment="center"
-        android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView"
-        android:layout_width="332dp"
-        android:layout_height="149dp"
-        android:layout_alignParentTop="true"
-        android:minHeight="200dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeText">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/primaryColor"
-            android:outlineAmbientShadowColor="@color/primaryColor">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/calValue"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/greetingCard"
+            android:layout_width="300dp"
+            android:layout_height="160dp"
+            android:layout_margin="10dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="47dp"
-                android:text="@string/testRemainingCalValue"
-                android:textAlignment="center"
-                android:textColor="@color/secondaryTextColor"
-                android:textSize="50sp" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/circle_background_orange"
+                    android:src="@drawable/ic_home_black_24dp"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/welcomeBack"
+                    android:id="@+id/greetingText"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/welcomeDesc"
+                    android:padding="5dp"/>
+            </LinearLayout>
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/remainingCalText"
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:clipToPadding="false">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/workoutCard"
+            android:layout_width="300dp"
+            android:layout_height="160dp"
+            android:layout_margin="10dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:text="@string/remainingCalText"
-                android:textAlignment="center"
-                android:textColor="@color/secondaryTextColor"
-                android:textSize="25sp" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/circle_background_orange"
+                    android:src="@drawable/ic_restaurant_black_24dp"
+                    android:padding="10dp"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/caloriesRemainingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/caloriesRemaining"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/caloriesRemainingDesc"
+                    android:padding="5dp"/>
+            </LinearLayout>
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/caloriesLeftText"
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:clipToPadding="false">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/tipsCard"
+            android:layout_width="300dp"
+            android:layout_height="160dp"
+            android:layout_margin="10dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="10dp"
-                android:text="@string/caloriesRemaining"
-                android:textAlignment="center"
-                android:textColor="@color/secondaryTextColor"
-                android:textSize="25sp" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/circle_background_orange"
+                    android:src="@drawable/ic_scale"
+                    android:padding="10dp"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/weightLossPrediction"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/predictedWeightLossDesc"
+                    android:padding="5dp"/>
 
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
+        </com.google.android.material.card.MaterialCardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
