@@ -89,6 +89,13 @@
     <string name="addNewExerciseHeading">Add your exercise</string>
     <string name="priorityExerciseText">Give this exercise a number for ordering, to structure your workout:</string>
     <string name="tipsTitle">What are our community saying?</string>
+    <string name="addDuration">How long did you exercise for?</string>
+    <string name="exerciseAdded">Exercise added!</string>
+    <string name="addMoreExercises">Got any more exercises to add?</string>
+    <string name="moreExercisesButtonText">Add more exercises</string>
+    <string name="backToMenuText">If you\'re all finished, head back to the main menu</string>
+    <string name="backToMenuTextButton">Back to menu</string>
+    <string name="yourExercisesToday">Your exercises today so far</string>
 
 
 </resources>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,15 +8,21 @@
     >
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/homeText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/exercise"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/yourExercisesToday"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="40sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerView"
+        android:layout_marginTop="140dp"/>
+
 
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/floatingActionMenu"
@@ -27,10 +33,9 @@
         app:menu_fab_label=""
         app:menu_openDirection="up"
         app:menu_colorNormal="@color/primaryColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.953"
-        app:layout_constraintStart_toStartOf="parent" >
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+ >
 
     <com.github.clans.fab.FloatingActionButton
         android:layout_width="wrap_content"
@@ -58,4 +63,4 @@
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

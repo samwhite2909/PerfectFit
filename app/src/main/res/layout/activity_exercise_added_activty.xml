@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddExerciseToUser">
+    tools:context=".ExerciseAddedActivty">
 
 
     <com.google.android.material.textview.MaterialTextView
@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="@string/addNewExerciseHeading"
+        android:text="@string/exerciseAdded"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/primaryTextColor"
@@ -32,70 +32,63 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appNameText" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/exerciseDurationLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="300sp"
-        android:layout_height="60sp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calTextView">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/exerciseDurationInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/addDuration"
-            android:maxLength="50"
-            android:outlineAmbientShadowColor="@color/primaryColor"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/primaryTextColor" />
-    </com.google.android.material.textfield.TextInputLayout>
-
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/titleTextView"
+        android:id="@+id/moreExerciseTextView"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
-        android:text="Exercise title"
+        android:text="@string/addMoreExercises"
         android:textAlignment="center"
-        android:textSize="20sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/calTextView"
+        android:id="@+id/menuTextView"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:layout_marginTop="20dp"
-        android:text="Calories per minute: 0"
+        android:text="@string/backToMenuText"
         android:textAlignment="center"
-        android:textSize="20sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/addMoreExercisesButton" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/addExerciseButton"
+        android:id="@+id/menuButton"
         android:layout_width="300sp"
         android:layout_height="75sp"
         android:layout_marginTop="20dp"
         android:background="@color/primaryColor"
-        android:text="@string/addExercise"
+        android:text="@string/backToMenuTextButton"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/secondaryTextColor"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exerciseDurationLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/menuTextView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/addMoreExercisesButton"
+        android:layout_width="300sp"
+        android:layout_height="75sp"
+        android:layout_marginTop="20dp"
+        android:background="@color/primaryColor"
+        android:text="@string/moreExercisesButtonText"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/secondaryTextColor"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/moreExerciseTextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
