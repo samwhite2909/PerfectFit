@@ -33,9 +33,8 @@ public class MenuActivity extends AppCompatActivity {
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     FirebaseFirestore fStore;
-    TextView greeting;
-    FloatingActionButton floatingActionButton;
     String userID;
+    String supportAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +44,27 @@ public class MenuActivity extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-        greeting = findViewById(R.id.homeText);
-
 
 
 
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        final BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+
+            userID = mFirebaseAuth.getCurrentUser().getUid();
+            DocumentReference documentReference = fStore.collection("users").document(userID);
+
+            documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                    supportAnswer = documentSnapshot.getString("supportAnswer");
+                    if (supportAnswer.equalsIgnoreCase("No")) {
+                        bottomNav.getMenu().removeItem(R.id.nav_support);
+                    }
+                }
+            });
+
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,
@@ -90,11 +101,6 @@ public class MenuActivity extends AppCompatActivity {
     public void openMainActivity() {
         Intent mainIntent = new Intent(this, MainActivity.class);
         startActivity(mainIntent);
-    }
-
-    public void openScannerActivity() {
-        Intent scannerIntent = new Intent(this, ScannerActivity.class);
-        startActivity(scannerIntent);
     }
 
     public void openAccountActivity() {

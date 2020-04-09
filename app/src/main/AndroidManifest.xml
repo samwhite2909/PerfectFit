@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddNewFoodSecondStage"></activity>
+        <activity android:name=".FoodAddedActivity"></activity>
+        <activity android:name=".AddNewFoodSecondStage" />
         <activity android:name=".SearchFoods" />
         <activity android:name=".ExerciseAddedActivty" />
         <activity

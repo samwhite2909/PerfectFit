@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddFoodToUser">
+    tools:context=".FoodAddedActivity">
 
 
     <com.google.android.material.textview.MaterialTextView
@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="@string/addNewFoodHeading"
+        android:text="@string/foodAdded"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/primaryTextColor"
@@ -32,35 +32,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appNameText" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/foodAmountLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="300sp"
-        android:layout_height="60sp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/portionTextView">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/foodAmountInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/addAmount"
-            android:textSize="16sp"
-            android:maxLength="50"
-            android:outlineAmbientShadowColor="@color/primaryColor"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/primaryTextColor" />
-    </com.google.android.material.textfield.TextInputLayout>
-
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/titleTextView"
+        android:id="@+id/moreExerciseTextView"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
-        android:text="Food name"
+        android:text="@string/addFoodsText"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="20sp"
@@ -70,47 +47,48 @@
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/calTextView"
+        android:id="@+id/menuTextView"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:layout_marginTop="20dp"
-        android:text="Calories per average portion"
+        android:text="@string/backToMenuText"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/portionTextView"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:text="Average portion size"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/addMoreFoodsButton" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/addFoodButton"
+        android:id="@+id/menuButton"
         android:layout_width="300sp"
         android:layout_height="75sp"
         android:layout_marginTop="20dp"
         android:background="@color/primaryColor"
-        android:text="@string/addFood"
+        android:text="@string/backToMenuTextButton"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/secondaryTextColor"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodAmountLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/menuTextView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/addMoreFoodsButton"
+        android:layout_width="300sp"
+        android:layout_height="75sp"
+        android:layout_marginTop="20dp"
+        android:background="@color/primaryColor"
+        android:text="@string/addMoreFoodsButtonText"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/secondaryTextColor"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/moreExerciseTextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

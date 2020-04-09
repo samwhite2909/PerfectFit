@@ -20,27 +20,27 @@
             android:layout_alignParentStart="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:maxLines="1"
-            android:text="Food"
+            android:text="Name"
             android:textColor="@color/secondaryTextColor"
             android:ellipsize="end"/>
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/foodPortionSize"
+            android:id="@+id/foodCalConsumed"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_alignParentStart="true"
-            android:text="Portion Size"
+            android:text="Calories consumed"
             android:textColor="@color/secondaryTextColor"
             android:layout_below="@+id/foodName"/>
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/foodCalPerAveragePortion"
+            android:id="@+id/foodAmount"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_alignParentStart="true"
-            android:text="Cal per average portion"
+            android:text="Amount eaten"
             android:textColor="@color/secondaryTextColor"
-            android:layout_below="@+id/foodPortionSize"/>
+            android:layout_below="@+id/foodCalConsumed"/>
 
     </RelativeLayout>
 

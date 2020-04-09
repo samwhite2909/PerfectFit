@@ -100,8 +100,6 @@ public class SearchExercises extends AppCompatActivity {
                 return false;
             }
 
-
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 return false;
@@ -125,35 +123,6 @@ public class SearchExercises extends AppCompatActivity {
        adapter.updateOptions(newOptions);
     }
 
-    private void searchData(String s) {
-
-        String searchText = s.toLowerCase();
-
-
-
-
-        /*fStore.collection("exercises").whereEqualTo("search", s.toLowerCase())
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        for(DocumentSnapshot doc: task.getResult()){
-                            Exercise exercise = new Exercise(doc.getString("exerciseName"), doc.getDouble("calPerMin"));
-                            //Toast.makeText(SearchExercises.this, exercise.getExerciseName(), Toast.LENGTH_SHORT).show();
-
-
-                        }
-
-
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(SearchExercises.this, e.getMessage(),Toast.LENGTH_SHORT);
-                    }
-                });*/
-    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
