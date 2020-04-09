@@ -21,7 +21,6 @@ public class AddNewFood extends AppCompatActivity {
     EditText editFoodName;
     EditText editCalPer100g;
     Button addFoodButton;
-    FirebaseFirestore fStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,15 +31,14 @@ public class AddNewFood extends AppCompatActivity {
         editCalPer100g = findViewById(R.id.calPer100gInput);
         addFoodButton = findViewById(R.id.addFoodButton);
 
-        fStore = FirebaseFirestore.getInstance();
 
         addFoodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String foodName = editFoodName.getText().toString();
-                double calPer100g = Double.parseDouble(editCalPer100g.getText().toString());
+                String calPer100g = editCalPer100g.getText().toString();
 
-                DocumentReference documentReference = fStore.collection("foods").document(foodName);
+                /*DocumentReference documentReference = fStore.collection("foods").document(foodName);
                 final Map<String, Object> food = new HashMap<>();
                 food.put("foodName", foodName);
                 food.put("calPer100g", calPer100g);
@@ -49,8 +47,10 @@ public class AddNewFood extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         Log.d("Tag", "onSuccess: food profile is created for " + foodName);
                     }
-                });
-                Intent intent  = new Intent(AddNewFood.this, MenuActivity.class);
+                });*/
+                Intent intent  = new Intent(AddNewFood.this, AddNewFoodSecondStage.class);
+                intent.putExtra("foodName", foodName);
+                intent.putExtra("calPer100g", calPer100g);
                 startActivity(intent);
             }
         });

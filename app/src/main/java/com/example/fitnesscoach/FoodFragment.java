@@ -38,7 +38,7 @@ public class FoodFragment extends Fragment {
         searchFoodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent searchIntent = new Intent(getActivity(), AddFoodToUser.class);
+                Intent searchIntent = new Intent(getActivity(), SearchFoods.class);
                 startActivity(searchIntent);
             }
         });

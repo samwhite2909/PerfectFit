@@ -96,6 +96,8 @@
     <string name="backToMenuText">If you\'re all finished, head back to the main menu</string>
     <string name="backToMenuTextButton">Back to menu</string>
     <string name="yourExercisesToday">Your exercises today so far</string>
+    <string name="enterBarcode">Enter the barcode on the product</string>
+    <string name="enterPortionSize">Enter the average portion size in grams</string>
 
 
 </resources>

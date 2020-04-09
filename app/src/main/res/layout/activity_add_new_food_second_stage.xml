@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddNewFood">
+    tools:context=".AddNewFoodSecondStage">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/appNameText"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@+id/appNameText" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/calPer100gLayout"
+        android:id="@+id/barcodeLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300sp"
         android:layout_height="60sp"
@@ -40,13 +40,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameLayout">
+        app:layout_constraintTop_toBottomOf="@+id/portionSizeLayout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/calPer100gInput"
+            android:id="@+id/barcodeInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enterCalPer100g"
+            android:hint="@string/enterBarcode"
             android:textSize="15sp"
             android:maxLength="50"
             android:inputType="numberDecimal"
@@ -56,7 +56,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/nameLayout"
+        android:id="@+id/portionSizeLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300sp"
         android:layout_height="60sp"
@@ -67,10 +67,10 @@
         app:layout_constraintTop_toBottomOf="@+id/logo">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nameInput"
+            android:id="@+id/portionSizeInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enterFoodName"
+            android:hint="@string/enterPortionSize"
             android:maxLength="50"
             android:textSize="15sp"
             android:outlineAmbientShadowColor="@color/primaryColor"
@@ -83,7 +83,7 @@
         android:layout_width="300sp"
         android:layout_height="75sp"
         android:background="@color/primaryColor"
-        android:text="@string/next"
+        android:text="@string/addFood"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/secondaryTextColor"
         android:textSize="30sp"
@@ -91,7 +91,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calPer100gLayout"
+        app:layout_constraintTop_toBottomOf="@+id/barcodeLayout"
         app:layout_constraintVertical_bias="0.197" />
 
 
