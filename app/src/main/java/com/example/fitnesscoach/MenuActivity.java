@@ -21,6 +21,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -42,6 +43,7 @@ public class MenuActivity extends AppCompatActivity {
     String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
     String lastLoginDate;
     double dailyCalLimit;
+    //final CollectionReference foodRef = fStore.collection("users").document(userID).collection("foods");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class MenuActivity extends AppCompatActivity {
             userID = mFirebaseAuth.getCurrentUser().getUid();
             final DocumentReference documentReference = fStore.collection("users").document(userID);
 
+
             documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
@@ -68,10 +71,10 @@ public class MenuActivity extends AppCompatActivity {
                         bottomNav.getMenu().removeItem(R.id.nav_support);
                     }
                     lastLoginDate = documentSnapshot.getString("lastLoginDate");
-                    if(lastLoginDate != currentDate){
-                        Toast.makeText(MenuActivity.this, "Starting a new day", Toast.LENGTH_SHORT).show();
+                    if(!lastLoginDate.equals(currentDate)){
                         documentReference.update("remainingCalValue", dailyCalLimit);
-                        documentReference.update("lastLoginDate", lastLoginDate);
+                        documentReference.update("lastLoginDate", currentDate);
+
                     }
                 }
             });
@@ -148,5 +151,8 @@ public class MenuActivity extends AppCompatActivity {
                 }
             };
 
+    //public void deleteCollection(){
+        //foodRef.
+    //}
 
 }

@@ -105,6 +105,7 @@
     <string name="foodAdded">Food added!</string>
     <string name="yourFoodsToday">Foods you\'ve had today</string>
     <string name="suggestionsTitle">Can\'t decide what to eat? Why not try some of these?</string>
+    <string name="foodDiary">Here\'s your food diary for the day!</string>
 
 
 </resources>

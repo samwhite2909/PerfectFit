@@ -22,8 +22,8 @@ public class FoodConsumedAdapter extends FirestoreRecyclerAdapter<FoodConsumed, 
     @Override
     protected void onBindViewHolder(@NonNull FoodConsumedHolder holder, int position, @NonNull FoodConsumed model) {
         holder.textViewFoodName.setText(model.getFoodName());
-        holder.textViewCaloriesConsumed.setText(Double.toString(model.getCaloriesConsumed()));
-        holder.textViewAmountConsumed.setText(Double.toString(model.getAmountConsumed()));
+        holder.textViewCaloriesConsumed.setText(Double.toString(model.getCaloriesConsumed()) + " kcal");
+        holder.textViewAmountConsumed.setText(Double.toString(model.getAmountConsumed()) + "g");
     }
 
     @NonNull
