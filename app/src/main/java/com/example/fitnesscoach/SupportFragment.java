@@ -31,6 +31,7 @@ public class SupportFragment extends Fragment implements View.OnClickListener {
     FirebaseAuth mFirebaseAuth;
     FirebaseFirestore fStore;
     String userName;
+    double caloriesRemaining;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class SupportFragment extends Fragment implements View.OnClickListener {
                 @Override
                 public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
                     userName = documentSnapshot.getString("name");
+                    caloriesRemaining = documentSnapshot.getDouble("remainingCalValue");
 
                 }
             });
@@ -83,6 +85,7 @@ public class SupportFragment extends Fragment implements View.OnClickListener {
                 startActivity(i);
                 break;
             case R.id.suggestionsCard: i = new Intent(getActivity(), SuggestionsActivity.class);
+                i.putExtra("caloriesRemaining", Double.toString(caloriesRemaining));
                 startActivity(i);
                 break;
             case R.id.foodCard: i = new Intent(getActivity(), MealPlanActivity.class);

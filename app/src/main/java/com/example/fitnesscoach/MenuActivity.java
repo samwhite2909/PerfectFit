@@ -44,9 +44,6 @@ public class MenuActivity extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-
-
-
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

@@ -28,8 +28,8 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/circle_background_orange"
                     android:src="@drawable/ic_watch_later_white_24dp"/>
                 <com.google.android.material.textview.MaterialTextView
@@ -37,7 +37,8 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:text="@string/stopwatch"/>
+                    android:text="@string/stopwatch"
+                    android:textSize="18sp"/>
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -61,8 +62,8 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/circle_background_orange"
                     android:src="@drawable/ic_restaurant_black_24dp"
                     android:padding="10dp"/>
@@ -71,6 +72,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
+                    android:textSize="18sp"
                     android:text="@string/foodSuggestions"/>
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
@@ -104,8 +106,8 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/circle_background_orange"
                     android:src="@drawable/ic_directions_bike_black_24dp"
                     android:padding="10dp"/>
@@ -114,7 +116,8 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:text="@string/workoutPlanner"/>
+                    android:text="@string/workoutPlanner"
+                    android:textSize="18sp"/>
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -138,8 +141,8 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/circle_background_orange"
                     android:src="@drawable/ic_check_box_black_24dp"
                     android:padding="10dp"/>
@@ -148,7 +151,8 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:text="@string/foodPlanner"/>
+                    android:text="@string/foodPlanner"
+                    android:textSize="18sp"/>
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -181,8 +185,8 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/circle_background_orange"
                     android:src="@drawable/ic_record_voice_over_black_24dp"
                     android:padding="10dp"/>
@@ -191,7 +195,8 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:text="@string/quoteTip"/>
+                    android:text="@string/quoteTip"
+                    android:textSize="18sp"/>
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -216,8 +221,8 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/circle_background_orange"
                     android:src="@drawable/ic_group_black_24dp"
                     android:padding="10dp"/>
@@ -226,7 +231,8 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:text="@string/tipShare"/>
+                    android:text="@string/tipShare"
+                    android:textSize="18sp"/>
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

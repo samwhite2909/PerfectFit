@@ -14,6 +14,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.zxing.Result;
 
 import java.util.Scanner;
@@ -59,7 +65,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
                 if(grantResults.length >0){
                     boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     if(cameraAccepted){
-                        Toast.makeText(ScannerActivity.this, "Permission Granted",Toast.LENGTH_LONG).show();
+                        Toast.makeText(ScannerActivity.this, "Scan the barcode of your food",Toast.LENGTH_LONG).show();
                     }
                     else{
                         Toast.makeText(ScannerActivity.this, "Permission Denied",Toast.LENGTH_LONG).show();
@@ -112,23 +118,24 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
     @Override
     public void handleResult(final Result result) {
         final String scanResult = result.getText();
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Scan Result");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+        FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+
+        final DocumentReference documentReference = fStore.collection("foods").document(scanResult);
+        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                scannerView.resumeCameraPreview(ScannerActivity.this);
+            public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                    String foodName = documentSnapshot.getString("foodName");
+                    double calPerPortion = documentSnapshot.getDouble("calPerPortion");
+                    double portionSize = documentSnapshot.getDouble("portionSize");
+                    String calPerPortionString = Double.toString(calPerPortion);
+                    String portionSizeString = Double.toString(portionSize);
+                    Intent i = new Intent(ScannerActivity.this, AddFoodToUser.class);
+                    i.putExtra("foodName", foodName);
+                    i.putExtra("calPerPortion", calPerPortionString);
+                    i.putExtra("portionSize", portionSizeString);
+                    startActivity(i);
             }
         });
-        builder.setNeutralButton("Visit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(scanResult));
-                startActivity(intent);
-            }
-        });
-        builder.setMessage(scanResult);
-        AlertDialog alert = builder.create();
-        alert.show();
     }
 }

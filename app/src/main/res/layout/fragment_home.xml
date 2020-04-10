@@ -21,21 +21,22 @@
             android:layout_height="160dp"
             android:layout_margin="10dp"
             android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true">
+            android:clickable="false">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center">
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/circle_background_orange"
                     android:src="@drawable/ic_home_black_24dp"/>
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:textSize="18sp"
                     android:layout_marginTop="10dp"
                     android:text="@string/welcomeBack"
                     android:id="@+id/greetingText"/>
@@ -64,15 +65,15 @@
             android:layout_height="160dp"
             android:layout_margin="10dp"
             android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true">
+            android:clickable="false">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center">
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/circle_background_orange"
                     android:src="@drawable/ic_restaurant_black_24dp"
                     android:padding="10dp"/>
@@ -81,6 +82,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
                     android:layout_marginTop="10dp"
                     android:text="@string/caloriesRemaining"/>
                 <com.google.android.material.textview.MaterialTextView
@@ -108,15 +111,15 @@
             android:layout_height="160dp"
             android:layout_margin="10dp"
             android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true">
+            android:clickable="false">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center">
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/circle_background_orange"
                     android:src="@drawable/ic_scale"
                     android:padding="10dp"/>
@@ -124,7 +127,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:textSize="18sp"
                     android:layout_marginTop="10dp"
+                    android:textAlignment="center"
                     android:text="@string/weightLossPrediction"/>
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"

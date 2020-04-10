@@ -48,7 +48,7 @@ public class AddNewFoodSecondStage extends AppCompatActivity {
 
                double calPerPortion = (calPer100g/100) * portionSize;
 
-               DocumentReference documentReference = fStore.collection("foods").document();
+               DocumentReference documentReference = fStore.collection("foods").document(barcode);
                final Map<String, Object> food = new HashMap<>();
                food.put("foodName", foodName);
                food.put("calPer100g", calPer100g);

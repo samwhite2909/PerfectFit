@@ -64,11 +64,11 @@
     <string name="workoutPlanner">Workout Plan</string>
     <string name="workoutPlannerDesc">Plan your workouts with us so you can get straight to it later on</string>
     <string name="foodPlanner">Meal Plan</string>
-    <string name="foodPlannerDesc">Plan your meals with us to keep you on track</string>
+    <string name="foodPlannerDesc">Plan your meals with us to keep you on track to reach your goals</string>
     <string name="quoteTip">Motivation and tips</string>
     <string name="quoteTipDesc">See what members of our community are talking about</string>
     <string name="tipShare">Share your tips</string>
-    <string name="tipShareDesc">Share your tips and advice with other users</string>
+    <string name="tipShareDesc">Share your tips and advice with other users to help each other out</string>
     <string name="stopwatchTitle">Let us time you, you focus on your workout!</string>
     <string name="backHome">Back to Home</string>
     <string name="addTipsHint">What would you like to share?</string>
@@ -82,7 +82,7 @@
     <string name="welcomeDesc">We hope you\'re having a great day!</string>
     <string name="caloriesRemainingDesc">Track the foods you\'re eating, remember to exercise for more calories for the day! </string>
     <string name="weightLossPrediction">You\'re on track to lose 0 pounds this week </string>
-    <string name="predictedWeightLossDesc">Based on the calorie tracking information you\'ve given us, this is how much we think you\'ll do this week! </string>
+    <string name="predictedWeightLossDesc">Based on the information you\'ve given us, this is how we think you\'ll do this week! </string>
     <string name="yourWorkout">Your workout </string>
     <string name="addNewExercise">Enter the name of the exercise </string>
     <string name="addNewExerciseTarget">Give your target for this exercise </string>
@@ -104,6 +104,7 @@
     <string name="addFoodsText">Got anymore foods to add?</string>
     <string name="foodAdded">Food added!</string>
     <string name="yourFoodsToday">Foods you\'ve had today</string>
+    <string name="suggestionsTitle">Can\'t decide what to eat? Why not try some of these?</string>
 
 
 </resources>
