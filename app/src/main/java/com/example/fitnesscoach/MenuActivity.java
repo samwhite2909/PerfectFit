@@ -27,6 +27,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -43,7 +45,8 @@ public class MenuActivity extends AppCompatActivity {
     String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
     String lastLoginDate;
     double dailyCalLimit;
-    //final CollectionReference foodRef = fStore.collection("users").document(userID).collection("foods");
+    CollectionReference foodRef;
+    CollectionReference exerciseRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,15 +56,18 @@ public class MenuActivity extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
 
+
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         final BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
 
             userID = mFirebaseAuth.getCurrentUser().getUid();
+
+            foodRef = fStore.collection("users").document(userID).collection("foods");
+            exerciseRef = fStore.collection("users").document(userID).collection("exercises");
+
             final DocumentReference documentReference = fStore.collection("users").document(userID);
-
-
             documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
@@ -74,7 +80,8 @@ public class MenuActivity extends AppCompatActivity {
                     if(!lastLoginDate.equals(currentDate)){
                         documentReference.update("remainingCalValue", dailyCalLimit);
                         documentReference.update("lastLoginDate", currentDate);
-
+                        deleteFoodCollection();
+                        deleteExerciseCollection();
                     }
                 }
             });
@@ -151,8 +158,28 @@ public class MenuActivity extends AppCompatActivity {
                 }
             };
 
-    //public void deleteCollection(){
-        //foodRef.
-    //}
+    public void deleteFoodCollection(){
+        foodRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot docSnapshot : queryDocumentSnapshots){
+                    String id = docSnapshot.getId();
+                    foodRef.document(id).delete();
+                }
+            }
+        });
+    }
+
+    public void deleteExerciseCollection(){
+        exerciseRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot docSnapshot : queryDocumentSnapshots){
+                    String id = docSnapshot.getId();
+                    exerciseRef.document(id).delete();
+                }
+            }
+        });
+    }
 
 }

@@ -1,14 +1,11 @@
 package com.example.fitnesscoach;
 
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
@@ -22,8 +19,12 @@ public class FoodConsumedAdapter extends FirestoreRecyclerAdapter<FoodConsumed, 
     @Override
     protected void onBindViewHolder(@NonNull FoodConsumedHolder holder, int position, @NonNull FoodConsumed model) {
         holder.textViewFoodName.setText(model.getFoodName());
-        holder.textViewCaloriesConsumed.setText(Double.toString(model.getCaloriesConsumed()) + " kcal");
-        holder.textViewAmountConsumed.setText(Double.toString(model.getAmountConsumed()) + "g");
+        double dCal = (model.getCaloriesConsumed());
+        int iCal = (int) Math.round(dCal);
+        holder.textViewCaloriesConsumed.setText(iCal + " kcal");
+        double dGram = (model.getAmountConsumed());
+        int iGram = (int) Math.round(dGram);
+        holder.textViewAmountConsumed.setText(iGram + "g");
     }
 
     @NonNull

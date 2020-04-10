@@ -104,8 +104,13 @@
     <string name="addFoodsText">Got anymore foods to add?</string>
     <string name="foodAdded">Food added!</string>
     <string name="yourFoodsToday">Foods you\'ve had today</string>
-    <string name="suggestionsTitle">Can\'t decide what to eat? Why not try some of these?</string>
+    <string name="suggestionsTitle">Can\'t decide what to eat?</string>
+    <string name="suggestionsSubTitle">Why not try some of these?</string>
     <string name="foodDiary">Here\'s your food diary for the day!</string>
+    <string name="exerciseDiary">Here\'s your completed exercise today!</string>
+    <string name="workoutText">Plan your workout so you can get straight to it later on!</string>
+    <string name="mealsText">Plan your meals to keep you on track!</string>
+    <string name="tipsDesc">Get helpful advice from our other members</string>
 
 
 </resources>

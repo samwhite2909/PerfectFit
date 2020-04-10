@@ -11,9 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-import org.w3c.dom.Text;
-
-
 public class CompletedExerciseAdapter extends FirestoreRecyclerAdapter<CompletedExercise, CompletedExerciseAdapter.CompletedExerciseHolder> {
 
     public CompletedExerciseAdapter(@NonNull FirestoreRecyclerOptions<CompletedExercise> options) {
@@ -23,8 +20,17 @@ public class CompletedExerciseAdapter extends FirestoreRecyclerAdapter<Completed
     @Override
     protected void onBindViewHolder(@NonNull CompletedExerciseHolder holder, int position, @NonNull CompletedExercise model) {
         holder.textViewTitle.setText(model.getExerciseName());
-        holder.textViewDuration.setText(Double.toString(model.getDuration()));
-        holder.textViewCalBurned.setText(Double.toString(model.getCaloriesBurned()));
+        double dMin = (model.getDuration());
+        int iMin = (int) Math.round(dMin);
+        if(iMin != 1) {
+            holder.textViewDuration.setText(iMin + " minutes");
+        }
+        if(iMin == 1){
+            holder.textViewDuration.setText(iMin + " minute");
+        }
+        double dCal = (model.getCaloriesBurned());
+        int iCal = (int) Math.round(dCal);
+        holder.textViewCalBurned.setText(iCal + " kcal");
     }
 
     @NonNull

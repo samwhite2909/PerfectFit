@@ -5,8 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="8dp"
     android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
-    app:cardBackgroundColor="@color/primaryColor">
+    android:layout_marginEnd="8dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,7 +20,6 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:maxLines="1"
             android:text="Title"
-            android:textColor="@color/secondaryTextColor"
             android:ellipsize="end"/>
 
         <com.google.android.material.textview.MaterialTextView
@@ -30,7 +28,6 @@
             android:layout_width="wrap_content"
             android:layout_alignParentStart="true"
             android:text="Content"
-            android:textColor="@color/secondaryTextColor"
             android:layout_below="@+id/tipTitle"/>
 
         <com.google.android.material.textview.MaterialTextView
@@ -39,7 +36,6 @@
             android:layout_width="wrap_content"
             android:layout_alignParentStart="true"
             android:text="Posted by"
-            android:textColor="@color/secondaryTextColor"
             android:layout_below="@+id/tipContent"/>
 
     </RelativeLayout>

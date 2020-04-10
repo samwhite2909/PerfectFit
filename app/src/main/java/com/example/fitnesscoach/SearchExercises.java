@@ -48,20 +48,17 @@ public class SearchExercises extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_exercises);
 
-
         fStore = FirebaseFirestore.getInstance();
         mFirestoreList = findViewById(R.id.rv);
 
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         Query query = fStore.collection("exercises");
 
         FirestoreRecyclerOptions<Exercise> options =  new FirestoreRecyclerOptions.Builder<Exercise>()
                 .setQuery(query,Exercise.class)
                 .build();
-
 
         adapter = new FirestoreRecyclerAdapter<Exercise, ExercisesViewHolder>(options) {
             @NonNull
@@ -76,15 +73,13 @@ public class SearchExercises extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull ExercisesViewHolder holder, int position, @NonNull Exercise model) {
                 holder.exerciseName.setText(model.getExerciseName());
                 double calDouble = model.getCalPerMin();
-                holder.calPerMin.setText(Double.toString(calDouble));
+                int iCal = (int) Math.round(calDouble);
+                holder.calPerMin.setText(iCal + " kcal burned per minute");
             }
         };
-
         mFirestoreList.setHasFixedSize(true);
         mFirestoreList.setLayoutManager(new LinearLayoutManager(this));
         mFirestoreList.setAdapter(adapter);
-
-
     }
 
     @Override
@@ -105,7 +100,6 @@ public class SearchExercises extends AppCompatActivity {
                 return false;
             }
         });
-
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -117,12 +111,11 @@ public class SearchExercises extends AppCompatActivity {
         // Make new options
         FirestoreRecyclerOptions<Exercise> newOptions = new FirestoreRecyclerOptions.Builder<Exercise>()
                 .setQuery(newQuery, Exercise.class)
-            .build();
+                .build();
 
         // Change options of adapter.
        adapter.updateOptions(newOptions);
     }
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -130,8 +123,6 @@ public class SearchExercises extends AppCompatActivity {
     }
 
     class ExercisesViewHolder extends RecyclerView.ViewHolder {
-
-
         private TextView exerciseName;
         private TextView calPerMin;
         public ExercisesViewHolder(@NonNull View itemView) {
@@ -147,11 +138,9 @@ public class SearchExercises extends AppCompatActivity {
                         addExerciseToUser.putExtra("exerciseName", exerciseNameString);
                         addExerciseToUser.putExtra("calPerMin", calPerMinDouble);
                         startActivity(addExerciseToUser);
-
                  }
              });
         }
-
     }
     public interface onItemClickListener{
         void onItemClick(DocumentSnapshot documentSnapshot, int position);
