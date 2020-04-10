@@ -114,6 +114,7 @@ public class RegisterMeasurements extends AppCompatActivity {
                  user.put("calLimitWithReduction", calLimitWithReduction);
                  user.put("remainingCalValue", remainingCalValue);
                  user.put("dateJoined", dateJoined);
+                 user.put("lastLoginDate", dateJoined);
                  documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {

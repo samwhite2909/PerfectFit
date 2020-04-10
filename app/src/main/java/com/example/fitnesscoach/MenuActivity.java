@@ -27,6 +27,9 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+
 import javax.annotation.Nullable;
 
 public class MenuActivity extends AppCompatActivity {
@@ -35,6 +38,10 @@ public class MenuActivity extends AppCompatActivity {
     FirebaseFirestore fStore;
     String userID;
     String supportAnswer;
+    final Calendar calendar = Calendar.getInstance();
+    String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+    String lastLoginDate;
+    double dailyCalLimit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,14 +57,21 @@ public class MenuActivity extends AppCompatActivity {
         final BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
 
             userID = mFirebaseAuth.getCurrentUser().getUid();
-            DocumentReference documentReference = fStore.collection("users").document(userID);
+            final DocumentReference documentReference = fStore.collection("users").document(userID);
 
             documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
                     supportAnswer = documentSnapshot.getString("supportAnswer");
+                    dailyCalLimit = documentSnapshot.getDouble("calLimitWithReduction");
                     if (supportAnswer.equalsIgnoreCase("No")) {
                         bottomNav.getMenu().removeItem(R.id.nav_support);
+                    }
+                    lastLoginDate = documentSnapshot.getString("lastLoginDate");
+                    if(lastLoginDate != currentDate){
+                        Toast.makeText(MenuActivity.this, "Starting a new day", Toast.LENGTH_SHORT).show();
+                        documentReference.update("remainingCalValue", dailyCalLimit);
+                        documentReference.update("lastLoginDate", lastLoginDate);
                     }
                 }
             });
