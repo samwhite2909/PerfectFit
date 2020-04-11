@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FoodAddedActivity"></activity>
+        <activity android:name=".LeaderboardActivity"></activity>
+        <activity android:name=".FoodAddedActivity" />
         <activity android:name=".AddNewFoodSecondStage" />
         <activity android:name=".SearchFoods" />
         <activity android:name=".ExerciseAddedActivty" />
@@ -39,8 +40,9 @@
         <activity android:name=".RegisterDetails" />
         <activity android:name=".RegisterMeasurements" />
         <activity android:name=".ScannerActivity" />
-        <activity android:name=".MenuActivity"
-            android:launchMode="singleTop"/>
+        <activity
+            android:name=".MenuActivity"
+            android:launchMode="singleTop" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">

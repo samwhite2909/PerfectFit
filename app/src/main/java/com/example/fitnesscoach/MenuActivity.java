@@ -47,6 +47,7 @@ public class MenuActivity extends AppCompatActivity {
     double dailyCalLimitReduction;
     double remainingCal;
     double dailyCalLimit;
+    double score;
     CollectionReference foodRef;
     CollectionReference exerciseRef;
 
@@ -72,6 +73,7 @@ public class MenuActivity extends AppCompatActivity {
 
 
                 final DocumentReference documentReference = fStore.collection("users").document(userID);
+                final DocumentReference documentReferenceScore = fStore.collection("leaderboardScore").document(userID);
                 documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                     @Override
                     public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
@@ -85,6 +87,22 @@ public class MenuActivity extends AppCompatActivity {
                             }
                             lastLoginDate = documentSnapshot.getString("lastLoginDate");
                             if (!lastLoginDate.equals(currentDate)) {
+
+                                documentReferenceScore.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onEvent(@androidx.annotation.Nullable DocumentSnapshot documentSnapshot, @androidx.annotation.Nullable FirebaseFirestoreException e) {
+                                        score = documentSnapshot.getDouble("score");
+
+
+                                        if(remainingCal > 125 && remainingCal <= 250){
+                                            documentReferenceScore.update("score", score + (250 - remainingCal));
+                                        }
+
+                                        if(remainingCal <= 125){
+                                            documentReferenceScore.update("score", score + (250 - remainingCal)*2);
+                                        }
+                            }
+                        });
                                 documentReference.update("remainingCalValue", dailyCalLimitReduction);
                                 documentReference.update("lastLoginDate", currentDate);
                                 deleteFoodCollection();

@@ -101,6 +101,7 @@ public class RegisterMeasurements extends AppCompatActivity {
                 }
 
                 double remainingCalValue = calLimitWithReduction;
+                int score = 0;
 
                 String dateJoined = DateFormat.getDateInstance().format(calendar.getTime());
 
@@ -128,6 +129,16 @@ public class RegisterMeasurements extends AppCompatActivity {
                 public void onSuccess(Void aVoid) {
                 Log.d("Tag", "onSuccess: user profile is created for " + userID);
                 }
+                });
+                DocumentReference documentReferenceLeaderboard = fStore.collection("leaderboardScore").document(userID);
+                final Map<String, Object> leaderboardPlace = new HashMap<>();
+                leaderboardPlace.put("name", name);
+                leaderboardPlace.put("score", score);
+                documentReferenceLeaderboard.set(leaderboardPlace).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Tag", "onSuccess: leaderboard profile is created for " + userID);
+                    }
                 });
                 Intent intent  = new Intent(RegisterMeasurements.this, MenuActivity.class);
                 startActivity(intent);

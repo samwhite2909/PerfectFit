@@ -1,5 +1,6 @@
 package com.example.fitnesscoach;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,7 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.util.Random;
 import java.util.concurrent.Executor;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -31,6 +33,7 @@ public class HomeFragment extends Fragment {
     TextView calLeftWarning;
     TextView calWarningGame;
     String userID;
+    CardView leaderboardCard;
 
 
     @Nullable
@@ -41,6 +44,9 @@ public class HomeFragment extends Fragment {
         calValue = view.findViewById((R.id.caloriesRemainingText));
         calLeftWarning = view.findViewById(R.id.calLeftWarning);
         calWarningGame = view.findViewById(R.id.calWarningGame);
+
+        leaderboardCard = view.findViewById(R.id.leaderboardCard);
+        leaderboardCard.setOnClickListener(this);
 
         fStore = FirebaseFirestore.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -95,6 +101,10 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
+    public void onClick(View v) {
 
+    startActivity(new Intent(getActivity(), LeaderboardActivity.class));
+
+    }
 
 }

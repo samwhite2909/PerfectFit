@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding = "10dp"
-    android:gravity="center">
+    android:gravity="center"
+    tools:context=".HomeFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -106,12 +107,12 @@
         android:clipToPadding="false">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/tipsCard"
+            android:id="@+id/leaderboardCard"
             android:layout_width="300dp"
             android:layout_height="160dp"
             android:layout_margin="10dp"
             android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="false">
+            android:clickable="true">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
