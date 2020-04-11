@@ -116,6 +116,7 @@ public class UpdateMeasurements extends AppCompatActivity {
                         documentReference.update("dailyCalLimit", newDailyCalLimit);
                         documentReference.update("weeklyCalLimit", newWeeklyCalLimit);
                         documentReference.update("calLimitWithReduction", newCalLimitWithReduction);
+                        documentReference.update("remainingCalValue", newCalLimitWithReduction);
 
                         Intent i = new Intent(UpdateMeasurements.this, MenuActivity.class);
                         startActivity(i);

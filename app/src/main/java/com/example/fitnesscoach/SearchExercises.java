@@ -73,8 +73,7 @@ public class SearchExercises extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull ExercisesViewHolder holder, int position, @NonNull Exercise model) {
                 holder.exerciseName.setText(model.getExerciseName());
                 double calDouble = model.getCalPerMin();
-                int iCal = (int) Math.round(calDouble);
-                holder.calPerMin.setText(iCal + " kcal burned per minute");
+                holder.calPerMin.setText(Double.toString(calDouble));
             }
         };
         mFirestoreList.setHasFixedSize(true);

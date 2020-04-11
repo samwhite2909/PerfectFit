@@ -113,6 +113,8 @@
     <string name="tipsDesc">Get helpful advice from our other members</string>
     <string name="leaderboard">Score leaderboard</string>
     <string name="yourScore">You score is: 0, where do you place on the leaderboard?</string>
+    <string name="shareYourTips">Share your tips</string>
+    <string name="addTipsTitle">Title of your tip</string>
 
 
 </resources>

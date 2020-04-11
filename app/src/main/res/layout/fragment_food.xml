@@ -31,7 +31,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/circle_background_orange"
-                android:src="@drawable/ic_restaurant_black_24dp"
+                android:src="@drawable/ic_local_dining_white"
                 android:padding="10dp"/>
 
             <com.google.android.material.textview.MaterialTextView

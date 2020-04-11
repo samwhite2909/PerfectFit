@@ -20,7 +20,7 @@ public class LeaderboardItemAdapter extends FirestoreRecyclerAdapter<Leaderboard
     @Override
     protected void onBindViewHolder(@NonNull LeaderboardItemHolder holder, int position, @NonNull LeaderboardItem model) {
         holder.nameTextView.setText(model.getName());
-        holder.scoreTextView.setText(Integer.toString(model.getScore()));
+        holder.scoreTextView.setText(Integer.toString(model.getScore()) + " points ");
     }
 
     @NonNull

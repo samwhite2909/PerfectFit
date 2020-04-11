@@ -31,7 +31,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/circle_background_orange"
-                    android:src="@drawable/ic_import_contacts_black_24dp"
+                    android:src="@drawable/ic_check_box_black_24dp"
                     android:padding="10dp"/>
 
                 <com.google.android.material.textview.MaterialTextView

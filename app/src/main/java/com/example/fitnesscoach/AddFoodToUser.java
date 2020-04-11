@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,35 +54,39 @@ public class AddFoodToUser extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String amountString = editTextAmount.getText().toString();
-                double amount = Double.parseDouble(amountString);
+                if (amountString.isEmpty()) {
+                    Toast.makeText(AddFoodToUser.this, "Please add an amount eaten", Toast.LENGTH_SHORT).show();
+                } else {
+                    double amount = Double.parseDouble(amountString);
 
-                double calPerPortionNum = Double.parseDouble(calPerPortion);
+                    double calPerPortionNum = Double.parseDouble(calPerPortion);
 
-                double caloriesConsumed = amount*calPerPortionNum;
+                    double caloriesConsumed = amount * calPerPortionNum;
 
-                String caloriesConsumedString = Double.toString(caloriesConsumed);
+                    String caloriesConsumedString = Double.toString(caloriesConsumed);
 
-                double portionSizeDouble = Double.parseDouble(portionSize);
+                    double portionSizeDouble = Double.parseDouble(portionSize);
 
-                double amountConsumed = amount*portionSizeDouble;
+                    double amountConsumed = amount * portionSizeDouble;
 
-                userID = mFirebaseAuth.getCurrentUser().getUid();
+                    userID = mFirebaseAuth.getCurrentUser().getUid();
 
-                DocumentReference documentReference = fStore.collection("users").document(userID).collection("foods").document();
-                final Map<String, Object> food = new HashMap<>();
-                food.put("foodName", foodName);
-                food.put("caloriesConsumed", caloriesConsumed);
-                food.put("amountConsumed", amountConsumed);
-                documentReference.set(food).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("Tag", "food added for user: " + userID);
-                    }
-                });
-                Intent intent  = new Intent(AddFoodToUser.this, FoodAddedActivity.class);
-                intent.putExtra("caloriesConsumed", caloriesConsumedString);
-                startActivity(intent);
-                finish();
+                    DocumentReference documentReference = fStore.collection("users").document(userID).collection("foods").document();
+                    final Map<String, Object> food = new HashMap<>();
+                    food.put("foodName", foodName);
+                    food.put("caloriesConsumed", caloriesConsumed);
+                    food.put("amountConsumed", amountConsumed);
+                    documentReference.set(food).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("Tag", "food added for user: " + userID);
+                        }
+                    });
+                    Intent intent = new Intent(AddFoodToUser.this, FoodAddedActivity.class);
+                    intent.putExtra("caloriesConsumed", caloriesConsumedString);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 
