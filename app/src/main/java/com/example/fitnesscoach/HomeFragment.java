@@ -28,6 +28,8 @@ public class HomeFragment extends Fragment {
     FirebaseFirestore fStore;
     TextView greeting;
     TextView calValue;
+    TextView calLeftWarning;
+    TextView calWarningGame;
     String userID;
 
 
@@ -37,6 +39,8 @@ public class HomeFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
         greeting = view.findViewById(R.id.greetingText);
         calValue = view.findViewById((R.id.caloriesRemainingText));
+        calLeftWarning = view.findViewById(R.id.calLeftWarning);
+        calWarningGame = view.findViewById(R.id.calWarningGame);
 
         fStore = FirebaseFirestore.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -63,9 +67,27 @@ public class HomeFragment extends Fragment {
                             String remainingCalString  = Double.toString(remainingCalValueNum);
                             String remainingCalStringText = "You have " + remainingCalString + " calories remaining for today";
                             calValue.setText(remainingCalStringText);
-                        }
-                        else{
-                            calValue.setText("0");
+
+                            if(remainingCalValueNum > 250 && remainingCalValueNum <= 500){
+                                calLeftWarning.setText("You still have quite a few calories left for today");
+                                calWarningGame.setText("To keep on track and to score points, try to get as close to your target as you can!");
+                            }
+                            if(remainingCalValueNum > 500){
+                                calLeftWarning.setText("You still have a lot of calories left for today");
+                                calWarningGame.setText("To keep on track and to score more points, try to get as close to your target as you can!");
+                            }
+                            if(remainingCalValueNum > 125 && remainingCalValueNum <= 250){
+                                calLeftWarning.setText("You have a few calories left for today");
+                                calWarningGame.setText("You're close to target and you have some points in the bag, get closer to the target for more points!");
+                            }
+                            if(remainingCalValueNum <= 125){
+                                calLeftWarning.setText("You're doing well, you're really close to your target for the day");
+                                calWarningGame.setText("You're on target and earning a lot of points, well done!");
+                            }
+                            if(remainingCalValueNum < 0){
+                                calLeftWarning.setText("You've gone over your calories for the day");
+                                calWarningGame.setText("Try again tomorrow to stay within your target to keep on track and to score more points");
+                            }
                         }
                     }
                 });
