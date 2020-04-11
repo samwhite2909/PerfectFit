@@ -50,7 +50,7 @@ public class HomeFragment extends Fragment {
                 documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                     @Override
                     public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
-                        if(documentSnapshot.getString("name") != null){
+                        if(documentSnapshot != null && documentSnapshot.exists()){
                             String name = documentSnapshot.getString("name");
                             greeting.setText("Welcome back " + name + "!");
                         }
@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment {
                             greeting.setText("Welcome");
                         }
 
-                        if(documentSnapshot.getDouble("remainingCalValue") != null){
+                        if(documentSnapshot != null && documentSnapshot.exists()){
                             double remainingCalValueNum = documentSnapshot.getDouble("remainingCalValue");
                             String remainingCalString  = Double.toString(remainingCalValueNum);
                             String remainingCalStringText = "You have " + remainingCalString + " calories remaining for today";

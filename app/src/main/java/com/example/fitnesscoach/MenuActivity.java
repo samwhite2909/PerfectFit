@@ -44,52 +44,65 @@ public class MenuActivity extends AppCompatActivity {
     final Calendar calendar = Calendar.getInstance();
     String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
     String lastLoginDate;
+    double dailyCalLimitReduction;
+    double remainingCal;
     double dailyCalLimit;
     CollectionReference foodRef;
     CollectionReference exerciseRef;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        fStore = FirebaseFirestore.getInstance();
-        mFirebaseAuth = FirebaseAuth.getInstance();
+
+            fStore = FirebaseFirestore.getInstance();
+            mFirebaseAuth = FirebaseAuth.getInstance();
 
 
-        MaterialToolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+            MaterialToolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
 
-        final BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+            final BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
 
-            userID = mFirebaseAuth.getCurrentUser().getUid();
+            if(mFirebaseAuth.getCurrentUser() != null) {
+                userID = mFirebaseAuth.getCurrentUser().getUid();
+                foodRef = fStore.collection("users").document(userID).collection("foods");
+                exerciseRef = fStore.collection("users").document(userID).collection("exercises");
 
-            foodRef = fStore.collection("users").document(userID).collection("foods");
-            exerciseRef = fStore.collection("users").document(userID).collection("exercises");
 
-            final DocumentReference documentReference = fStore.collection("users").document(userID);
-            documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                @Override
-                public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
-                    supportAnswer = documentSnapshot.getString("supportAnswer");
-                    dailyCalLimit = documentSnapshot.getDouble("calLimitWithReduction");
-                    if (supportAnswer.equalsIgnoreCase("No")) {
-                        bottomNav.getMenu().removeItem(R.id.nav_support);
+                final DocumentReference documentReference = fStore.collection("users").document(userID);
+                documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                        if (documentSnapshot != null && documentSnapshot.exists()) {
+                            supportAnswer = documentSnapshot.getString("supportAnswer");
+                            dailyCalLimitReduction = documentSnapshot.getDouble("calLimitWithReduction");
+                            remainingCal = documentSnapshot.getDouble("remainingCalValue");
+                            dailyCalLimit = documentSnapshot.getDouble("dailyCalLimit");
+                            if (supportAnswer.equalsIgnoreCase("No")) {
+                                bottomNav.getMenu().removeItem(R.id.nav_support);
+                            }
+                            lastLoginDate = documentSnapshot.getString("lastLoginDate");
+                            if (!lastLoginDate.equals(currentDate)) {
+                                documentReference.update("remainingCalValue", dailyCalLimitReduction);
+                                documentReference.update("lastLoginDate", currentDate);
+                                deleteFoodCollection();
+                                deleteExerciseCollection();
+                            }
+                        }
                     }
-                    lastLoginDate = documentSnapshot.getString("lastLoginDate");
-                    if(!lastLoginDate.equals(currentDate)){
-                        documentReference.update("remainingCalValue", dailyCalLimit);
-                        documentReference.update("lastLoginDate", currentDate);
-                        deleteFoodCollection();
-                        deleteExerciseCollection();
-                    }
-                }
-            });
+                });
+            }
+            else{
+                finish();
+            }
+            bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        bottomNav.setOnNavigationItemSelectedListener(navListener);
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,
+                    new HomeFragment()).commit();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,
-                new HomeFragment()).commit();
+
     }
 
     @Override
@@ -105,12 +118,7 @@ public class MenuActivity extends AppCompatActivity {
             case R.id.logoutItem:
                 openMainActivity();
                 FirebaseAuth.getInstance().signOut();
-                Toast toast = Toast.makeText(MenuActivity.this,
-                        "Logging out", Toast.LENGTH_SHORT);
-                toast.show();
-
                 return true;
-
 
             case R.id.accountItem:
                 openAccountActivity();
@@ -120,8 +128,9 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void openMainActivity() {
-        Intent mainIntent = new Intent(this, MainActivity.class);
-        startActivity(mainIntent);
+        finish();
+        //Intent mainIntent = new Intent(this, MainActivity.class);
+        //startActivity(mainIntent);
     }
 
     public void openAccountActivity() {

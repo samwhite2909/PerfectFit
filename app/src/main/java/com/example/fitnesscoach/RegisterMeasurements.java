@@ -29,6 +29,7 @@ public class RegisterMeasurements extends AppCompatActivity {
     FirebaseFirestore fStore;
     FirebaseAuth mFirebaseAuth;
     String userID;
+    int weightLossReductionCals;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,20 +77,27 @@ public class RegisterMeasurements extends AppCompatActivity {
 
                 double weeklyCalLimit = dailyCalLimit*7;
 
+                double weightLossCals = 0;
+                int weightLossCounter = 7;
+
                 double calLimitWithReduction = dailyCalLimit;
 
                 if(weightLossAnswer.equalsIgnoreCase("0.5lb")){
                     calLimitWithReduction = dailyCalLimit - 250;
+                    weightLossReductionCals = 250;
                 }
                 if(weightLossAnswer.equalsIgnoreCase("1lb")){
                     calLimitWithReduction = dailyCalLimit - 500;
+                    weightLossReductionCals = 500;
                 }
                 if(weightLossAnswer.equalsIgnoreCase("1.5lbs")){
                     calLimitWithReduction = dailyCalLimit - 750;
+                    weightLossReductionCals = 750;
                 }
 
                 if(weightLossAnswer.equalsIgnoreCase("2lbs")){
                     calLimitWithReduction = dailyCalLimit - 1000;
+                    weightLossReductionCals = 1000;
                 }
 
                 double remainingCalValue = calLimitWithReduction;

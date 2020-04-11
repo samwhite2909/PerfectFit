@@ -39,7 +39,8 @@
         <activity android:name=".RegisterDetails" />
         <activity android:name=".RegisterMeasurements" />
         <activity android:name=".ScannerActivity" />
-        <activity android:name=".MenuActivity" />
+        <activity android:name=".MenuActivity"
+            android:launchMode="singleTop"/>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">
