@@ -50,12 +50,16 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = editTextPassword.getText().toString();
                 final String name = editTextName.getText().toString();
 
-                if(email.isEmpty()){
+                if(name.isEmpty()){
+                    Toast.makeText(RegisterActivity.this, "Enter a username", Toast.LENGTH_SHORT).show();
+                }
+                else if(email.isEmpty()){
                     Toast.makeText(RegisterActivity.this, "Enter an email", Toast.LENGTH_SHORT).show();
                 }
                 else if(password.isEmpty()){
                     Toast.makeText(RegisterActivity.this, "Enter a password", Toast.LENGTH_SHORT).show();
                 }
+
                 else if(!(email.isEmpty() && password.isEmpty())){
                     mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override

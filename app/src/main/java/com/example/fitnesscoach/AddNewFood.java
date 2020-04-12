@@ -38,16 +38,6 @@ public class AddNewFood extends AppCompatActivity {
                 final String foodName = editFoodName.getText().toString();
                 String calPer100g = editCalPer100g.getText().toString();
 
-                /*DocumentReference documentReference = fStore.collection("foods").document(foodName);
-                final Map<String, Object> food = new HashMap<>();
-                food.put("foodName", foodName);
-                food.put("calPer100g", calPer100g);
-                documentReference.set(food).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("Tag", "onSuccess: food profile is created for " + foodName);
-                    }
-                });*/
                 Intent intent  = new Intent(AddNewFood.this, AddNewFoodSecondStage.class);
                 intent.putExtra("foodName", foodName);
                 intent.putExtra("calPer100g", calPer100g);

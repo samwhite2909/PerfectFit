@@ -146,7 +146,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void openMainActivity() {
-        finish();
+        startActivity(new Intent(MenuActivity.this, MainActivity.class));
     }
 
     public void openAccountActivity() {

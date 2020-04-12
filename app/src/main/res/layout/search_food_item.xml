@@ -32,6 +32,14 @@
             android:layout_below="@+id/foodName"/>
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/foodPortion1Size"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_toEndOf="@id/foodPortionSize"
+            android:text=" g"
+            android:layout_below="@+id/foodName"/>
+
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/foodCalPerAveragePortion"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"

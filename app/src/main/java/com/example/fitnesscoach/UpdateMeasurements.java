@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -75,51 +76,55 @@ public class UpdateMeasurements extends AppCompatActivity {
                         String newHeightString = editTextHeight.getText().toString();
                         String newFatLevelString = editTextBodyFatLevel.getText().toString();
 
-                        double newWeight = Double.parseDouble(newWeightString);
-                        double newHeight = Double.parseDouble(newHeightString);
-                        double newFatLevel = Double.parseDouble(newFatLevelString);
+                        if (newFatLevelString.isEmpty() || newHeightString.isEmpty() || newWeightString.isEmpty()) {
+                            Toast.makeText(UpdateMeasurements.this, "Please enter a value for all measurements", Toast.LENGTH_SHORT).show();
+                        } else {
+                            double newWeight = Double.parseDouble(newWeightString);
+                            double newHeight = Double.parseDouble(newHeightString);
+                            double newFatLevel = Double.parseDouble(newFatLevelString);
 
-                        double newBMI = newWeight/(newHeight)*(newHeight);
+                            double newBMI = newWeight / (newHeight) * (newHeight);
 
-                        double newDailyCalLimit = 0;
+                            double newDailyCalLimit = 0;
 
-                        if (gender.equalsIgnoreCase("Male")){
-                            newDailyCalLimit = 10*newWeight + 6.25*(newHeight*100)-5*age + 5;
+                            if (gender.equalsIgnoreCase("Male")) {
+                                newDailyCalLimit = 10 * newWeight + 6.25 * (newHeight * 100) - 5 * age + 5;
+                            }
+                            if (gender.equalsIgnoreCase("Female")) {
+                                newDailyCalLimit = 10 * newWeight + 6.25 * (newHeight * 100) - 5 * age - 161;
+                            }
+
+                            double newWeeklyCalLimit = newDailyCalLimit * 7;
+
+                            double newCalLimitWithReduction = newDailyCalLimit;
+
+                            if (weightLossAnswer.equalsIgnoreCase("0.5lb")) {
+                                newCalLimitWithReduction = newDailyCalLimit - 250;
+                            }
+                            if (weightLossAnswer.equalsIgnoreCase("1lb")) {
+                                newCalLimitWithReduction = newDailyCalLimit - 500;
+                            }
+                            if (weightLossAnswer.equalsIgnoreCase("1.5lbs")) {
+                                newCalLimitWithReduction = newDailyCalLimit - 750;
+                            }
+
+                            if (weightLossAnswer.equalsIgnoreCase("2lbs")) {
+                                newCalLimitWithReduction = newDailyCalLimit - 1000;
+                            }
+
+                            documentReference.update("weight", newWeight);
+                            documentReference.update("height", newHeight);
+                            documentReference.update("bodyFatLevel", newFatLevel);
+
+                            documentReference.update("BMI", newBMI);
+                            documentReference.update("dailyCalLimit", newDailyCalLimit);
+                            documentReference.update("weeklyCalLimit", newWeeklyCalLimit);
+                            documentReference.update("calLimitWithReduction", newCalLimitWithReduction);
+                            documentReference.update("remainingCalValue", newCalLimitWithReduction);
+
+                            Intent i = new Intent(UpdateMeasurements.this, MenuActivity.class);
+                            startActivity(i);
                         }
-                        if(gender.equalsIgnoreCase("Female")){
-                            newDailyCalLimit = 10*newWeight + 6.25*(newHeight*100)-5*age - 161;
-                        }
-
-                        double newWeeklyCalLimit = newDailyCalLimit*7;
-
-                        double newCalLimitWithReduction = newDailyCalLimit;
-
-                        if(weightLossAnswer.equalsIgnoreCase("0.5lb")){
-                            newCalLimitWithReduction = newDailyCalLimit - 250;
-                        }
-                        if(weightLossAnswer.equalsIgnoreCase("1lb")){
-                            newCalLimitWithReduction = newDailyCalLimit - 500;
-                        }
-                        if(weightLossAnswer.equalsIgnoreCase("1.5lbs")){
-                            newCalLimitWithReduction = newDailyCalLimit  - 750;
-                        }
-
-                        if(weightLossAnswer.equalsIgnoreCase("2lbs")){
-                            newCalLimitWithReduction = newDailyCalLimit  - 1000;
-                        }
-
-                        documentReference.update("weight", newWeight);
-                        documentReference.update("height", newHeight);
-                        documentReference.update("bodyFatLevel", newFatLevel);
-
-                        documentReference.update("BMI", newBMI);
-                        documentReference.update("dailyCalLimit", newDailyCalLimit);
-                        documentReference.update("weeklyCalLimit", newWeeklyCalLimit);
-                        documentReference.update("calLimitWithReduction", newCalLimitWithReduction);
-                        documentReference.update("remainingCalValue", newCalLimitWithReduction);
-
-                        Intent i = new Intent(UpdateMeasurements.this, MenuActivity.class);
-                        startActivity(i);
                     }
                 });
 

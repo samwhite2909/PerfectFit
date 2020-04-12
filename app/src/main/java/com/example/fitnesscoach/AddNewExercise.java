@@ -46,22 +46,28 @@ public class AddNewExercise extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String exerciseName = editExerciseName.getText().toString();
-                double calPerMin = Double.parseDouble(editCalPerMin.getText().toString());
-                String search = exerciseName.toLowerCase();
+                String calPerMinString = editCalPerMin.getText().toString();
 
-                DocumentReference documentReference = fStore.collection("exercises").document(exerciseName);
-                final Map<String, Object> exercise = new HashMap<>();
-                exercise.put("exerciseName", exerciseName);
-                exercise.put("calPerMin", calPerMin);
-                exercise.put("search",search);
-                documentReference.set(exercise).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("Tag", "onSuccess: exercise profile is created for " + exerciseName);
-                    }
-                });
-                Intent intent  = new Intent(AddNewExercise.this, MenuActivity.class);
-                startActivity(intent);
+                if (exerciseName.isEmpty() || calPerMinString.isEmpty()) {
+                    Toast.makeText(AddNewExercise.this, "Please give the exercise a name and a value for calories burned per minute", Toast.LENGTH_SHORT).show();
+                } else {
+                    double calPerMin = Double.parseDouble(editCalPerMin.getText().toString());
+                    String search = exerciseName.toLowerCase();
+
+                    DocumentReference documentReference = fStore.collection("exercises").document(exerciseName);
+                    final Map<String, Object> exercise = new HashMap<>();
+                    exercise.put("exerciseName", exerciseName);
+                    exercise.put("calPerMin", calPerMin);
+                    exercise.put("search", search);
+                    documentReference.set(exercise).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("Tag", "onSuccess: exercise profile is created for " + exerciseName);
+                        }
+                    });
+                    Intent intent = new Intent(AddNewExercise.this, MenuActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

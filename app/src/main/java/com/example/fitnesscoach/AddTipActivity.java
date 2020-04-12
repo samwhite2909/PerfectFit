@@ -49,22 +49,28 @@ public class AddTipActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String actualTip = tipEdit.getText().toString();
                 String tipTitle = tipTitleEdit.getText().toString();
-                DocumentReference documentReference = fStore.collection("tips").document();
-                final Map<String, Object> tip = new HashMap<>();
-                tip.put("userID", userID);
-                tip.put("poster", name);
-                tip.put("tipTitle", tipTitle);
-                tip.put("tipTip", actualTip);
-                tip.put("random", random);
-                documentReference.set(tip).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("Tag", "onSuccess: tip profile is created");
-                        Toast.makeText(AddTipActivity.this, "Tip shared successfully", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                Intent intent  = new Intent(AddTipActivity.this, MenuActivity.class);
-                startActivity(intent);
+
+                if(actualTip.isEmpty() || tipTitle.isEmpty()){
+                    Toast.makeText(AddTipActivity.this, "Please give your tip a title and content", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    DocumentReference documentReference = fStore.collection("tips").document();
+                    final Map<String, Object> tip = new HashMap<>();
+                    tip.put("userID", userID);
+                    tip.put("poster", name);
+                    tip.put("tipTitle", tipTitle);
+                    tip.put("tipTip", actualTip);
+                    tip.put("random", random);
+                    documentReference.set(tip).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("Tag", "onSuccess: tip profile is created");
+                            Toast.makeText(AddTipActivity.this, "Tip shared successfully", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    Intent intent = new Intent(AddTipActivity.this, MenuActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

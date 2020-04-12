@@ -29,43 +29,47 @@ public class ExerciseAddedActivty extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_added_activty);
 
-         final String caloriesBurned = getIntent().getStringExtra("caloriesBurned");
+        final String caloriesBurned = getIntent().getStringExtra("caloriesBurned");
 
         fStore = FirebaseFirestore.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-        userID = mFirebaseAuth.getCurrentUser().getUid();
+        if (mFirebaseAuth.getCurrentUser() != null) {
+            userID = mFirebaseAuth.getCurrentUser().getUid();
 
-        final DocumentReference documentReference = fStore.collection("users").document(userID);
+            final DocumentReference documentReference = fStore.collection("users").document(userID);
 
-        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
-                double remainingCalValueNum = documentSnapshot.getDouble("remainingCalValue");
-                double caloriesBurnedDouble = Double.parseDouble(caloriesBurned);
-                newRemainingCalValue = remainingCalValueNum + caloriesBurnedDouble;
-            }
-        });
+            documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                    if (documentSnapshot != null && documentSnapshot.exists()) {
+                        double remainingCalValueNum = documentSnapshot.getDouble("remainingCalValue");
+                        double caloriesBurnedDouble = Double.parseDouble(caloriesBurned);
+                        newRemainingCalValue = remainingCalValueNum + caloriesBurnedDouble;
+                    }
+                }
+            });
 
 
-        menuButton = findViewById(R.id.menuButton);
-        addMoreButton = findViewById(R.id.addMoreExercisesButton);
+            menuButton = findViewById(R.id.menuButton);
+            addMoreButton = findViewById(R.id.addMoreExercisesButton);
 
-        menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                documentReference.update("remainingCalValue", newRemainingCalValue);
-                startActivity(new Intent(ExerciseAddedActivty.this, MenuActivity.class));
-            }
-        });
+            menuButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    documentReference.update("remainingCalValue", newRemainingCalValue);
+                    startActivity(new Intent(ExerciseAddedActivty.this, MenuActivity.class));
+                }
+            });
 
-        addMoreButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                documentReference.update("remainingCalValue", newRemainingCalValue);
-                startActivity(new Intent(ExerciseAddedActivty.this, SearchExercises.class));
-            }
-        });
+            addMoreButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    documentReference.update("remainingCalValue", newRemainingCalValue);
+                    startActivity(new Intent(ExerciseAddedActivty.this, SearchExercises.class));
+                }
+            });
+        }
     }
 
 }

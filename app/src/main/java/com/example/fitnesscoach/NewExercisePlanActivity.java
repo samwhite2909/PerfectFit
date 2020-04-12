@@ -61,8 +61,8 @@ public class NewExercisePlanActivity extends AppCompatActivity {
         String exerciseTarget = editTextTarget.getText().toString();
         int priority = numberPickerPriority.getValue();
 
-        if(exerciseTitle.trim().isEmpty()){
-            Toast.makeText(NewExercisePlanActivity.this, "Please give the exercise a title", Toast.LENGTH_SHORT).show();
+        if(exerciseTitle.trim().isEmpty() || exerciseTarget.isEmpty()){
+            Toast.makeText(NewExercisePlanActivity.this, "Please give the exercise a title and a target for it", Toast.LENGTH_SHORT).show();
             return;
         }
         FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();

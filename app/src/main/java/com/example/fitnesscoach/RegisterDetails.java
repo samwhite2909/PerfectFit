@@ -36,16 +36,20 @@ public class RegisterDetails extends AppCompatActivity {
                 String supportAnswer = getIntent().getStringExtra("supportAnswer");
 
                 String age = editTextAge.getText().toString();
-
-
-                Intent intent  = new Intent(RegisterDetails.this, RegisterMeasurements.class);
-                intent.putExtra("email", email);
-                intent.putExtra("name", name);
-                intent.putExtra("weightLossAnswer", weightLossAnswer);
-                intent.putExtra("supportAnswer", supportAnswer);
-                intent.putExtra("age", age);
-                intent.putExtra("gender", gender);
-                startActivity(intent);
+                if (age.isEmpty()) {
+                    Toast.makeText(RegisterDetails.this, "Please enter your age", Toast.LENGTH_SHORT).show();
+                } else if (gender == null) {
+                    Toast.makeText(RegisterDetails.this, "Please select your gender", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(RegisterDetails.this, RegisterMeasurements.class);
+                    intent.putExtra("email", email);
+                    intent.putExtra("name", name);
+                    intent.putExtra("weightLossAnswer", weightLossAnswer);
+                    intent.putExtra("supportAnswer", supportAnswer);
+                    intent.putExtra("age", age);
+                    intent.putExtra("gender", gender);
+                    startActivity(intent);
+                }
             }
         });
     }

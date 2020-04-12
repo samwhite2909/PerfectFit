@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class RegisterQuestions extends AppCompatActivity {
 
@@ -36,12 +37,22 @@ public class RegisterQuestions extends AppCompatActivity {
                 String name = getIntent().getStringExtra("name");
                 String email = getIntent().getStringExtra("email");
 
-                Intent intent  = new Intent(RegisterQuestions.this, RegisterDetails.class);
-                intent.putExtra("email", email);
-                intent.putExtra("name", name);
-                intent.putExtra("supportAnswer", supportAnswer);
-                intent.putExtra("weightLossAnswer", lossAmount);
-                startActivity(intent);
+                if (supportAnswer == null) {
+                    Toast.makeText(RegisterQuestions.this, "Please answer the support question", Toast.LENGTH_SHORT).show();
+                } else if (lossAmount == null) {
+                    Toast.makeText(RegisterQuestions.this, "Please answer the weight loss question", Toast.LENGTH_SHORT).show();
+                } else if (supportAnswer == null && lossAmount == null) {
+                    Toast.makeText(RegisterQuestions.this, "Please answer both questions", Toast.LENGTH_SHORT).show();
+                } else {
+
+
+                    Intent intent = new Intent(RegisterQuestions.this, RegisterDetails.class);
+                    intent.putExtra("email", email);
+                    intent.putExtra("name", name);
+                    intent.putExtra("supportAnswer", supportAnswer);
+                    intent.putExtra("weightLossAnswer", lossAmount);
+                    startActivity(intent);
+                }
             }
         });
     }

@@ -29,8 +29,8 @@ public class ExerciseFragment extends Fragment {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
-    String userID = mFirebaseAuth.getCurrentUser().getUid();
-    CollectionReference completedExerciseRef = db.collection("users").document(userID).collection("exercises");
+    String userID;
+    CollectionReference completedExerciseRef;
 
     private CompletedExerciseAdapter adapter;
     @Nullable
@@ -40,27 +40,31 @@ public class ExerciseFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerView);
 
-        setUpRecyclerView();
+        if(mFirebaseAuth.getCurrentUser() != null) {
+            userID = mFirebaseAuth.getCurrentUser().getUid();
+            completedExerciseRef = db.collection("users").document(userID).collection("exercises");
 
-        addDatabaseButton = view.findViewById(R.id.addDatabaseButton);
-        addExerciseButton = view.findViewById(R.id.addExerciseFloatButton);
+            setUpRecyclerView();
 
-        addDatabaseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent addDatabaseIntent = new Intent(getActivity(), AddNewExercise.class);
-                startActivity(addDatabaseIntent);
-            }
-        });
+            addDatabaseButton = view.findViewById(R.id.addDatabaseButton);
+            addExerciseButton = view.findViewById(R.id.addExerciseFloatButton);
 
-        addExerciseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent addExerciseIntent = new Intent(getActivity(), SearchExercises.class);
-                startActivity(addExerciseIntent);
-            }
-        });
+            addDatabaseButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent addDatabaseIntent = new Intent(getActivity(), AddNewExercise.class);
+                    startActivity(addDatabaseIntent);
+                }
+            });
 
+            addExerciseButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent addExerciseIntent = new Intent(getActivity(), SearchExercises.class);
+                    startActivity(addExerciseIntent);
+                }
+            });
+        }
 
         return view;
     }

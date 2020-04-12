@@ -63,9 +63,10 @@ public class SupportFragment extends Fragment implements View.OnClickListener {
             documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
-                    userName = documentSnapshot.getString("name");
-                    caloriesRemaining = documentSnapshot.getDouble("remainingCalValue");
-
+                    if(documentSnapshot != null && documentSnapshot.exists()) {
+                        userName = documentSnapshot.getString("name");
+                        caloriesRemaining = documentSnapshot.getDouble("remainingCalValue");
+                    }
                 }
             });
         }

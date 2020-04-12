@@ -21,8 +21,12 @@ public class FoodSuggestionAdapter extends FirestoreRecyclerAdapter<FoodSuggesti
     @Override
     protected void onBindViewHolder(@NonNull FoodSuggestionHolder holder, int position, @NonNull FoodSuggestion model) {
         holder.textViewFoodName.setText(model.getFoodName());
-        holder.textViewCalPerPortion.setText(Double.toString(model.getCalPerPortion()));
-        holder.textViewPortionSize.setText(Double.toString(model.getPortionSize()));
+        double dCal = (model.getCalPerPortion());
+        int iCal = (int) Math.round(dCal);
+        holder.textViewCalPerPortion.setText(iCal + "kcal");
+        double dPortion = (model.getPortionSize());
+        int iPortion = (int) Math.round(dPortion);
+        holder.textViewPortionSize.setText(iPortion + "g");
     }
 
     @NonNull
