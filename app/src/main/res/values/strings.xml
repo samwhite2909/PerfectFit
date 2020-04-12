@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PerfectFit</string>
+    <string name="app_name">Perfect Fit</string>
     <string name="login">Login</string>
     <string name="register">Make an account</string>
     <string name="alreadyMember">Already a member? Sign in here!</string>
@@ -114,12 +114,14 @@
     <string name="leaderboard">Score leaderboard</string>
     <string name="yourScore">You score is: 0, where do you place on the leaderboard?</string>
     <string name="shareYourTips">Share your tips</string>
-    <string name="addTipsTitle">Title of your tip</string>
+    <string name="addTipsTitle">Please give your post a title</string>
     <string name="lastStep">The last of the questions, we promise!</string>
     <string name="registerStart">First, a few basic details...</string>
     <string name="registerQuestions">How would you like to use Perfect Fit?</string>
     <string name="registerDetails">Tell us more about you...</string>
     <string name="logInText">Glad to have you back, please log in!</string>
+    <string name="shareTipsDesc">Share your tips and advice with the rest of the Perfect Fit community!</string>
+    <string name="tipShareWarning">Please note that what you post here is visible to the rest of the community, please be considerate with what you post!</string>
 
 
 </resources>
