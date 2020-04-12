@@ -11,10 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="@string/app_name"
+        android:text="@string/registerDetails"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/primaryTextColor"
-        android:textSize="50sp"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,12 +23,11 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_width="185dp"
+        android:layout_height="185dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/fitnesslogo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appNameText" />
 
@@ -47,8 +47,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enterAge"
-            android:maxLength="50"
             android:inputType="number"
+            android:maxLength="50"
             android:outlineAmbientShadowColor="@color/primaryColor"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/primaryTextColor" />
@@ -58,13 +58,14 @@
         android:id="@+id/registerButton"
         android:layout_width="300sp"
         android:layout_height="75sp"
+        android:layout_marginTop="16dp"
         android:background="@color/primaryColor"
         android:text="@string/next"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/secondaryTextColor"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/genderGroup" />
 
@@ -91,8 +92,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/genderText"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/genderText">
 
         <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/maleButton"
@@ -107,10 +107,10 @@
         <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/femaleButton"
             android:layout_width="150sp"
-            android:text="@string/female"
+            android:layout_height="match_parent"
+            android:checked="false"
             android:onClick="rbClick"
-            android:checked = "false"
-            android:layout_height="match_parent" />
+            android:text="@string/female" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

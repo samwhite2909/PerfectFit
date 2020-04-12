@@ -149,7 +149,6 @@ public class RegisterMeasurements extends AppCompatActivity {
                     });
                     Intent intent = new Intent(RegisterMeasurements.this, MenuActivity.class);
                     startActivity(intent);
-                    //Toast.makeText(RegisterMeasurements.this, "Pressed", Toast.LENGTH_SHORT).show();
                 }
             }
         });

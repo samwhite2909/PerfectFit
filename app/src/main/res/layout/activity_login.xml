@@ -11,10 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="@string/app_name"
-        android:textColor="@color/primaryTextColor"
+        android:text="@string/logInText"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="50sp"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,8 +23,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="198dp"
+        android:layout_height="189dp"
         android:layout_marginTop="28dp"
         android:src="@drawable/fitnesslogo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,8 +37,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300sp"
         android:layout_height="60sp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo">
 
@@ -45,11 +47,11 @@
             android:id="@+id/usernameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart = "@drawable/ic_person_black_24dp"
+            android:drawableStart="@drawable/ic_person_black_24dp"
             android:hint="@string/email"
+            android:outlineAmbientShadowColor="@color/primaryColor"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/primaryTextColor"
-            android:outlineAmbientShadowColor="@color/primaryColor" />
+            android:textColor="@color/primaryTextColor" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -58,22 +60,22 @@
         android:layout_width="300sp"
         android:layout_height="60sp"
         android:layout_marginTop="20dp"
-        app:passwordToggleEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameLayout">
+        app:layout_constraintTop_toBottomOf="@+id/usernameLayout"
+        app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_lock_outline_black_24dp"
             android:hint="@string/password"
-            android:drawableStart = "@drawable/ic_lock_outline_black_24dp"
+            android:inputType="textPassword"
+            android:outlineAmbientShadowColor="@color/primaryColor"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/primaryTextColor"
-            android:outlineAmbientShadowColor="@color/primaryColor"
-            android:inputType="textPassword"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="472dp" />
 
@@ -83,16 +85,15 @@
         android:id="@+id/loginButton"
         android:layout_width="300sp"
         android:layout_height="75sp"
+        android:layout_marginTop="20dp"
         android:background="@color/primaryColor"
         android:text="@string/login"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/secondaryTextColor"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordLayout"
-        app:layout_constraintVertical_bias="0.367" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

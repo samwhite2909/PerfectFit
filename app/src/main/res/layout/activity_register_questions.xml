@@ -11,42 +11,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="@string/app_name"
+        android:text="@string/registerQuestions"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/primaryTextColor"
-        android:textSize="50sp"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_width="186dp"
+        android:layout_height="185dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/fitnesslogo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appNameText" />
 
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/registerButton"
         android:layout_width="300sp"
         android:layout_height="75sp"
+        android:layout_marginTop="8dp"
         android:background="@color/primaryColor"
         android:text="@string/next"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/secondaryTextColor"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loseGroup"
-        app:layout_constraintVertical_bias="0.274" />
+        app:layout_constraintTop_toBottomOf="@+id/loseGroup" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/supportText"
@@ -95,7 +95,7 @@
         android:id="@+id/loseText"
         android:layout_width="300sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:text="@string/lossQuestion"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/primaryTextColor"
@@ -126,12 +126,12 @@
             tools:layout_editor_absoluteY="266dp" />
 
         <com.google.android.material.radiobutton.MaterialRadioButton
-        android:id="@+id/poundButton"
-        android:layout_width="75sp"
-        android:layout_height="match_parent"
-        android:checked="false"
-        android:onClick="rbClickLoss"
-        android:text="@string/pound" />
+            android:id="@+id/poundButton"
+            android:layout_width="75sp"
+            android:layout_height="match_parent"
+            android:checked="false"
+            android:onClick="rbClickLoss"
+            android:text="@string/pound" />
 
         <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/oneHalfPoundButton"

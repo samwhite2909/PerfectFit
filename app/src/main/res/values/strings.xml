@@ -6,13 +6,13 @@
     <string name="newMember">New to the app? Make an account here!</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="enterEmail">Enter an email</string>
-    <string name="enterPassword">Enter a password</string>
-    <string name="enterName">Enter a name</string>
-    <string name="enterWeight">Enter weight in kg</string>
-    <string name="enterHeight">Enter height in meters</string>
-    <string name="enterBodyFatLevel">Enter Body Fat Level</string>
-    <string name="enterAge">Enter age</string>
+    <string name="enterEmail">Please enter an email</string>
+    <string name="enterPassword">Please enter a password</string>
+    <string name="enterName">Please enter a username</string>
+    <string name="enterWeight">Please enter weight in kg</string>
+    <string name="enterHeight">Please enter height in meters</string>
+    <string name="enterBodyFatLevel">Please enter body fat level</string>
+    <string name="enterAge">Please enter your age</string>
     <string name="registerAccount">Register</string>
     <string name="home">Home</string>
     <string name="food">Food</string>
@@ -115,6 +115,11 @@
     <string name="yourScore">You score is: 0, where do you place on the leaderboard?</string>
     <string name="shareYourTips">Share your tips</string>
     <string name="addTipsTitle">Title of your tip</string>
+    <string name="lastStep">The last of the questions, we promise!</string>
+    <string name="registerStart">First, a few basic details...</string>
+    <string name="registerQuestions">How would you like to use Perfect Fit?</string>
+    <string name="registerDetails">Tell us more about you...</string>
+    <string name="logInText">Glad to have you back, please log in!</string>
 
 
 </resources>
