@@ -111,7 +111,7 @@
     <string name="workoutText">Plan your workout so you can get straight to it later on!</string>
     <string name="mealsText">Plan your meals to keep you on track!</string>
     <string name="tipsDesc">Get helpful advice from our other members</string>
-    <string name="leaderboard">Score leaderboard</string>
+    <string name="leaderboard">On-Target Leaderboard</string>
     <string name="yourScore">You score is: 0, where do you place on the leaderboard?</string>
     <string name="shareYourTips">Share your tips</string>
     <string name="addTipsTitle">Please give your post a title</string>

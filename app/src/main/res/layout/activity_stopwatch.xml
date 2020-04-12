@@ -5,20 +5,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:layout_gravity="center"
     tools:context=".StopwatchActivity">
 
-    <com.google.android.material.textview.MaterialTextView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="@string/stopwatchTitle"
-        android:textStyle="bold"
-        android:textSize="40sp"
-        android:textAlignment="center">
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="50dp"
+        android:clipToPadding="false">
 
-    </com.google.android.material.textview.MaterialTextView>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/greetingCard"
+            android:layout_width="350dp"
+            android:layout_height="160dp"
+            android:layout_margin="10dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/circle_background_orange"
+                    android:src="@drawable/ic_watch_later_white_24dp"
+                    android:padding="10dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/greetingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textAlignment="center"
+                    android:text="@string/stopwatch"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/stopwatchTitle"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 <androidx.appcompat.widget.LinearLayoutCompat
     android:layout_width="300dp"
@@ -68,7 +108,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/secondaryTextColor"
         android:textSize="30sp"
-        android:layout_marginTop="20sp">
+        android:layout_gravity="center"
+        android:layout_marginTop="40sp">
 
     </com.google.android.material.button.MaterialButton>
 </androidx.appcompat.widget.LinearLayoutCompat>
