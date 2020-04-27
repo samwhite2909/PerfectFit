@@ -42,29 +42,33 @@ public class AddNewFoodSecondStage extends AppCompatActivity {
        addFoodButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
+                if(editTextBarcode.getText().toString().isEmpty() || editTextPortionSize.getText().toString().isEmpty()){
+                    Toast.makeText(AddNewFoodSecondStage.this, "Please fill out the required fields", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    String barcode = editTextBarcode.getText().toString();
+                    double portionSize = Double.parseDouble(editTextPortionSize.getText().toString());
 
-               String barcode = editTextBarcode.getText().toString();
-               double portionSize = Double.parseDouble(editTextPortionSize.getText().toString());
+                    double calPerPortion = (calPer100g / 100) * portionSize;
 
-               double calPerPortion = (calPer100g/100) * portionSize;
-
-               DocumentReference documentReference = fStore.collection("foods").document(barcode);
-               final Map<String, Object> food = new HashMap<>();
-               food.put("foodName", foodName);
-               food.put("calPer100g", calPer100g);
-               food.put("portionSize", portionSize);
-               food.put("calPerPortion", calPerPortion);
-               food.put("barcode", barcode);
-               food.put("search", search);
-               documentReference.set(food).addOnSuccessListener(new OnSuccessListener<Void>() {
-                   @Override
-                   public void onSuccess(Void aVoid) {
-                       Log.d("Tag", "onSuccess: food profile is created for " + foodName);
-                       Toast.makeText(AddNewFoodSecondStage.this, "Food added to database", Toast.LENGTH_SHORT).show();
-                   }
-               });
-               Intent i = new Intent (AddNewFoodSecondStage.this, MenuActivity.class);
-               startActivity(i);
+                    DocumentReference documentReference = fStore.collection("foods").document(barcode);
+                    final Map<String, Object> food = new HashMap<>();
+                    food.put("foodName", foodName);
+                    food.put("calPer100g", calPer100g);
+                    food.put("portionSize", portionSize);
+                    food.put("calPerPortion", calPerPortion);
+                    food.put("barcode", barcode);
+                    food.put("search", search);
+                    documentReference.set(food).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("Tag", "onSuccess: food profile is created for " + foodName);
+                            Toast.makeText(AddNewFoodSecondStage.this, "Food added to database", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    Intent i = new Intent(AddNewFoodSecondStage.this, MenuActivity.class);
+                    startActivity(i);
+                }
            }
        });
     }

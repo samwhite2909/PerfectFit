@@ -61,7 +61,8 @@ public class AccountDetails extends AppCompatActivity {
                 double BMIForView = documentSnapshot.getDouble("BMI");
                 String BMIText = Double.toString(BMIForView);
                 double ageForView = documentSnapshot.getDouble("age");
-                String ageText = Double.toString(ageForView);
+                int ageInt = (int) Math.round(ageForView);
+                String ageText = Integer.toString(ageInt);
                 name.setText("Name: " + nameForView);
                 email.setText("Email: " + emailForView);
                 dateJoined.setText("Date Joined: " + dateForView);

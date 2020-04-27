@@ -4,40 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/white2"
     tools:context=".AddExerciseToUser">
 
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/appNameText"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="@string/addNewExerciseHeading"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/primaryTextColor"
-        android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-16dp">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/logo"
-        android:layout_width="206dp"
-        android:layout_height="189dp"
-        android:layout_marginTop="12dp"
-        android:src="@drawable/fitnesslogo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appNameText" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/greetingCard"
+            android:layout_width="350dp"
+            android:layout_height="160dp"
+            android:layout_margin="10dp"
+            android:clickable="false"
+            android:foreground="?android:attr/selectableItemBackground">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/circle_background_orange"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_directions_run_white" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/greetingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/addNewExerciseHeading"
+                    android:textAlignment="center"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/addExerciseDesc"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/exerciseDurationLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300sp"
         android:layout_height="60sp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,25 +89,25 @@
         android:id="@+id/titleTextView"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="48dp"
         android:text="Exercise title"
         android:textAlignment="center"
-        android:textSize="20sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
+        app:layout_constraintTop_toBottomOf="@+id/layout" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/calTextView"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:text="Calories per minute: 0"
         android:textAlignment="center"
-        android:textSize="20sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +117,7 @@
         android:id="@+id/addExerciseButton"
         android:layout_width="300sp"
         android:layout_height="75sp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:background="@color/primaryColor"
         android:text="@string/addExercise"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"

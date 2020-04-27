@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -38,10 +39,16 @@ public class AddNewFood extends AppCompatActivity {
                 final String foodName = editFoodName.getText().toString();
                 String calPer100g = editCalPer100g.getText().toString();
 
-                Intent intent  = new Intent(AddNewFood.this, AddNewFoodSecondStage.class);
-                intent.putExtra("foodName", foodName);
-                intent.putExtra("calPer100g", calPer100g);
-                startActivity(intent);
+                if(editFoodName.getText().toString().isEmpty() || editCalPer100g.getText().toString().isEmpty()){
+                    Toast.makeText(AddNewFood.this, "Please fill out the required fields", Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+                    Intent intent = new Intent(AddNewFood.this, AddNewFoodSecondStage.class);
+                    intent.putExtra("foodName", foodName);
+                    intent.putExtra("calPer100g", calPer100g);
+                    startActivity(intent);
+                }
             }
         });
     }

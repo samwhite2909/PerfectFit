@@ -4,39 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/white2"
     tools:context=".AddNewFoodSecondStage">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/appNameText"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="@string/app_name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/primaryTextColor"
-        android:textSize="50sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-16dp">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:src="@drawable/fitnesslogo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appNameText" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/greetingCard"
+            android:layout_width="350dp"
+            android:layout_height="160dp"
+            android:layout_margin="10dp"
+            android:clickable="false"
+            android:foreground="?android:attr/selectableItemBackground">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/circle_background_orange"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_restaurant_black_24dp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/greetingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/foodToAdd"
+                    android:textAlignment="center"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/foodToAddDesc"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/barcodeLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300sp"
         android:layout_height="60sp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,12 +77,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enterBarcode"
-            android:textSize="15sp"
-            android:maxLength="50"
             android:inputType="numberDecimal"
+            android:maxLength="50"
             android:outlineAmbientShadowColor="@color/primaryColor"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/primaryTextColor" />
+            android:textColor="@color/primaryTextColor"
+            android:textSize="15sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -60,40 +90,39 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300sp"
         android:layout_height="60sp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo">
+        app:layout_constraintTop_toBottomOf="@+id/layout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/portionSizeInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enterPortionSize"
-            android:maxLength="50"
-            android:textSize="15sp"
             android:inputType="numberDecimal"
+            android:maxLength="50"
             android:outlineAmbientShadowColor="@color/primaryColor"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/primaryTextColor" />
+            android:textColor="@color/primaryTextColor"
+            android:textSize="15sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/addFoodButton"
         android:layout_width="300sp"
         android:layout_height="75sp"
+        android:layout_marginTop="60dp"
         android:background="@color/primaryColor"
         android:text="@string/addFood"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/secondaryTextColor"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/barcodeLayout"
-        app:layout_constraintVertical_bias="0.197" />
+        app:layout_constraintTop_toBottomOf="@+id/barcodeLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

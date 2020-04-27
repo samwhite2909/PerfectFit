@@ -122,6 +122,18 @@
     <string name="logInText">Glad to have you back, please log in!</string>
     <string name="shareTipsDesc">Share your tips and advice with the rest of the Perfect Fit community!</string>
     <string name="tipShareWarning">Please note that what you post here is visible to the rest of the community, please be considerate with what you post!</string>
-
-
+    <string name="newMeal">New Meal</string>
+    <string name="newMealDesc">Create a new meal to add to your plan</string>
+    <string name="newExercise">New Exercise</string>
+    <string name="newExerciseDesc">Create a new exercise to add to your plan</string>
+    <string name="accountDetailsDesc">Here\'s the details of your account with us</string>
+    <string name="measurementsDesc">Keep your measurements up to date to let us know how you\'re doing</string>
+    <string name="addFoodDesc">Tell us how much of this food you\'ve had to track it</string>
+    <string name="foodAddedDesc">This food has now been added to your tracking and food diary!</string>
+    <string name="foodToAdd">Add a new food</string>
+    <string name="foodToAddDesc">Add a new food for our database to track it with us</string>
+    <string name="addExerciseDesc">Tell us how much of this exercise you\'ve done to track it</string>
+    <string name="exerciseAddedDesc">This exercise has now been added to your tracking and exercise diary!</string>
+    <string name="newExerciseDatabase">Add a new exercise</string>
+    <string name="newExerciseDatabaseDesc">Create a new exercise to add into our database</string>
 </resources>

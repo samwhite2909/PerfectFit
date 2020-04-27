@@ -42,7 +42,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if(checkPermission()){
-                Toast.makeText(ScannerActivity.this, "Permission is granted", Toast.LENGTH_LONG).show();
+                Toast.makeText(ScannerActivity.this, "Scan the barcode of your product", Toast.LENGTH_LONG).show();
             }
             else{
                 requestPermission();
