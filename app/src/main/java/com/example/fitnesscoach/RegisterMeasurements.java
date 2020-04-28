@@ -72,9 +72,10 @@ public class RegisterMeasurements extends AppCompatActivity {
                         age = Integer.parseInt(ageString);
                     }
 
-                    double BMI = weight / (height) * (height);
-                    double dailyCalLimit = 0;
+                    double BMI = weight / ((height) * (height));
 
+                    double dailyCalLimit = 0;
+                    assert gender != null;
                     if (gender.equalsIgnoreCase("Male")) {
                         dailyCalLimit = 10 * weight + 6.25 * (height * 100) - 5 * age + 5;
                     }
@@ -89,6 +90,7 @@ public class RegisterMeasurements extends AppCompatActivity {
 
                     double calLimitWithReduction = dailyCalLimit;
 
+                    assert weightLossAnswer != null;
                     if (weightLossAnswer.equalsIgnoreCase("0.5lb")) {
                         calLimitWithReduction = dailyCalLimit - 250;
                         weightLossReductionCals = 250;
@@ -101,12 +103,10 @@ public class RegisterMeasurements extends AppCompatActivity {
                         calLimitWithReduction = dailyCalLimit - 750;
                         weightLossReductionCals = 750;
                     }
-
                     if (weightLossAnswer.equalsIgnoreCase("2lbs")) {
                         calLimitWithReduction = dailyCalLimit - 1000;
                         weightLossReductionCals = 1000;
                     }
-
                     double remainingCalValue = calLimitWithReduction;
                     int score = 0;
 

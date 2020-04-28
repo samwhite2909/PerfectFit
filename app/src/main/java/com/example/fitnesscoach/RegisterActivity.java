@@ -59,9 +59,9 @@ public class RegisterActivity extends AppCompatActivity {
                 else if(password.isEmpty()){
                     Toast.makeText(RegisterActivity.this, "Enter a password", Toast.LENGTH_SHORT).show();
                 }
-
-                else if(!(email.isEmpty() && password.isEmpty())){
-                    mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                else {
+                    mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(
+                            RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(!task.isSuccessful()){
@@ -75,9 +75,6 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         }
                     });
-                }
-                else{
-                    Toast.makeText(RegisterActivity.this, "An error occurred", Toast.LENGTH_SHORT).show();
                 }
             }
         });

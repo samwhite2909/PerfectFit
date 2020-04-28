@@ -41,9 +41,6 @@ public class LoginActivity extends AppCompatActivity {
                 if( mFirebaseUser != null){
                     openMenuActivity();
                 }
-                else{
-                    //Toast.makeText(LoginActivity.this, "Please login", Toast.LENGTH_SHORT).show();
-                }
             }
         };
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -58,11 +55,9 @@ public class LoginActivity extends AppCompatActivity {
                 else if(password.isEmpty()){
                     Toast.makeText(LoginActivity.this, "Enter a password", Toast.LENGTH_SHORT).show();
                 }
-                else if(email.isEmpty() && password.isEmpty()){
-                    Toast.makeText(LoginActivity.this, "All fields are empty", Toast.LENGTH_SHORT).show();
-                }
-                else if(!(email.isEmpty() && password.isEmpty())){
-                    mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                else {
+                    mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(
+                            LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(!task.isSuccessful()){
@@ -73,11 +68,6 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     });
-
-
-                }
-                else{
-                    Toast.makeText(LoginActivity.this, "An error occurred", Toast.LENGTH_SHORT).show();
                 }
             }
         });

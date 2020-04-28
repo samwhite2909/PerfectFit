@@ -40,7 +40,9 @@ public class FoodAddedActivity extends AppCompatActivity {
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                assert documentSnapshot != null;
                 double remainingCalValueNum = documentSnapshot.getDouble("remainingCalValue");
+                assert caloriesConsumed != null;
                 double caloriesBurnedDouble = Double.parseDouble(caloriesConsumed);
                 newRemainingCalValue = remainingCalValueNum - caloriesBurnedDouble;
             }
