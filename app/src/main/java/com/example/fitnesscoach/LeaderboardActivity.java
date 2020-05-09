@@ -17,14 +17,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
+//Allows users scores to be displayed in the form of a leaderboard.
 public class LeaderboardActivity extends AppCompatActivity {
+
     private FirebaseFirestore db  = FirebaseFirestore.getInstance();
     private CollectionReference scoreRef = db.collection("leaderboardScore");
-
     private LeaderboardItemAdapter adapter;
-
     TextView scoreText;
-
     FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
     String userID= mFirebaseAuth.getCurrentUser().getUid();
 
@@ -35,12 +34,14 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         scoreText = findViewById(R.id.scoreText);
 
+        //Populates the recycler view based on a later created query.
         setUpRecyclerView();
 
+        //Gives the user's total score at the top, in case it is difficult to find their name on the
+        //leaderboard.
         if(mFirebaseAuth.getCurrentUser() != null) {
             userID = mFirebaseAuth.getCurrentUser().getUid();
             DocumentReference documentReference = db.collection("leaderboardScore").document(userID);
-
             documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
@@ -54,6 +55,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         }
     }
 
+    //Creates a query containing all users and their scores to be displayed in the leaderboard.
     private void setUpRecyclerView(){
 
         Query query = scoreRef.orderBy("score", Query.Direction.DESCENDING);

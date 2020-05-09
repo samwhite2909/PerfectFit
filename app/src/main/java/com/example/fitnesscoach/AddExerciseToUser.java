@@ -1,6 +1,5 @@
 package com.example.fitnesscoach;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,23 +16,21 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.HashMap;
 import java.util.Map;
 
+//This class allows a user to add an exercise to their workout diary.
 public class AddExerciseToUser extends AppCompatActivity {
+
     TextView textViewExerciseName;
     TextView textViewCalPerMin;
     EditText editTextDuration;
     Button addExerciseButton;
-
     FirebaseFirestore fStore;
     FirebaseAuth mFirebaseAuth;
     String userID;
-
     EventListener<DocumentSnapshot> listener;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +42,7 @@ public class AddExerciseToUser extends AppCompatActivity {
 
         final double calPerMin = Double.parseDouble(calPerMinString);
 
+        //Gets a reference to the database and the currently logged in user.
         fStore = FirebaseFirestore.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -56,6 +54,7 @@ public class AddExerciseToUser extends AppCompatActivity {
         textViewExerciseName.setText(exerciseNameString);
         textViewCalPerMin.setText("Calories burned per minute: " + calPerMinString);
 
+        //Adds the exercise to the user's workout diary based on their input from the text fields.
         addExerciseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

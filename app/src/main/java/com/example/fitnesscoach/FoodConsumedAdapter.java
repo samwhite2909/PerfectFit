@@ -9,13 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-
+//Adapter for displaying the user's food diary within the food fragment, used by FirestoreUI.
 public class FoodConsumedAdapter extends FirestoreRecyclerAdapter<FoodConsumed, FoodConsumedAdapter.FoodConsumedHolder> {
 
     public FoodConsumedAdapter(@NonNull FirestoreRecyclerOptions<FoodConsumed> options) {
         super(options);
     }
 
+    //Displays the information from the database into the layout items within each card in the recycler view.
     @Override
     protected void onBindViewHolder(@NonNull FoodConsumedHolder holder, int position, @NonNull FoodConsumed model) {
         holder.textViewFoodName.setText(model.getFoodName());
@@ -27,6 +28,7 @@ public class FoodConsumedAdapter extends FirestoreRecyclerAdapter<FoodConsumed, 
         holder.textViewAmountConsumed.setText(iGram + "g");
     }
 
+    //Creates the new view to be used by the holder class.
     @NonNull
     @Override
     public FoodConsumedHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -35,6 +37,7 @@ public class FoodConsumedAdapter extends FirestoreRecyclerAdapter<FoodConsumed, 
         return new FoodConsumedHolder(v);
     }
 
+    //Gets the layout items to be used to add data into the cards in the recycler view.
     class FoodConsumedHolder extends RecyclerView.ViewHolder{
         TextView textViewFoodName;
         TextView textViewCaloriesConsumed;

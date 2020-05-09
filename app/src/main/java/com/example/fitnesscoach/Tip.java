@@ -1,6 +1,8 @@
 package com.example.fitnesscoach;
 
+//Model class used for showing all tips within the database, required by FirestoreUI.
 public class Tip {
+
     private String tipTitle;
     private String tipTip;
     private String poster;

@@ -20,20 +20,25 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+//This class adds functionality to the food fragment, showing the user's food diary and allowing them
+//to add new foods into the database, or into their food diary, altering their calories.
 public class FoodFragment extends Fragment {
 
     FloatingActionButton scanFoodButton;
     FloatingActionButton searchFoodButton;
     FloatingActionButton addFoodButton;
-
     RecyclerView recyclerView;
 
+    //Creates a reference to the database and the currently logged in user.
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
+
+    //Creates a reference to the collection containing the user's food diary.
     String userID = mFirebaseAuth.getCurrentUser().getUid();
     CollectionReference foodConsumedRef = db.collection("users").document(userID).collection("foods");
 
     private FoodConsumedAdapter adapter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,8 +50,10 @@ public class FoodFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerView);
 
+        //Populates the recycler view using information from the database.
         setUpRecyclerView();
 
+        //Takes the user to the scanner activity to scan in a barcode.
         scanFoodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +62,7 @@ public class FoodFragment extends Fragment {
             }
         });
 
+        //Takes the user to the search activity, where they can search the database for foods to add in.
         searchFoodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +71,7 @@ public class FoodFragment extends Fragment {
             }
         });
 
+        //Allows the user to add a new food into the database in a new activity.
         addFoodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,12 +79,10 @@ public class FoodFragment extends Fragment {
                 startActivity(addIntent);
             }
         });
-
-
-
         return view;
     }
 
+    //Creates a query containing the user's food diary and passes this to the recycler view to display it.
     private void setUpRecyclerView(){
         Query query = foodConsumedRef;
 
@@ -88,9 +95,6 @@ public class FoodFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
-
-
-
     }
 
     @Override

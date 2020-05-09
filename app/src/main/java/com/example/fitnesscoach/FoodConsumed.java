@@ -1,6 +1,8 @@
 package com.example.fitnesscoach;
 
+//Model class required by FirestoreUI for populating the recycler view containing the user's food diary.
 public class FoodConsumed {
+
     private String foodName;
     private double caloriesConsumed;
     private double amountConsumed;

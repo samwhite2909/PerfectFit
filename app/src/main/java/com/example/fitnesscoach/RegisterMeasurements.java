@@ -20,6 +20,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+//Final registration activity, fully registering all user details.
 public class RegisterMeasurements extends AppCompatActivity {
 
     EditText editTextWeight;
@@ -30,6 +31,7 @@ public class RegisterMeasurements extends AppCompatActivity {
     FirebaseAuth mFirebaseAuth;
     String userID;
     int weightLossReductionCals;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,7 @@ public class RegisterMeasurements extends AppCompatActivity {
                 String heightString = editTextHeight.getText().toString();
                 String bodyFatString = editTextBodyFatLevel.getText().toString();
 
+                //Input validation.
                 if (weightString.isEmpty() || heightString.isEmpty() || bodyFatString.isEmpty()) {
                     Toast.makeText(RegisterMeasurements.this, "Please enter all required measurements", Toast.LENGTH_SHORT).show();
                 } else {
@@ -72,10 +75,12 @@ public class RegisterMeasurements extends AppCompatActivity {
                         age = Integer.parseInt(ageString);
                     }
 
+                    //Calculates the BMI of the user.
                     double BMI = weight / ((height) * (height));
 
                     double dailyCalLimit = 0;
-                    assert gender != null;
+
+                    //Using Mifflin-St Jeor equation to calculate recommended daily calorie intake.
                     if (gender.equalsIgnoreCase("Male")) {
                         dailyCalLimit = 10 * weight + 6.25 * (height * 100) - 5 * age + 5;
                     }
@@ -85,12 +90,9 @@ public class RegisterMeasurements extends AppCompatActivity {
 
                     double weeklyCalLimit = dailyCalLimit * 7;
 
-                    double weightLossCals = 0;
-                    int weightLossCounter = 7;
-
                     double calLimitWithReduction = dailyCalLimit;
 
-                    assert weightLossAnswer != null;
+                    //Reduces the user's recommended daily calorie intake depending on their weight loss goal.
                     if (weightLossAnswer.equalsIgnoreCase("0.5lb")) {
                         calLimitWithReduction = dailyCalLimit - 250;
                         weightLossReductionCals = 250;
@@ -110,8 +112,10 @@ public class RegisterMeasurements extends AppCompatActivity {
                     double remainingCalValue = calLimitWithReduction;
                     int score = 0;
 
+                    //Gets the current date as the date joined for the user.
                     String dateJoined = DateFormat.getDateInstance().format(calendar.getTime());
 
+                    //Creates a new document for the user's details to be put into and adds them in.
                     userID = mFirebaseAuth.getCurrentUser().getUid();
                     DocumentReference documentReference = fStore.collection("users").document(userID);
                     final Map<String, Object> user = new HashMap<>();
@@ -137,6 +141,8 @@ public class RegisterMeasurements extends AppCompatActivity {
                             Log.d("Tag", "onSuccess: user profile is created for " + userID);
                         }
                     });
+
+                    //Creates the user's leaderboard entry and takes them to the main menu.
                     DocumentReference documentReferenceLeaderboard = fStore.collection("leaderboardScore").document(userID);
                     final Map<String, Object> leaderboardPlace = new HashMap<>();
                     leaderboardPlace.put("name", name);

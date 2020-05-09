@@ -35,14 +35,13 @@ import java.util.Calendar;
 
 import javax.annotation.Nullable;
 
+//The main menu activity, containing the four main fragments of the app.
 public class MenuActivity extends AppCompatActivity {
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     FirebaseFirestore fStore;
     String userID;
     String supportAnswer;
-    final Calendar calendar = Calendar.getInstance();
-    String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
     String lastLoginDate;
     double dailyCalLimitReduction;
     double remainingCal;
@@ -51,40 +50,50 @@ public class MenuActivity extends AppCompatActivity {
     CollectionReference foodRef;
     CollectionReference exerciseRef;
 
+    //Gets the current date as a value to be checked against.
+    final Calendar calendar = Calendar.getInstance();
+    String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-
+            //Gets a a reference to the database and the currently logged in user.
             fStore = FirebaseFirestore.getInstance();
             mFirebaseAuth = FirebaseAuth.getInstance();
-
 
             MaterialToolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
 
             final BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
 
+            //Assigns food and workout diary references based on which user is logged in.
             if(mFirebaseAuth.getCurrentUser() != null) {
                 userID = mFirebaseAuth.getCurrentUser().getUid();
                 foodRef = fStore.collection("users").document(userID).collection("foods");
                 exerciseRef = fStore.collection("users").document(userID).collection("exercises");
 
-
+                //Obtains references to the user's information and their leaderboard score.
                 final DocumentReference documentReference = fStore.collection("users").document(userID);
                 final DocumentReference documentReferenceScore = fStore.collection("leaderboardScore").document(userID);
                 documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                     @Override
                     public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
                         if (documentSnapshot != null && documentSnapshot.exists()) {
-                            supportAnswer = documentSnapshot.getString("supportAnswer");
+                            dailyCalLimit = documentSnapshot.getDouble("dailyCalLimit");
                             dailyCalLimitReduction = documentSnapshot.getDouble("calLimitWithReduction");
                             remainingCal = documentSnapshot.getDouble("remainingCalValue");
-                            dailyCalLimit = documentSnapshot.getDouble("dailyCalLimit");
+                            supportAnswer = documentSnapshot.getString("supportAnswer");
+
+                            //Removes the support section if the user has specified that they didn't want it.
                             if (supportAnswer.equalsIgnoreCase("No")) {
                                 bottomNav.getMenu().removeItem(R.id.nav_support);
                             }
+
+                            //If the user has logged in on a different day then their score is updated and their
+                            //calories and diaries reset.
                             lastLoginDate = documentSnapshot.getString("lastLoginDate");
                             if (!lastLoginDate.equals(currentDate)) {
 
@@ -93,7 +102,7 @@ public class MenuActivity extends AppCompatActivity {
                                     public void onEvent(@androidx.annotation.Nullable DocumentSnapshot documentSnapshot, @androidx.annotation.Nullable FirebaseFirestoreException e) {
                                         score = documentSnapshot.getDouble("score");
 
-
+                                        //Assigning score to the user based on their closeness to their target.
                                         if(remainingCal > 125 && remainingCal <= 250){
                                             documentReferenceScore.update("score", score + (250 - remainingCal));
                                         }
@@ -116,13 +125,11 @@ public class MenuActivity extends AppCompatActivity {
                 finish();
             }
             bottomNav.setOnNavigationItemSelectedListener(navListener);
-
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,
                     new HomeFragment()).commit();
-
-
     }
 
+    //Creates the toolbar menu.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -130,6 +137,7 @@ public class MenuActivity extends AppCompatActivity {
         return true;
     }
 
+    //Provides the expected outcomes once options are selected from the toolbar menu.
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
@@ -137,7 +145,6 @@ public class MenuActivity extends AppCompatActivity {
                 openMainActivity();
                 FirebaseAuth.getInstance().signOut();
                 return true;
-
             case R.id.accountItem:
                 openAccountActivity();
                 return true;
@@ -145,16 +152,18 @@ public class MenuActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Takes the user back to the default initial starting activity.
     public void openMainActivity() {
         startActivity(new Intent(MenuActivity.this, MainActivity.class));
     }
 
+    //Takes the user to the account details activity.
     public void openAccountActivity() {
         Intent accountIntent = new Intent(this, AccountDetails.class);
         startActivity(accountIntent);
     }
 
-
+    //Takes the user to the appropriate fragment once the option is selected from the navigation menu.
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -175,14 +184,13 @@ public class MenuActivity extends AppCompatActivity {
                             selectedFragment = new SupportFragment();
                             break;
                     }
-
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,
                             selectedFragment).commit();
-
                     return true;
                 }
             };
 
+    //Deletes the user's food diary from the previous day.
     public void deleteFoodCollection(){
         foodRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -195,6 +203,7 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
+    //Deletes the user's workout diary from the previous day.
     public void deleteExerciseCollection(){
         exerciseRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -206,5 +215,4 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
     }
-
 }

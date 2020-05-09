@@ -11,17 +11,18 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 
+//Stopwatch class, allows the user to track time.
 public class StopwatchActivity extends AppCompatActivity {
     Chronometer chronometer;
     ImageButton startButton;
     ImageButton stopButton;
     Button homeButton;
 
+    //Creates needed values for the stopwatch.
     private boolean isResume;
     Handler handler;
     long tMilliSec,tStart,tBuff,tUpdate = 0L;
     int min,sec,milliSec;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,8 @@ public class StopwatchActivity extends AppCompatActivity {
 
         handler = new Handler();
 
+        //Depending on the state, the stopwatch is filled with the appropriate actions after the start
+        //button had been pressed.
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +65,8 @@ public class StopwatchActivity extends AppCompatActivity {
             }
         });
 
+        //Depending on the state, the stopwatch is filled with the appropriate actions after the stop
+        //button had been pressed.
         stopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +86,7 @@ public class StopwatchActivity extends AppCompatActivity {
             }
         });
 
+        //Takes the user back to the main menu.
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,6 +97,7 @@ public class StopwatchActivity extends AppCompatActivity {
 
     }
 
+    //Runs the stopwatch, increments the time based on real time.
     public Runnable runnable = new Runnable() {
         @Override
         public void run() {

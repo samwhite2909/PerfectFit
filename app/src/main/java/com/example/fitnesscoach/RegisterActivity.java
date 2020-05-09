@@ -22,6 +22,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
+//Initial registration class, creates the user in the authentication database.
 public class RegisterActivity extends AppCompatActivity {
 
     EditText editTextEmail;
@@ -37,8 +38,10 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        //Creates an reference to the database and to the currently logged in user.
         mFirebaseAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
+
         editTextEmail = findViewById(R.id.usernameInput);
         editTextPassword = findViewById(R.id.passwordInput);
         editTextName = findViewById(R.id.nameInput);
@@ -50,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = editTextPassword.getText().toString();
                 final String name = editTextName.getText().toString();
 
+                //Input validation.
                 if(name.isEmpty()){
                     Toast.makeText(RegisterActivity.this, "Enter a username", Toast.LENGTH_SHORT).show();
                 }
@@ -59,6 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
                 else if(password.isEmpty()){
                     Toast.makeText(RegisterActivity.this, "Enter a password", Toast.LENGTH_SHORT).show();
                 }
+                //Creates the user within the authentication database, taking them to the next activity.
                 else {
                     mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(
                             RegisterActivity.this, new OnCompleteListener<AuthResult>() {

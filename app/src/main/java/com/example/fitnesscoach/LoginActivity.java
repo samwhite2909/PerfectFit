@@ -17,6 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+//The log in class which allows users to log into the app using FirebaseAuth.
 public class LoginActivity extends AppCompatActivity {
 
     private Button loginButton;
@@ -34,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         emailText = findViewById(R.id.usernameInput);
         passwordText = findViewById(R.id.passwordInput);
         mFirebaseAuth = FirebaseAuth.getInstance();
+
+        //If the user is still logged in, it returns them to the main menu.
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -43,6 +46,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         };
+        //Logs the user into the app, taking them to the main menu, based on their input, once
+        //appropriate validation has taken place.
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,8 +76,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.fitnesscoach;
 
+//This class provides functionality to the default starting screen within the application.
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -34,11 +35,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //Takes the user to the log in activity.
     public void openLoginActivity() {
         Intent loginIntent = new Intent(this, LoginActivity.class);
         startActivity(loginIntent);
     }
 
+    //Takes the user to the initial registration activity.
     public void openRegisterActivity() {
         Intent registerIntent = new Intent(this, RegisterActivity.class);
         startActivity(registerIntent);

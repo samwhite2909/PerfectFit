@@ -1,5 +1,6 @@
 package com.example.fitnesscoach;
 
+//Model class used by FirestoreUI to show users scores on the leaderboard.
 public class LeaderboardItem {
     private String name;
     private int score;

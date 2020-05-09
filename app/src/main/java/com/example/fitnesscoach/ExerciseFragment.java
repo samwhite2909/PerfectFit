@@ -20,15 +20,17 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+//This class provides functionality to the exercise fragment contained within the main menu.
 public class ExerciseFragment extends Fragment {
 
     FloatingActionButton addDatabaseButton;
     FloatingActionButton addExerciseButton;
-
     RecyclerView recyclerView;
 
+    //Obtains a reference to the database and the currently logged in user.
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
+
     String userID;
     CollectionReference completedExerciseRef;
 
@@ -42,13 +44,17 @@ public class ExerciseFragment extends Fragment {
 
         if(mFirebaseAuth.getCurrentUser() != null) {
             userID = mFirebaseAuth.getCurrentUser().getUid();
+
+            //Gets a reference to the user's completed exercises for the day, aka their workout diary.
             completedExerciseRef = db.collection("users").document(userID).collection("exercises");
 
+            //Method call to populate the recycler view based on user's information.
             setUpRecyclerView();
 
             addDatabaseButton = view.findViewById(R.id.addDatabaseButton);
             addExerciseButton = view.findViewById(R.id.addExerciseFloatButton);
 
+            //Takes the user to add a new exercise into the database.
             addDatabaseButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -57,6 +63,7 @@ public class ExerciseFragment extends Fragment {
                 }
             });
 
+            //Takes the user to add a new exercise into their workout diary and adjust their calories.
             addExerciseButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -65,10 +72,10 @@ public class ExerciseFragment extends Fragment {
                 }
             });
         }
-
         return view;
     }
 
+    //Creates the query to search the database to populate the recycler view, using the adapter and FirestoreUI.
     private void setUpRecyclerView(){
         Query query = completedExerciseRef;
 
@@ -81,9 +88,6 @@ public class ExerciseFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
-
-
-
     }
 
     @Override

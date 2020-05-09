@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+//This class allows the user to share their tips with other users of the app.
 public class AddTipActivity extends AppCompatActivity {
 
     Button shareButton;
@@ -36,14 +37,16 @@ public class AddTipActivity extends AppCompatActivity {
         tipEdit = findViewById(R.id.tipInput);
         tipTitleEdit = findViewById(R.id.tipTitleInput);
 
+        //Creates a reference to the database.
         fStore = FirebaseFirestore.getInstance();
 
         random = new Random().nextInt(100000);
 
-
+        //Gets the name and ID of the user that is making the post.
         final String name = getIntent().getStringExtra("name");
         final String userID = getIntent().getStringExtra("userID");
 
+        //Adds the tip into the database to be displayed, based on user input once validated.
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

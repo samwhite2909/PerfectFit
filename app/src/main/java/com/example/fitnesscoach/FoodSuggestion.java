@@ -1,5 +1,6 @@
 package com.example.fitnesscoach;
 
+//Model class required by FirestoreUI to provide food suggestions to the user.
 public class FoodSuggestion {
     private String foodName;
     private double calPerPortion;

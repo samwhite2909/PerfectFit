@@ -16,11 +16,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import javax.annotation.Nullable;
-
+//This class provides functionality for the account details UI.
 public class AccountDetails extends AppCompatActivity {
 
     FirebaseAuth mFirebaseAuth;
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
     FirebaseFirestore fStore;
     TextView name;
     TextView email;
@@ -36,6 +35,7 @@ public class AccountDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_details);
 
+        //Gets a reference of the Firestore database and the authorised user on the app.
         fStore = FirebaseFirestore.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -49,8 +49,10 @@ public class AccountDetails extends AppCompatActivity {
 
         userID = mFirebaseAuth.getCurrentUser().getUid();
 
+        //Creates a reference the logged in user's document within the user collection for access to information.
         DocumentReference documentReference = fStore.collection("users").document(userID);
 
+        //Gets the values to be displayed to user of the details the app currently holds on them.
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
@@ -72,6 +74,8 @@ public class AccountDetails extends AppCompatActivity {
                 age.setText("Age: " + ageText);
             }
         });
+
+        //Takes the user to the activity for updating their measurements.
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

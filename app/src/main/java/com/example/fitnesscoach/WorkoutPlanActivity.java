@@ -17,20 +17,25 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+//Allows the user to view their workout plan and make changes to it should they choose to.
 public class WorkoutPlanActivity extends AppCompatActivity {
+
+    //Gets a reference to the database and the currently logged in user.
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
+
+    //Gets a reference containing the user's workout plan.
     String userID = mFirebaseAuth.getCurrentUser().getUid();
     CollectionReference exercisePlanRef = db.collection("users").document(userID).collection("exercisePlans");
 
     private ExercisePlanAdapter adapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout_plan);
 
+        //Takes the user to another activity to add in a new exercise into their plan.
         FloatingActionButton floatingActionButton = findViewById(R.id.addExerciseButton);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +47,8 @@ public class WorkoutPlanActivity extends AppCompatActivity {
         setUpRecyclerView();
     }
 
+    //Displays all the user's exercises within their workout plan using a query to populate a recycler view
+    //containing them all.
     private void setUpRecyclerView(){
         Query query = exercisePlanRef.orderBy("exercisePriority", Query.Direction.ASCENDING);
 
@@ -55,6 +62,7 @@ public class WorkoutPlanActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
+        //Allows the user to swipe left or right to delete entries from this list and the database.
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -62,6 +70,7 @@ public class WorkoutPlanActivity extends AppCompatActivity {
                 return false;
             }
 
+            //Deletes the specific item.
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 adapter.deleteItem(viewHolder.getAdapterPosition());

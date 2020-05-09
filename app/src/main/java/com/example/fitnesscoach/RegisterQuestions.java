@@ -11,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+//Gains additional information from the user for full registration.
 public class RegisterQuestions extends AppCompatActivity {
 
     RadioGroup rgSupport;
@@ -21,7 +22,6 @@ public class RegisterQuestions extends AppCompatActivity {
     String lossAmount;
     Button registerButton;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,12 +31,14 @@ public class RegisterQuestions extends AppCompatActivity {
         rgLossAmount = findViewById(R.id.loseGroup);
         registerButton = findViewById(R.id.registerButton);
 
+        //Takes the user to the next registration activity once previous information has been provided.
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name = getIntent().getStringExtra("name");
                 String email = getIntent().getStringExtra("email");
 
+                //Input validation.
                 if (supportAnswer == null) {
                     Toast.makeText(RegisterQuestions.this, "Please answer the support question", Toast.LENGTH_SHORT).show();
                 } else if (lossAmount == null) {
@@ -44,8 +46,6 @@ public class RegisterQuestions extends AppCompatActivity {
                 } else if (supportAnswer == null && lossAmount == null) {
                     Toast.makeText(RegisterQuestions.this, "Please answer both questions", Toast.LENGTH_SHORT).show();
                 } else {
-
-
                     Intent intent = new Intent(RegisterQuestions.this, RegisterDetails.class);
                     intent.putExtra("email", email);
                     intent.putExtra("name", name);
@@ -57,12 +57,14 @@ public class RegisterQuestions extends AppCompatActivity {
         });
     }
 
+    //Handles the support question radio button clicks.
     public void rbClickSupport(View v){
         int radioButtonID =  rgSupport.getCheckedRadioButtonId();
         rbSupport = findViewById(radioButtonID);
         supportAnswer = rbSupport.getText().toString();
     }
 
+    //Handles the weight loss question radio button clicks.
     public void rbClickLoss(View v){
         int radioButtonID =  rgLossAmount.getCheckedRadioButtonId();
         rbLossAmount = findViewById(radioButtonID);

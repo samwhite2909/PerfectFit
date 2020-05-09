@@ -37,7 +37,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.CollationElementIterator;
 
+//This class allows users to search the database for exercises which they can add in to their workout diary.
 public class SearchExercises extends AppCompatActivity {
+
     FirebaseFirestore fStore;
     RecyclerView mFirestoreList;
     FirestoreRecyclerAdapter adapter;
@@ -48,12 +50,14 @@ public class SearchExercises extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_exercises);
 
+        //Gets a reference to the database.
         fStore = FirebaseFirestore.getInstance();
         mFirestoreList = findViewById(R.id.rv);
 
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Creates a query to populate the recycler view containing all exercises within the database.
         Query query = fStore.collection("exercises");
 
         FirestoreRecyclerOptions<Exercise> options =  new FirestoreRecyclerOptions.Builder<Exercise>()
@@ -62,14 +66,15 @@ public class SearchExercises extends AppCompatActivity {
 
         adapter = new FirestoreRecyclerAdapter<Exercise, ExercisesViewHolder>(options) {
             @NonNull
-            //@Override
+
+            //Creates the view for each card to be used to display information from the database.
             public ExercisesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_holder, parent, false);
                 return new ExercisesViewHolder(view);
 
             }
 
-            //@Override
+            //Uses values from the database to populate each card in the recycler view with all available exercises.
             protected void onBindViewHolder(@NonNull ExercisesViewHolder holder, int position, @NonNull Exercise model) {
                 holder.exerciseName.setText(model.getExerciseName());
                 double calDouble = model.getCalPerMin();
@@ -85,6 +90,8 @@ public class SearchExercises extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.exercise_search_menu, menu);
 
+        //Uses a search to change the contents of the recycler view based in user input.
+        //This makes it easier for users to find what they are looking for.
         MenuItem item = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -102,16 +109,15 @@ public class SearchExercises extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    //Changes the query so that the search can be used to filter results.
     private void changeQuery(String s) {
         String searchText = s.toLowerCase();
         Query newQuery = fStore.collection("exercises")
                 .whereEqualTo("search", searchText);
-
         // Make new options
         FirestoreRecyclerOptions<Exercise> newOptions = new FirestoreRecyclerOptions.Builder<Exercise>()
                 .setQuery(newQuery, Exercise.class)
                 .build();
-
         // Change options of adapter.
        adapter.updateOptions(newOptions);
     }
@@ -121,6 +127,7 @@ public class SearchExercises extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Gets the layout items to be used to populate the cards within the recycler views.
     class ExercisesViewHolder extends RecyclerView.ViewHolder {
         private TextView exerciseName;
         private TextView calPerMin;
@@ -131,6 +138,7 @@ public class SearchExercises extends AppCompatActivity {
              itemView.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
+                        //Once an exercise is clicked, information is passed to the next activity for it to be added.
                         String exerciseNameString = exerciseName.getText().toString();
                         String calPerMinDouble =  calPerMin.getText().toString();
                         Intent addExerciseToUser = new Intent(SearchExercises.this, AddExerciseToUser.class);
@@ -141,6 +149,8 @@ public class SearchExercises extends AppCompatActivity {
              });
         }
     }
+
+    //Handles clicks for each card within the recycler view.
     public interface onItemClickListener{
         void onItemClick(DocumentSnapshot documentSnapshot, int position);
     }

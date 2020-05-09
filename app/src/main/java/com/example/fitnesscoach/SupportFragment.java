@@ -20,7 +20,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.Objects;
 
+//This class adds fucntionality to the support fragment, giving users access to numerous support features.
 public class SupportFragment extends Fragment implements View.OnClickListener {
+
     CardView stopwatchCard;
     CardView suggestionsCard;
     CardView foodCard;
@@ -32,6 +34,7 @@ public class SupportFragment extends Fragment implements View.OnClickListener {
     FirebaseFirestore fStore;
     String userName;
     double caloriesRemaining;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,15 +54,16 @@ public class SupportFragment extends Fragment implements View.OnClickListener {
         tipsCard.setOnClickListener(this);
         addTipsCard.setOnClickListener(this);
 
+        //Gets a reference to the database and the currently logged in user.
         fStore = FirebaseFirestore.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         if(mFirebaseAuth.getCurrentUser() != null) {
-
             userID =mFirebaseAuth.getCurrentUser().getUid();
 
+            //Gets the name and calories remaining of the currently logged in user which is needed
+            //for some support features.
             DocumentReference documentReference = fStore.collection("users").document(userID);
-
             documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
@@ -70,15 +74,13 @@ public class SupportFragment extends Fragment implements View.OnClickListener {
                 }
             });
         }
-
-
         return view;
     }
 
-
+    //Handles clicks onto cards, taking the user to the relevant activity, passing information where
+    //required.
     @Override
     public void onClick(View v) {
-
         final Intent i;
 
         switch (v.getId()){
@@ -108,7 +110,5 @@ public class SupportFragment extends Fragment implements View.OnClickListener {
                 break;
 
         }
-
-
     }
 }

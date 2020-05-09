@@ -1,6 +1,5 @@
 package com.example.fitnesscoach;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
-
-
+//Adapter class which is used to display foods within the search for foods recycler view.
 public class SearchFoodAdapter extends FirestoreRecyclerAdapter<SearchFood, SearchFoodAdapter.SearchFoodHolder> {
     private OnItemClickListener listener;
 
@@ -21,8 +19,7 @@ public class SearchFoodAdapter extends FirestoreRecyclerAdapter<SearchFood, Sear
         super(options);
     }
 
-
-
+    //Takes values from the database and sets them to separate cards, using layout items.
     @Override
     protected void onBindViewHolder(@NonNull SearchFoodHolder holder, int position, @NonNull SearchFood model) {
         holder.textViewFoodName.setText(model.getFoodName());
@@ -30,6 +27,7 @@ public class SearchFoodAdapter extends FirestoreRecyclerAdapter<SearchFood, Sear
         holder.textViewCalPerPortion.setText(Double.toString(model.getCalPerPortion()));
     }
 
+    //Creates a new view to be used for each card within the recycler view.
     @NonNull
     @Override
     public SearchFoodHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,6 +36,7 @@ public class SearchFoodAdapter extends FirestoreRecyclerAdapter<SearchFood, Sear
         return new SearchFoodHolder(v);
     }
 
+    //Gets the layout items to be used to populate the cards within the recycler view.
     class SearchFoodHolder extends RecyclerView.ViewHolder {
         TextView textViewFoodName;
         TextView textViewPortionSize;
@@ -45,7 +44,6 @@ public class SearchFoodAdapter extends FirestoreRecyclerAdapter<SearchFood, Sear
 
         public SearchFoodHolder(@NonNull View itemView) {
             super(itemView);
-
             textViewFoodName = itemView.findViewById(R.id.foodName);
             textViewCalPerPortion = itemView.findViewById(R.id.foodCalPerAveragePortion);
             textViewPortionSize = itemView.findViewById(R.id.foodPortionSize);
@@ -57,11 +55,12 @@ public class SearchFoodAdapter extends FirestoreRecyclerAdapter<SearchFood, Sear
                     if(position != RecyclerView.NO_POSITION && listener != null){
                         listener.onItemClick(getSnapshots().getSnapshot(position), position);
                     }
-
                 }
             });
         }
     }
+
+    //Handles on card click events.
     public interface OnItemClickListener{
         void onItemClick(DocumentSnapshot documentSnapshot, int position);
     }

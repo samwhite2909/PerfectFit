@@ -12,7 +12,10 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+//Gives the user food suggestions based on their remaining calories.
 public class SuggestionsActivity extends AppCompatActivity {
+
+    //Gets a reference to the database and all foods stored within it.
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference foodRef = db.collection("foods");
 
@@ -26,11 +29,10 @@ public class SuggestionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_suggestions);
 
         setUpRecyclerView();
-
-
-
     }
 
+    //Populates the recycler view with all foods with less calories per average portion then the
+    //user's remaining calories.
     private void setUpRecyclerView(){
 
         String remainingCalString  = getIntent().getStringExtra("caloriesRemaining");
@@ -44,11 +46,9 @@ public class SuggestionsActivity extends AppCompatActivity {
         adapter = new FoodSuggestionAdapter(options);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-
     }
 
     @Override

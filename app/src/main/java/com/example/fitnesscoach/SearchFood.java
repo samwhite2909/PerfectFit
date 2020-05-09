@@ -1,5 +1,6 @@
 package com.example.fitnesscoach;
 
+//Model class required by FirestoreUI, creates the object to represent a food in the search list.
 public class SearchFood {
     private String foodName;
     private double portionSize;

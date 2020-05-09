@@ -16,11 +16,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+//This class allows the user to add in new exercises into their workout plan.
 public class NewExercisePlanActivity extends AppCompatActivity {
+
     private EditText editTextTitle;
     private EditText editTextTarget;
     private NumberPicker numberPickerPriority;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class NewExercisePlanActivity extends AppCompatActivity {
         editTextTarget = findViewById(R.id.exerciseTargetInput);
         numberPickerPriority = findViewById(R.id.numberPicker);
 
+        //Setting parameters for the number picker used.
         numberPickerPriority.setMinValue(1);
         numberPickerPriority.setMaxValue(10);
     }
@@ -45,6 +47,7 @@ public class NewExercisePlanActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    //Saves the exercise into the workout plan once save button is pressed.
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -56,6 +59,7 @@ public class NewExercisePlanActivity extends AppCompatActivity {
         }
     }
 
+    //Takes the exercise's data given by the user and saves it into the user's workout plan.
     private void saveExercise(){
         String exerciseTitle = editTextTitle.getText().toString();
         String exerciseTarget = editTextTarget.getText().toString();
@@ -65,8 +69,12 @@ public class NewExercisePlanActivity extends AppCompatActivity {
             Toast.makeText(NewExercisePlanActivity.this, "Please give the exercise a title and a target for it", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        //Creates a reference to the database and the currently logged in user.
         FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
         String userID = mFirebaseAuth.getCurrentUser().getUid();
+
+        //Gives the reference for the exercise to be added into the workout plan.
         CollectionReference exercisePlanRef = FirebaseFirestore.getInstance()
                 .collection("users").document(userID).collection("exercisePlans");
         exercisePlanRef.add(new ExercisePlan(exerciseTitle, exerciseTarget, priority));

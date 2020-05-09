@@ -23,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.util.Random;
 import java.util.concurrent.Executor;
 
+//This class provides functionality to the home fragment, the main fragment of the main menu.
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     FirebaseAuth mFirebaseAuth;
@@ -34,7 +35,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     TextView calWarningGame;
     String userID;
     CardView leaderboardCard;
-
 
     @Nullable
     @Override
@@ -48,15 +48,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         leaderboardCard = view.findViewById(R.id.leaderboardCard);
         leaderboardCard.setOnClickListener(this);
 
+        //Creates a reference to the database and the currently logged in user.
         fStore = FirebaseFirestore.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
 
             if(mFirebaseAuth.getCurrentUser() != null) {
                 userID = mFirebaseAuth.getCurrentUser().getUid();
 
-
+                //Creates a document reference so the the name and calorie values of the user are
+                //available to be displayed.
                 DocumentReference documentReference = fStore.collection("users").document(userID);
-
                 documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                     @Override
                     public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
@@ -67,13 +68,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         else{
                             greeting.setText("Welcome");
                         }
-
                         if(documentSnapshot != null && documentSnapshot.exists()){
                             double remainingCalValueNum = documentSnapshot.getDouble("remainingCalValue");
                             String remainingCalString  = Double.toString(remainingCalValueNum);
                             String remainingCalStringText = "You have " + remainingCalString + " calories remaining for today";
                             calValue.setText(remainingCalStringText);
 
+                            //Gives the user appropariate messages to be displayed on the leaderboard card, based
+                            //on their remaining calories.
                             if(remainingCalValueNum > 250 && remainingCalValueNum <= 500){
                                 calLeftWarning.setText("You still have quite a few calories left for today");
                                 calWarningGame.setText("To keep on track and to score points, try to get as close to your target as you can!");
@@ -98,13 +100,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     }
                 });
             }
-
         return view;
     }
+
+    //Starts the leaderboard activity once the card is clicked.
     public void onClick(View v) {
-
-    startActivity(new Intent(getActivity(), LeaderboardActivity.class));
-
+        startActivity(new Intent(getActivity(), LeaderboardActivity.class));
     }
 
 }

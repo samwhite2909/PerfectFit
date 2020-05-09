@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+//This class allows the user to add a new meal into their meal plan.
 public class NewMealPlanActivity extends AppCompatActivity {
     private EditText editTextMealTitle;
     private EditText editTextMealDesc;
@@ -33,9 +34,9 @@ public class NewMealPlanActivity extends AppCompatActivity {
         editTextMealDesc = findViewById(R.id.mealDescInput);
         numberPicker = findViewById(R.id.numberPicker);
 
+        //Sets the parameters for the number picker.
         numberPicker.setMinValue(1);
         numberPicker.setMaxValue(10);
-
     }
 
     @Override
@@ -45,6 +46,7 @@ public class NewMealPlanActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    //Saves the meal into the meal plan once save button is pressed.
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -55,17 +57,24 @@ public class NewMealPlanActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    //Adds the meal into the meal plan, based on the user's input.
     private void saveMeal(){
         String mealTitle = editTextMealTitle.getText().toString();
         String mealDesc = editTextMealDesc.getText().toString();
         int priority = numberPicker.getValue();
 
+        //Input validation.
         if(mealTitle.trim().isEmpty()){
             Toast.makeText(NewMealPlanActivity.this, "Please give the meal a title", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        //Creates a reference to the database and the currently logged in user.
         FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
         String userID = mFirebaseAuth.getCurrentUser().getUid();
+
+        //Creates a reference to the meal plan collection for a new meal to be added and adds it.
         CollectionReference mealPlanRef = FirebaseFirestore.getInstance()
                 .collection("users").document(userID).collection("mealPlans");
         mealPlanRef.add(new MealPlan(mealTitle, mealDesc, priority));

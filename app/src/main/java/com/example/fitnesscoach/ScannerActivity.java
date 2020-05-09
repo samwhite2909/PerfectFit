@@ -28,11 +28,13 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 import static android.Manifest.permission.CAMERA;
 
+//The scanner class which allows users to scan in the barcodes of foods within the database.
 public class ScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
 
+    //Initially starts the scanner as long as the app has permission.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +60,8 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         ActivityCompat.requestPermissions(this, new String[]{CAMERA}, REQUEST_CAMERA);
     }
 
-
+    //Handles the scanner depending on the permissions the user has provided. It starts the activity
+    //with a positive toast message if it has permission, or gives a negative toast message if not.
     public void onRequestPermissionsResult(int requestCode, String[] permission, int[] grantResults){
         switch(requestCode){
             case REQUEST_CAMERA:
@@ -85,10 +88,10 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         }
     }
 
+    //Provides catching if activity is left and came back to by the user. Basically starts it again.
     @Override
     public void onResume(){
         super.onResume();
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if(checkPermission()){
                 if(scannerView == null){
@@ -104,12 +107,14 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         }
     }
 
+    //Stops the activity.
     @Override
     public void onDestroy(){
         super.onDestroy();
         scannerView.stopCamera();
     }
 
+    //Displays an alert message if required for QR or error catching with barcodes.
     public void displayAlertMessage(String message, DialogInterface.OnClickListener listener){
         new AlertDialog.Builder(ScannerActivity.this).setMessage(message).setPositiveButton("OK", listener)
                 .setNegativeButton("Cancel", null).create().show();
@@ -117,8 +122,10 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
     @Override
     public void handleResult(final Result result) {
-        final String scanResult = result.getText();
 
+        //Gets the result of the scan, searches the database for it and passes the information
+        //to the adding in of a food activity.
+        final String scanResult = result.getText();
         FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
         final DocumentReference documentReference = fStore.collection("foods").document(scanResult);

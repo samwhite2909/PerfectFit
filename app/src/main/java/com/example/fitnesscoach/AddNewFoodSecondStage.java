@@ -17,13 +17,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
+//This class adds in a food to the database.
 public class AddNewFoodSecondStage extends AppCompatActivity {
 
     EditText editTextBarcode;
     EditText editTextPortionSize;
     Button addFoodButton;
 
+    //Creates a reference to the database.
     FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +36,13 @@ public class AddNewFoodSecondStage extends AppCompatActivity {
         editTextPortionSize = findViewById(R.id.portionSizeInput);
         addFoodButton = findViewById(R.id.addFoodButton);
 
+        //Gets the information from the previous activity attached to the intent.
         final String foodName = getIntent().getStringExtra("foodName");
         String calPer100gString = getIntent().getStringExtra("calPer100g");
-
         final double calPer100g = Double.parseDouble(calPer100gString);
         final String search = foodName.toLowerCase();
 
+        //Adds the food into the database, based on user input once validated.
        addFoodButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -48,9 +52,9 @@ public class AddNewFoodSecondStage extends AppCompatActivity {
                 else {
                     String barcode = editTextBarcode.getText().toString();
                     double portionSize = Double.parseDouble(editTextPortionSize.getText().toString());
-
                     double calPerPortion = (calPer100g / 100) * portionSize;
 
+                    //Creates a reference to a new document for the food, and fills it with the data given.
                     DocumentReference documentReference = fStore.collection("foods").document(barcode);
                     final Map<String, Object> food = new HashMap<>();
                     food.put("foodName", foodName);

@@ -1,5 +1,6 @@
 package com.example.fitnesscoach;
 
+//Model class for the adding in of workout plan items, required by FirestoreUI.
 public class ExercisePlan {
     private String exerciseTitle;
     private String exerciseTarget;
@@ -18,23 +19,12 @@ public class ExercisePlan {
         return exerciseTitle;
     }
 
-    public void setExerciseTitle(String exerciseTitle) {
-        this.exerciseTitle = exerciseTitle;
-    }
-
     public String getExerciseTarget() {
         return exerciseTarget;
-    }
-
-    public void setExerciseTarget(String exerciseTarget) {
-        this.exerciseTarget = exerciseTarget;
     }
 
     public int getExercisePriority() {
         return exercisePriority;
     }
 
-    public void setExercisePriority(int exercisePriority) {
-        this.exercisePriority = exercisePriority;
-    }
 }

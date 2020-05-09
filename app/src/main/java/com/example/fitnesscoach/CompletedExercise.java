@@ -1,6 +1,8 @@
 package com.example.fitnesscoach;
 
+//Model class for exercises that are within the user's workout diary, required by FirestoreUI.
 public class CompletedExercise {
+
     private String exerciseName;
     private double caloriesBurned;
     private double duration;

@@ -17,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
+//This class allows the user to begin adding in a new food from the database.
 public class AddNewFood extends AppCompatActivity {
 
     EditText editFoodName;
@@ -32,7 +33,7 @@ public class AddNewFood extends AppCompatActivity {
         editCalPer100g = findViewById(R.id.calPer100gInput);
         addFoodButton = findViewById(R.id.addFoodButton);
 
-
+        //Gives the information taken as user input to the next activity, for it to be added in from there.
         addFoodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,7 +44,6 @@ public class AddNewFood extends AppCompatActivity {
                     Toast.makeText(AddNewFood.this, "Please fill out the required fields", Toast.LENGTH_SHORT).show();
                 }
                 else {
-
                     Intent intent = new Intent(AddNewFood.this, AddNewFoodSecondStage.class);
                     intent.putExtra("foodName", foodName);
                     intent.putExtra("calPer100g", calPer100g);

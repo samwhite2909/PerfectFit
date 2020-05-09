@@ -1,5 +1,6 @@
 package com.example.fitnesscoach;
 
+//Model class for displaying the list of available exercises for users to select from, required by FirestoreUI.
 public class Exercise {
 
     private String exerciseName;

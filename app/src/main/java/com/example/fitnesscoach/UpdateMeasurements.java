@@ -16,6 +16,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+//Allows the user to update their measurement details held by the app.
 public class UpdateMeasurements extends AppCompatActivity {
 
     EditText editTextWeight;
@@ -34,6 +35,7 @@ public class UpdateMeasurements extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_measurements);
 
+        //Gets a reference to the database and the currently logged in user.
         fStore = FirebaseFirestore.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -44,8 +46,9 @@ public class UpdateMeasurements extends AppCompatActivity {
 
         userID = mFirebaseAuth.getCurrentUser().getUid();
 
+        //Gets the measurements of the user and places them into the text fields so they can see their
+        //previous measurements.
         final DocumentReference documentReference = fStore.collection("users").document(userID);
-
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
@@ -65,10 +68,12 @@ public class UpdateMeasurements extends AppCompatActivity {
                 double oldWeeklyCalLimit = documentSnapshot.getDouble("weeklyCalLimit");
                 double oldCalLimitWithReduction = documentSnapshot.getDouble("calLimitWithReduction");
 
+                //Gets the information required for new calculations to be made for the user.
                 gender = documentSnapshot.getString("gender");
                 age = documentSnapshot.getDouble("age");
                 weightLossAnswer = documentSnapshot.getString("weightLossAnswer");
 
+                //Updates the user's measurements to their new input.
                 updateButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -76,6 +81,7 @@ public class UpdateMeasurements extends AppCompatActivity {
                         String newHeightString = editTextHeight.getText().toString();
                         String newFatLevelString = editTextBodyFatLevel.getText().toString();
 
+                        //Input validation.
                         if (newFatLevelString.isEmpty() || newHeightString.isEmpty() || newWeightString.isEmpty()) {
                             Toast.makeText(UpdateMeasurements.this, "Please enter a value for all measurements", Toast.LENGTH_SHORT).show();
                         } else {
@@ -83,10 +89,12 @@ public class UpdateMeasurements extends AppCompatActivity {
                             double newHeight = Double.parseDouble(newHeightString);
                             double newFatLevel = Double.parseDouble(newFatLevelString);
 
+                            //New BMI calculation.
                             double newBMI = newWeight / (newHeight) * (newHeight);
 
                             double newDailyCalLimit = 0;
 
+                            //New daily calorie limit calculation.
                             if (gender.equalsIgnoreCase("Male")) {
                                 newDailyCalLimit = 10 * newWeight + 6.25 * (newHeight * 100) - 5 * age + 5;
                             }
@@ -98,6 +106,7 @@ public class UpdateMeasurements extends AppCompatActivity {
 
                             double newCalLimitWithReduction = newDailyCalLimit;
 
+                            //New calorie limit with reduction calculations.
                             if (weightLossAnswer.equalsIgnoreCase("0.5lb")) {
                                 newCalLimitWithReduction = newDailyCalLimit - 250;
                             }
@@ -112,10 +121,10 @@ public class UpdateMeasurements extends AppCompatActivity {
                                 newCalLimitWithReduction = newDailyCalLimit - 1000;
                             }
 
+                            //Updates all values to the user's new measurements.
                             documentReference.update("weight", newWeight);
                             documentReference.update("height", newHeight);
                             documentReference.update("bodyFatLevel", newFatLevel);
-
                             documentReference.update("BMI", newBMI);
                             documentReference.update("dailyCalLimit", newDailyCalLimit);
                             documentReference.update("weeklyCalLimit", newWeeklyCalLimit);
@@ -127,9 +136,7 @@ public class UpdateMeasurements extends AppCompatActivity {
                         }
                     }
                 });
-
             }
         });
-
     }
 }

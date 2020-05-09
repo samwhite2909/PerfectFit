@@ -11,12 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
+//The adapter required for displaying tips within the database to the user.
 public class TipAdapter extends FirestoreRecyclerAdapter<Tip, TipAdapter.TipHolder> {
 
     public TipAdapter(@NonNull FirestoreRecyclerOptions<Tip> options) {
         super(options);
     }
 
+    //Populates the layout items with data from the database to be displayed.
     @Override
     protected void onBindViewHolder(@NonNull TipHolder holder, int position, @NonNull Tip model) {
         holder.textViewTitle.setText(model.getTipTitle());
@@ -24,6 +26,7 @@ public class TipAdapter extends FirestoreRecyclerAdapter<Tip, TipAdapter.TipHold
         holder.textViewPoster.setText("Posted by: " + model.getPoster());
     }
 
+    //Creates the view to be used by each card within the recycler view.
     @NonNull
     @Override
     public TipHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -31,6 +34,7 @@ public class TipAdapter extends FirestoreRecyclerAdapter<Tip, TipAdapter.TipHold
         return new TipHolder(v);
     }
 
+    //Gets the layout items that will be used to hold information from the database.
     class TipHolder extends RecyclerView.ViewHolder{
         TextView textViewTitle;
         TextView textViewTip;

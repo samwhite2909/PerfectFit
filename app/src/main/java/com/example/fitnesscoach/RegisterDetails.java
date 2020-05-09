@@ -11,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+//This class gets further details from the user for full registration.
 public class RegisterDetails extends AppCompatActivity {
 
     RadioGroup rg;
@@ -18,6 +19,7 @@ public class RegisterDetails extends AppCompatActivity {
     String gender;
     EditText editTextAge;
     Button registerButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,13 +36,15 @@ public class RegisterDetails extends AppCompatActivity {
                 String email = getIntent().getStringExtra("email");
                 String weightLossAnswer = getIntent().getStringExtra("weightLossAnswer");
                 String supportAnswer = getIntent().getStringExtra("supportAnswer");
-
                 String age = editTextAge.getText().toString();
+
+                //Input validation.
                 if (age.isEmpty()) {
                     Toast.makeText(RegisterDetails.this, "Please enter your age", Toast.LENGTH_SHORT).show();
                 } else if (gender == null) {
                     Toast.makeText(RegisterDetails.this, "Please select your gender", Toast.LENGTH_SHORT).show();
                 } else {
+                    //Takes the user to the next activity in registration, attaching the relevant information.
                     Intent intent = new Intent(RegisterDetails.this, RegisterMeasurements.class);
                     intent.putExtra("email", email);
                     intent.putExtra("name", name);
@@ -54,6 +58,7 @@ public class RegisterDetails extends AppCompatActivity {
         });
     }
 
+    //Handles radio button clicks.
     public void rbClick(View v){
         int radioButtonID =  rg.getCheckedRadioButtonId();
         rb = findViewById(radioButtonID);

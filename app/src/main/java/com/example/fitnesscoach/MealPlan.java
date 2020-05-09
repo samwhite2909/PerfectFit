@@ -1,5 +1,6 @@
 package com.example.fitnesscoach;
 
+//Model class required by FirestoreUI to create meal planning items.
 public class MealPlan {
 
     private String mealTitle;
@@ -7,7 +8,6 @@ public class MealPlan {
     private int priority;
 
     public MealPlan (){
-
     }
 
     public MealPlan(String mealTitle, String mealDesc, int priority){

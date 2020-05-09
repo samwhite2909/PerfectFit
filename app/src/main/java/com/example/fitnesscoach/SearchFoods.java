@@ -18,8 +18,10 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+//Allows the user to search the database for foods to add into their food diary.
 public class SearchFoods extends AppCompatActivity {
 
+    //Gets a reference to the database and the collection of all foods within it.
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference searchFoodRef = db.collection("foods");
 
@@ -35,6 +37,7 @@ public class SearchFoods extends AppCompatActivity {
         setUpRecyclerView();
     }
 
+    //Populates the recycler view with a query containing all foods within the database.
     private void setUpRecyclerView(){
         Query query = searchFoodRef;
 
@@ -52,6 +55,8 @@ public class SearchFoods extends AppCompatActivity {
         adapter.setOnItemClickListener(new SearchFoodAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                //Once a food is clicked on, it's information and the user is taken to the next
+                //activity to add it in.
                 SearchFood food = documentSnapshot.toObject(SearchFood.class);
                 String foodName = food.getFoodName();
                 double calPerPortion = food.getCalPerPortion();
@@ -67,6 +72,7 @@ public class SearchFoods extends AppCompatActivity {
         });
     }
 
+    //Allows the user to alter the contents of the recycler view to filter foods by name.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.exercise_search_menu, menu);
@@ -89,6 +95,7 @@ public class SearchFoods extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    //Changes the query of foods to just those with the name that the user has given.
     private void changeQuery(String s) {
         String searchText = s.toLowerCase();
         Query newQuery = db.collection("foods")
