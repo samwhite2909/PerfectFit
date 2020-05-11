@@ -13,7 +13,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import org.w3c.dom.Text;
 
-//This class is the adapter used to populate the recycler view for each user's meal plans.
+//This class is the adapter used to populate the recycler view for each user's meal plans [20].
 public class MealPlanAdapter extends FirestoreRecyclerAdapter<MealPlan, MealPlanAdapter.MealPlanHolder> {
 
     public MealPlanAdapter(@NonNull FirestoreRecyclerOptions<MealPlan> options) {

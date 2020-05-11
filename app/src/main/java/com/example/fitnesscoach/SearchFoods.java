@@ -37,7 +37,7 @@ public class SearchFoods extends AppCompatActivity {
         setUpRecyclerView();
     }
 
-    //Populates the recycler view with a query containing all foods within the database.
+    //Populates the recycler view with a query containing all foods within the database [20].
     private void setUpRecyclerView(){
         Query query = searchFoodRef;
 
@@ -95,7 +95,7 @@ public class SearchFoods extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    //Changes the query of foods to just those with the name that the user has given.
+    //Changes the query of foods to just those with the name that the user has given [35].
     private void changeQuery(String s) {
         String searchText = s.toLowerCase();
         Query newQuery = db.collection("foods")

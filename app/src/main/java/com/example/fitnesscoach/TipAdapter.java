@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-//The adapter required for displaying tips within the database to the user.
+//The adapter required for displaying tips within the database to the user [20].
 public class TipAdapter extends FirestoreRecyclerAdapter<Tip, TipAdapter.TipHolder> {
 
     public TipAdapter(@NonNull FirestoreRecyclerOptions<Tip> options) {

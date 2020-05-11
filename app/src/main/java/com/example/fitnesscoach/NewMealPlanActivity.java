@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-//This class allows the user to add a new meal into their meal plan.
+//This class allows the user to add a new meal into their meal plan [20].
 public class NewMealPlanActivity extends AppCompatActivity {
     private EditText editTextMealTitle;
     private EditText editTextMealDesc;

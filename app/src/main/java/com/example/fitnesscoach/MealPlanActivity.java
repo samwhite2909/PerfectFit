@@ -49,7 +49,7 @@ public class MealPlanActivity extends AppCompatActivity {
     }
 
     //Populates the recycler view with the user's planned meals, by using a query for that collection
-    //and the meal plan adapter.
+    //and the meal plan adapter [20].
     private void setUpRecyclerView(){
         Query query = mealPlanRef.orderBy("priority",Query.Direction.DESCENDING);
 

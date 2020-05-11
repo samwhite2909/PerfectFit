@@ -75,7 +75,7 @@ public class ExerciseFragment extends Fragment {
         return view;
     }
 
-    //Creates the query to search the database to populate the recycler view, using the adapter and FirestoreUI.
+    //Creates the query to search the database to populate the recycler view, using the adapter and FirestoreUI [20].
     private void setUpRecyclerView(){
         Query query = completedExerciseRef;
 

@@ -28,7 +28,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 import static android.Manifest.permission.CAMERA;
 
-//The scanner class which allows users to scan in the barcodes of foods within the database.
+//The scanner class which allows users to scan in the barcodes of foods within the database [14].
 public class ScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     private static final int REQUEST_CAMERA = 1;

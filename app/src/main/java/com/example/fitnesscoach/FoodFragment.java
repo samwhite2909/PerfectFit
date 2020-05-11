@@ -82,7 +82,7 @@ public class FoodFragment extends Fragment {
         return view;
     }
 
-    //Creates a query containing the user's food diary and passes this to the recycler view to display it.
+    //Creates a query containing the user's food diary and passes this to the recycler view to display it [20].
     private void setUpRecyclerView(){
         Query query = foodConsumedRef;
 

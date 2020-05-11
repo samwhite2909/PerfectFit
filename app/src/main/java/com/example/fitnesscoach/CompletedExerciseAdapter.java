@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-//Adapter class which contains the operations to populate the recycler view contained within the exercise fragment.
+//Adapter class which contains the operations to populate the recycler view contained within the exercise fragment[20].
 public class CompletedExerciseAdapter extends FirestoreRecyclerAdapter<CompletedExercise, CompletedExerciseAdapter.CompletedExerciseHolder> {
 
     public CompletedExerciseAdapter(@NonNull FirestoreRecyclerOptions<CompletedExercise> options) {

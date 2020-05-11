@@ -12,7 +12,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 //This class is used in populating the recycler view that is used within the leaderboard activity,
-//giving it the information.
+//giving it the information [20].
 public class LeaderboardItemAdapter extends FirestoreRecyclerAdapter<LeaderboardItem, LeaderboardItemAdapter.LeaderboardItemHolder> {
 
     public LeaderboardItemAdapter(@NonNull FirestoreRecyclerOptions<LeaderboardItem> options) {

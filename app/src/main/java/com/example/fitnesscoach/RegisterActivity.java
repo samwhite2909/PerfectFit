@@ -22,7 +22,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-//Initial registration class, creates the user in the authentication database.
+//Initial registration class, creates the user in the authentication database [21].
 public class RegisterActivity extends AppCompatActivity {
 
     EditText editTextEmail;

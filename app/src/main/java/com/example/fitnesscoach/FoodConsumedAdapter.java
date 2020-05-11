@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-//Adapter for displaying the user's food diary within the food fragment, used by FirestoreUI.
+//Adapter for displaying the user's food diary within the food fragment, used by FirestoreUI [20].
 public class FoodConsumedAdapter extends FirestoreRecyclerAdapter<FoodConsumed, FoodConsumedAdapter.FoodConsumedHolder> {
 
     public FoodConsumedAdapter(@NonNull FirestoreRecyclerOptions<FoodConsumed> options) {

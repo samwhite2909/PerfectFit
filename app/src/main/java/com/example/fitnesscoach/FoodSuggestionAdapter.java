@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-//Adapter class which is used to populate the recycler view displaying food recommendations to the user.
+//Adapter class which is used to populate the recycler view displaying food recommendations to the user [20].
 public class FoodSuggestionAdapter extends FirestoreRecyclerAdapter<FoodSuggestion, FoodSuggestionAdapter.FoodSuggestionHolder> {
 
     public FoodSuggestionAdapter(@NonNull FirestoreRecyclerOptions<FoodSuggestion> options) {

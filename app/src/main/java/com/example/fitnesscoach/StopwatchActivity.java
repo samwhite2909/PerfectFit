@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 
-//Stopwatch class, allows the user to track time.
+//Stopwatch class, allows the user to track time [29].
 public class StopwatchActivity extends AppCompatActivity {
     Chronometer chronometer;
     ImageButton startButton;

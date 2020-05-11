@@ -20,7 +20,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-//Final registration activity, fully registering all user details.
+//Final registration activity, fully registering all user details [21].
 public class RegisterMeasurements extends AppCompatActivity {
 
     EditText editTextWeight;

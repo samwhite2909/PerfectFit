@@ -17,7 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-//The log in class which allows users to log into the app using FirebaseAuth.
+//The log in class which allows users to log into the app using FirebaseAuth [21].
 public class LoginActivity extends AppCompatActivity {
 
     private Button loginButton;

@@ -32,7 +32,7 @@ public class SuggestionsActivity extends AppCompatActivity {
     }
 
     //Populates the recycler view with all foods with less calories per average portion then the
-    //user's remaining calories.
+    //user's remaining calories [20].
     private void setUpRecyclerView(){
 
         String remainingCalString  = getIntent().getStringExtra("caloriesRemaining");

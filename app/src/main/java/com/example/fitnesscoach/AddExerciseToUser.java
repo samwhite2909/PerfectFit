@@ -89,7 +89,6 @@ public class AddExerciseToUser extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     @Override

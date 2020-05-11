@@ -48,7 +48,7 @@ public class WorkoutPlanActivity extends AppCompatActivity {
     }
 
     //Displays all the user's exercises within their workout plan using a query to populate a recycler view
-    //containing them all.
+    //containing them all [20].
     private void setUpRecyclerView(){
         Query query = exercisePlanRef.orderBy("exercisePriority", Query.Direction.ASCENDING);
 

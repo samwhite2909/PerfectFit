@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-//Adapter class which helps to populate the recycler view within the workout planning activity.
+//Adapter class which helps to populate the recycler view within the workout planning activity [20].
 public class ExercisePlanAdapter extends FirestoreRecyclerAdapter<ExercisePlan, ExercisePlanAdapter.ExercisePlanHolder> {
 
     public ExercisePlanAdapter(@NonNull FirestoreRecyclerOptions<ExercisePlan> options) {

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
-//Adapter class which is used to display foods within the search for foods recycler view.
+//Adapter class which is used to display foods within the search for foods recycler view [20].
 public class SearchFoodAdapter extends FirestoreRecyclerAdapter<SearchFood, SearchFoodAdapter.SearchFoodHolder> {
     private OnItemClickListener listener;
 

@@ -31,7 +31,7 @@ public class ViewTipsActivity extends AppCompatActivity {
         setUpRecyclerView();
     }
 
-    //Uses the query of all available tips to populate the recycler view.
+    //Uses the query of all available tips to populate the recycler view [20].
     private void setUpRecyclerView(){
 
         Query query = tipRef;

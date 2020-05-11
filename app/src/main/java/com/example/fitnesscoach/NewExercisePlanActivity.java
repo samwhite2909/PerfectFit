@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-//This class allows the user to add in new exercises into their workout plan.
+//This class allows the user to add in new exercises into their workout plan [20].
 public class NewExercisePlanActivity extends AppCompatActivity {
 
     private EditText editTextTitle;

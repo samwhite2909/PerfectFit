@@ -37,7 +37,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.CollationElementIterator;
 
-//This class allows users to search the database for exercises which they can add in to their workout diary.
+//This class allows users to search the database for exercises which they can add in to their workout diary [20].
 public class SearchExercises extends AppCompatActivity {
 
     FirebaseFirestore fStore;
@@ -109,7 +109,7 @@ public class SearchExercises extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    //Changes the query so that the search can be used to filter results.
+    //Changes the query so that the search can be used to filter results [35].
     private void changeQuery(String s) {
         String searchText = s.toLowerCase();
         Query newQuery = fStore.collection("exercises")

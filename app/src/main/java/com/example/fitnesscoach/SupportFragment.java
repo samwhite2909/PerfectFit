@@ -20,7 +20,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.Objects;
 
-//This class adds fucntionality to the support fragment, giving users access to numerous support features.
+//This class adds fucntionality to the support fragment, giving users access to numerous support features, [34] was
+// heavily used as inspiration for the UI for corresponding to this activity.
 public class SupportFragment extends Fragment implements View.OnClickListener {
 
     CardView stopwatchCard;
