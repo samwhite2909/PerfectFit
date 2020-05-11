@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -59,28 +60,33 @@ public class AddExerciseToUser extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String durationString  = editTextDuration.getText().toString();
-                double duration = Double.parseDouble(durationString);
 
-                final double caloriesBurned = calPerMin*duration;
-                String caloriesBurnedString  = Double.toString(caloriesBurned);
+                if(durationString.isEmpty()) {
+                    Toast.makeText(AddExerciseToUser.this, "Please enter a duration", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    double duration = Double.parseDouble(durationString);
+                    final double caloriesBurned = calPerMin * duration;
+                    String caloriesBurnedString = Double.toString(caloriesBurned);
 
-                userID = mFirebaseAuth.getCurrentUser().getUid();
+                    userID = mFirebaseAuth.getCurrentUser().getUid();
 
-                DocumentReference documentReference = fStore.collection("users").document(userID).collection("exercises").document();
-                final Map<String, Object> exercise = new HashMap<>();
-                exercise.put("exerciseName", exerciseNameString);
-                exercise.put("duration", duration);
-                exercise.put("caloriesBurned",caloriesBurned);
-                documentReference.set(exercise).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("Tag", "exercise added for user: " + userID);
-                    }
-                });
-                Intent intent  = new Intent(AddExerciseToUser.this, ExerciseAddedActivty.class);
-                intent.putExtra("caloriesBurned", caloriesBurnedString);
-                startActivity(intent);
-                finish();
+                    DocumentReference documentReference = fStore.collection("users").document(userID).collection("exercises").document();
+                    final Map<String, Object> exercise = new HashMap<>();
+                    exercise.put("exerciseName", exerciseNameString);
+                    exercise.put("duration", duration);
+                    exercise.put("caloriesBurned", caloriesBurned);
+                    documentReference.set(exercise).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("Tag", "exercise added for user: " + userID);
+                        }
+                    });
+                    Intent intent = new Intent(AddExerciseToUser.this, ExerciseAddedActivty.class);
+                    intent.putExtra("caloriesBurned", caloriesBurnedString);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 

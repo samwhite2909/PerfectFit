@@ -129,19 +129,27 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
         final DocumentReference documentReference = fStore.collection("foods").document(scanResult);
+
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
-                    String foodName = documentSnapshot.getString("foodName");
-                    double calPerPortion = documentSnapshot.getDouble("calPerPortion");
-                    double portionSize = documentSnapshot.getDouble("portionSize");
-                    String calPerPortionString = Double.toString(calPerPortion);
-                    String portionSizeString = Double.toString(portionSize);
-                    Intent i = new Intent(ScannerActivity.this, AddFoodToUser.class);
-                    i.putExtra("foodName", foodName);
-                    i.putExtra("calPerPortion", calPerPortionString);
-                    i.putExtra("portionSize", portionSizeString);
-                    startActivity(i);
+                    if( documentSnapshot.exists()) {
+                        String foodName = documentSnapshot.getString("foodName");
+                        double calPerPortion = documentSnapshot.getDouble("calPerPortion");
+                        double portionSize = documentSnapshot.getDouble("portionSize");
+                        String calPerPortionString = Double.toString(calPerPortion);
+                        String portionSizeString = Double.toString(portionSize);
+                        Intent i = new Intent(ScannerActivity.this, AddFoodToUser.class);
+                        i.putExtra("foodName", foodName);
+                        i.putExtra("calPerPortion", calPerPortionString);
+                        i.putExtra("portionSize", portionSizeString);
+                        startActivity(i);
+                    }
+                    else{
+                        Toast.makeText(ScannerActivity.this, "Please enter this product into the database to scan it", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(ScannerActivity.this, ScannerActivity.class);
+                        startActivity(i);
+                    }
             }
         });
     }

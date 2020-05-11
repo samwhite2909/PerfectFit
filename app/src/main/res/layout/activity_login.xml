@@ -48,7 +48,7 @@
             android:id="@+id/usernameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_person_black_24dp"
+            android:drawableStart="@drawable/ic_person_black_login_24dp"
             android:hint="@string/email"
             android:outlineAmbientShadowColor="@color/primaryColor"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
